@@ -758,7 +758,7 @@ function renderEventDetails(event) {
 
         <div class="text-center section-header">
           <span class="eyebrow-text">PRICING TIERS</span>
-          <h2 class="section-title">Choose Your Pass</h2>
+          <h2 class="section-title-white">Choose Your Pass</h2>
         </div>
 
         <div class="pricing-cards-grid">
