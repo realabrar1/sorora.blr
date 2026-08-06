@@ -538,10 +538,38 @@ function initAuthForm() {
 // NAVIGATION CONTROLLER
 function initNavigation() {
   const navItems = document.querySelectorAll('.nav-item');
+  const sidebar = document.getElementById('adminSidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  const toggleBtn = document.getElementById('mobileMenuToggle');
+  const closeBtn = document.getElementById('closeSidebarBtn');
+
+  function closeMobileSidebar() {
+    sidebar?.classList.remove('mobile-open');
+    overlay?.classList.remove('mobile-open');
+    toggleBtn?.classList.remove('active');
+  }
+
+  function openMobileSidebar() {
+    sidebar?.classList.add('mobile-open');
+    overlay?.classList.add('mobile-open');
+    toggleBtn?.classList.add('active');
+  }
+
+  toggleBtn?.addEventListener('click', () => {
+    if (sidebar?.classList.contains('mobile-open')) {
+      closeMobileSidebar();
+    } else {
+      openMobileSidebar();
+    }
+  });
+
+  [overlay, closeBtn].forEach(btn => btn?.addEventListener('click', closeMobileSidebar));
+
   navItems.forEach(item => {
     item.addEventListener('click', () => {
       const tabId = item.getAttribute('data-tab');
       switchTab(tabId);
+      closeMobileSidebar();
     });
   });
 

@@ -53,12 +53,16 @@
 
   <!-- MAIN ADMIN DASHBOARD CONTAINER -->
   <div id="adminDashboard" class="admin-dashboard-layout hidden">
+    <!-- MOBILE OVERLAY BACKDROP -->
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
     <!-- SIDEBAR NAV -->
-    <aside class="admin-sidebar">
+    <aside id="adminSidebar" class="admin-sidebar">
       <div class="sidebar-header">
         <a href="../#home" target="_blank" class="sidebar-logo">
           S<span class="star-o">O</span>RORA <span>ADMIN</span>
         </a>
+        <button id="closeSidebarBtn" class="close-sidebar-btn" aria-label="Close Navigation Sidebar">&times;</button>
       </div>
 
       <nav class="sidebar-menu">
@@ -99,12 +103,19 @@
       <!-- TOP BAR -->
       <header class="admin-topbar">
         <div class="topbar-left">
-          <h2 id="currentTabTitle" class="topbar-title">Dashboard Overview</h2>
-          <span class="live-sync-badge">🟢 Live Connected to Client Web App</span>
+          <button id="mobileMenuToggle" class="mobile-menu-btn" aria-label="Toggle Navigation Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <div>
+            <h2 id="currentTabTitle" class="topbar-title">Dashboard Overview</h2>
+            <span class="live-sync-badge">🟢 Live Sync Active</span>
+          </div>
         </div>
         <div class="topbar-actions">
-          <a href="../#home" target="_blank" class="btn btn-outline btn-sm">Preview Client Website ↗</a>
-          <button id="btnResetData" class="btn btn-secondary btn-sm">Reset Default Data 🔄</button>
+          <a href="../#home" target="_blank" class="btn btn-outline btn-sm">Preview ↗</a>
+          <button id="btnResetData" class="btn btn-secondary btn-sm">Reset 🔄</button>
         </div>
       </header>
 
