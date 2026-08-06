@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SORORA Admin Dashboard Portal</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="./admin.css">
+</head>
+<body>
+
+  <!-- LOGIN SCREEN CONTAINER -->
+  <div id="loginScreen" class="admin-auth-wrapper">
+    <div class="auth-card">
+      <div class="auth-brand">
+        <h1 class="logo-title">S<span class="star-o">O</span>RORA</h1>
+        <p class="logo-subtitle">MANAGEMENT PORTAL</p>
+      </div>
+
+      <div class="auth-body">
+        <h2 class="auth-heading">Admin Sign In</h2>
+        <p class="auth-desc">Enter your administrative credentials to manage website content, experiences, and bookings.</p>
+        
+        <div id="loginErrorAlert" class="alert alert-error hidden">
+          Invalid email or password. Please use <strong>sorora@gmail.com</strong> / <strong>123456</strong>.
+        </div>
+
+        <form id="adminLoginForm">
+          <div class="form-group">
+            <label for="adminEmail">Email Address</label>
+            <input type="email" id="adminEmail" class="form-control" placeholder="sorora@gmail.com" value="sorora@gmail.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="adminPassword">Password</label>
+            <input type="password" id="adminPassword" class="form-control" placeholder="••••••••" value="123456" required>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-lg">Sign In to Dashboard &rarr;</button>
+        </form>
+      </div>
+
+      <div class="auth-footer">
+        <p>SORORA Admin Portal &bull; Secure Encrypted Session</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN ADMIN DASHBOARD CONTAINER -->
+  <div id="adminDashboard" class="admin-dashboard-layout hidden">
+    <!-- SIDEBAR NAV -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-header">
+        <a href="../#home" target="_blank" class="sidebar-logo">
+          S<span class="star-o">O</span>RORA <span>ADMIN</span>
+        </a>
+      </div>
+
+      <nav class="sidebar-menu">
+        <button class="nav-item active" data-tab="overviewTab">
+          <span class="nav-icon">📊</span> Overview
+        </button>
+        <button class="nav-item" data-tab="heroTab">
+          <span class="nav-icon">🖼</span> Hero Section
+        </button>
+        <button class="nav-item" data-tab="experiencesTab">
+          <span class="nav-icon">🎪</span> Experiences & Events
+        </button>
+        <button class="nav-item" data-tab="bookPageTab">
+          <span class="nav-icon">📚</span> Book-Experience Page
+        </button>
+        <button class="nav-item" data-tab="footerTab">
+          <span class="nav-icon">🔗</span> Footer & Social Links
+        </button>
+        <button class="nav-item" data-tab="bookingsTab">
+          <span class="nav-icon">📋</span> Guest Bookings
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="admin-profile-badge">
+          <div class="admin-avatar">SA</div>
+          <div class="admin-info">
+            <strong>Sorora Admin</strong>
+            <small>sorora@gmail.com</small>
+          </div>
+        </div>
+        <button id="adminLogoutBtn" class="btn btn-outline-danger btn-block btn-sm">Log Out 🚪</button>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="admin-main">
+      <!-- TOP BAR -->
+      <header class="admin-topbar">
+        <div class="topbar-left">
+          <h2 id="currentTabTitle" class="topbar-title">Dashboard Overview</h2>
+          <span class="live-sync-badge">🟢 Live Connected to Client Web App</span>
+        </div>
+        <div class="topbar-actions">
+          <a href="../#home" target="_blank" class="btn btn-outline btn-sm">Preview Client Website ↗</a>
+          <button id="btnResetData" class="btn btn-secondary btn-sm">Reset Default Data 🔄</button>
+        </div>
+      </header>
+
+      <div class="admin-content-body">
+        
+        <!-- TAB 1: OVERVIEW -->
+        <section id="overviewTab" class="tab-pane active">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <span class="stat-icon">🎪</span>
+              <div class="stat-info">
+                <span class="stat-num" id="statTotalEvents">4</span>
+                <span class="stat-label">Active Experiences</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <span class="stat-icon">🎟</span>
+              <div class="stat-info">
+                <span class="stat-num" id="statTotalBookings">3</span>
+                <span class="stat-label">Confirmed Bookings</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <span class="stat-icon">💰</span>
+              <div class="stat-info">
+                <span class="stat-num" id="statTotalRevenue">₹29,493</span>
+                <span class="stat-label">Total Revenue</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <span class="stat-icon">👥</span>
+              <div class="stat-info">
+                <span class="stat-num" id="statSeatsLeft">14</span>
+                <span class="stat-label">Total Seats Remaining</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- LIQUID TRANSPARENT GLASS VISITORS STATS WIDGET -->
+          <div class="liquid-glass-visitors-card">
+            <div class="glass-visitors-header">
+              <div class="glass-title-wrap">
+                <span class="pulse-live-dot"></span>
+                <h3 class="glass-visitors-title">Live Website Traffic & Visitors Analytics</h3>
+              </div>
+              <span class="glass-live-badge">REAL-TIME MONITOR</span>
+            </div>
+
+            <div class="glass-visitors-metrics">
+              <div class="glass-metric-item highlight">
+                <div class="metric-icon-box">⚡</div>
+                <div class="metric-content">
+                  <span class="metric-value live-pulse" id="statCurrentVisitors">1</span>
+                  <span class="metric-label">Current Visitors (Live Now)</span>
+                </div>
+              </div>
+
+              <div class="glass-metric-item">
+                <div class="metric-icon-box">🌐</div>
+                <div class="metric-content">
+                  <span class="metric-value" id="statTotalVisitors">1,482</span>
+                  <span class="metric-label">Total Visitors (All Time)</span>
+                </div>
+              </div>
+
+              <div class="glass-metric-item">
+                <div class="metric-icon-box">📊</div>
+                <div class="metric-content">
+                  <span class="metric-value" id="statTodayVisitors">234</span>
+                  <span class="metric-label">Today's Unique Guests</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dashboard-panels-grid">
+            <div class="panel-card">
+              <h3 class="panel-title">Quick Actions</h3>
+              <div class="quick-buttons">
+                <button class="btn btn-primary" onclick="switchTab('experiencesTab')">+ Add New Experience</button>
+                <button class="btn btn-outline" onclick="switchTab('heroTab')">Edit Homepage Hero</button>
+                <button class="btn btn-outline" onclick="switchTab('footerTab')">Manage Social Links</button>
+              </div>
+            </div>
+
+            <div class="panel-card">
+              <h3 class="panel-title">Recent Guest Bookings</h3>
+              <div id="recentBookingsList" class="recent-list"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 2: HERO SECTION MANAGER -->
+        <section id="heroTab" class="tab-pane">
+          <div class="panel-card">
+            <h3 class="panel-title">Edit Homepage Hero Section Content</h3>
+            <p class="panel-desc">Update the headline, subtitle, video, background image, and CTA buttons on the client homepage.</p>
+            
+            <form id="heroConfigForm">
+              <div class="form-row">
+                <div class="form-group col-6">
+                  <label for="heroTitle">Hero Large Title</label>
+                  <input type="text" id="heroTitle" class="form-control" required>
+                </div>
+                <div class="form-group col-6">
+                  <label for="heroScriptTitle">Hero Script Accent Subtitle</label>
+                  <input type="text" id="heroScriptTitle" class="form-control" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="heroSubtitle">Hero Paragraph Description</label>
+                <textarea id="heroSubtitle" class="form-control" rows="3" required></textarea>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-6">
+                  <label>Hero Background Video (Drag & Drop or Select Video)</label>
+                  <div class="dropzone" id="heroVideoDropzone">
+                    <input type="file" id="heroVideoFileInput" accept="video/*" class="dropzone-file-input">
+                    <div class="dropzone-content" id="heroVideoDropContent">
+                      <span class="dropzone-icon">🎬</span>
+                      <span class="dropzone-text">Drag & drop video file here or <strong>browse</strong></span>
+                      <span class="dropzone-hint">Supports .mp4, .webm</span>
+                    </div>
+                    <div class="dropzone-preview hidden" id="heroVideoPreviewWrap">
+                      <video id="heroVideoPreview" controls style="max-height: 120px; width: 100%; border-radius: 8px;"></video>
+                      <button type="button" class="btn-clear-media" id="btnClearHeroVideo">&times;</button>
+                    </div>
+                  </div>
+                  <input type="hidden" id="heroVideo" required>
+                </div>
+
+                <div class="form-group col-6">
+                  <label>Hero Poster Image (Drag & Drop or Select Image)</label>
+                  <div class="dropzone" id="heroPosterDropzone">
+                    <input type="file" id="heroPosterFileInput" accept="image/*" class="dropzone-file-input">
+                    <div class="dropzone-content" id="heroPosterDropContent">
+                      <span class="dropzone-icon">🖼</span>
+                      <span class="dropzone-text">Drag & drop poster image or <strong>browse</strong></span>
+                      <span class="dropzone-hint">Supports .png, .jpg, .webp</span>
+                    </div>
+                    <div class="dropzone-preview hidden" id="heroPosterPreviewWrap">
+                      <img id="heroPosterPreview" alt="Poster preview" style="max-height: 120px; border-radius: 8px; object-fit: cover;">
+                      <button type="button" class="btn-clear-media" id="btnClearHeroPoster">&times;</button>
+                    </div>
+                  </div>
+                  <input type="hidden" id="heroPoster" required>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-6">
+                  <label for="heroBtnText">Primary Button Text</label>
+                  <input type="text" id="heroBtnText" class="form-control" placeholder="Explore Experiences" required>
+                </div>
+                <div class="form-group col-6">
+                  <label for="heroWatchBtnText">Secondary Button Text</label>
+                  <input type="text" id="heroWatchBtnText" class="form-control" placeholder="Watch Video" required>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Save Hero Changes & Sync Client Website &rarr;</button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- TAB 3: EXPERIENCES & EVENTS MANAGER -->
+        <section id="experiencesTab" class="tab-pane">
+          <div class="panel-header-actions">
+            <div>
+              <h3 class="panel-title">Manage Experiences & Events</h3>
+              <p class="panel-desc">Add new events, edit pricing, dates, locations, remaining seats, and 22-section landing page details.</p>
+            </div>
+            <button id="btnAddNewEvent" class="btn btn-primary">+ Add New Experience</button>
+          </div>
+
+          <!-- EVENT CARDS TABLE -->
+          <div class="panel-card">
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Event Image</th>
+                    <th>Title & Category</th>
+                    <th>Date & Time</th>
+                    <th>Location</th>
+                    <th>Price</th>
+                    <th>Seats (Filled/Total)</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="eventsTableBody">
+                  <!-- Dynamically Rendered -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 4: BOOK-EXPERIENCE PAGE MANAGER -->
+        <section id="bookPageTab" class="tab-pane">
+          <div class="panel-card">
+            <h3 class="panel-title">Manage Book-Experience Discovery Page</h3>
+            <p class="panel-desc">Customize header title, subtitle, video, category filters, and quick tags for `#book-experience`.</p>
+
+            <form id="bookPageConfigForm">
+              <div class="form-group">
+                <label for="bookPageHeroTitle">Hero Title</label>
+                <input type="text" id="bookPageHeroTitle" class="form-control" required>
+              </div>
+
+              <div class="form-group">
+                <label for="bookPageHeroSub">Hero Subtitle</label>
+                <textarea id="bookPageHeroSub" class="form-control" rows="2" required></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="bookPageCategories">Available Categories (Comma-separated)</label>
+                <input type="text" id="bookPageCategories" class="form-control" placeholder="Exclusive Soirée, Weekend Getaway, Wellness & Mindfulness, Immersive Games" required>
+              </div>
+
+              <div class="form-group">
+                <label for="bookPageFilterTags">Quick Filter Tags (Comma-separated)</label>
+                <input type="text" id="bookPageFilterTags" class="form-control" placeholder="All, Weekend, Women Only, Wellness, Adventure, Creativity, Networking" required>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Save Book Page Configuration &rarr;</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- MULTIPLE BANNERS MANAGER PANEL -->
+          <div class="panel-card" style="margin-top: 30px;">
+            <div class="panel-header-actions">
+              <div>
+                <h3 class="panel-title">Events Page Hero Multi-Banner Slides (Auto-Slider)</h3>
+                <p class="panel-desc">Add multiple banner slides with drag & drop images/videos. They auto-slide on the `#book-experience` page.</p>
+              </div>
+              <button id="btnAddNewBanner" class="btn btn-primary">+ Add New Banner Slide</button>
+            </div>
+
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Media</th>
+                    <th>Badge & Slide Title</th>
+                    <th>Subtitle</th>
+                    <th>Button Target</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="bannersTableBody">
+                  <!-- Dynamically Rendered -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 5: FOOTER & SOCIAL LINKS MANAGER -->
+        <section id="footerTab" class="tab-pane">
+          <div class="panel-card">
+            <h3 class="panel-title">Manage Footer Links & Social Media</h3>
+            <p class="panel-desc">Edit Quick Links, Support links, social media profile links, and bio text across the website.</p>
+
+            <form id="footerConfigForm">
+              <div class="form-group">
+                <label for="footerBio">Footer Brand Bio Text</label>
+                <textarea id="footerBio" class="form-control" rows="2" required></textarea>
+              </div>
+
+              <h4 class="form-sub-heading">Social Media Links</h4>
+              <div class="form-row">
+                <div class="form-group col-6">
+                  <label for="socialInsta">Instagram URL</label>
+                  <input type="text" id="socialInsta" class="form-control" required>
+                </div>
+                <div class="form-group col-6">
+                  <label for="socialFB">Facebook URL</label>
+                  <input type="text" id="socialFB" class="form-control" required>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-6">
+                  <label for="socialWA">WhatsApp Community URL</label>
+                  <input type="text" id="socialWA" class="form-control" required>
+                </div>
+                <div class="form-group col-6">
+                  <label for="socialLinkedIn">LinkedIn URL</label>
+                  <input type="text" id="socialLinkedIn" class="form-control" required>
+                </div>
+              </div>
+
+              <h4 class="form-sub-heading">Quick Links & Support Links</h4>
+              <div class="form-row">
+                <div class="form-group col-6">
+                  <label for="quickLinksList">Quick Links (Comma-separated)</label>
+                  <input type="text" id="quickLinksList" class="form-control" value="Home, Experiences, About Us, Community, Gallery, Blog, Contact" required>
+                </div>
+                <div class="form-group col-6">
+                  <label for="supportLinksList">Support Links (Comma-separated)</label>
+                  <input type="text" id="supportLinksList" class="form-control" value="FAQs, Terms & Conditions, Privacy Policy, Cancellation Policy" required>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Save Footer Links & Social Media &rarr;</button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- TAB 6: GUEST BOOKINGS ROSTER -->
+        <section id="bookingsTab" class="tab-pane">
+          <div class="panel-card">
+            <h3 class="panel-title">Guest Booking Roster & Gate Check-in</h3>
+            <p class="panel-desc">View all confirmed guest bookings, ticket types, contact info, and toggle gate check-in status.</p>
+
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Booking Ref & Time</th>
+                    <th>Guest Name & Contact</th>
+                    <th>Experience Event</th>
+                    <th>Pass Tier & Pax</th>
+                    <th>Payment Mode & Total</th>
+                    <th>Dietary & Emergency Notes</th>
+                    <th>Check-in Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="bookingsTableBody">
+                  <!-- Dynamically Rendered -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- ADD / EDIT EXPERIENCE MODAL -->
+  <div id="experienceModal" class="admin-modal-backdrop">
+    <div class="admin-modal-box">
+      <div class="modal-header">
+        <h3 id="expModalTitle">Add New Experience</h3>
+        <button id="closeExpModal" class="close-modal-btn">&times;</button>
+      </div>
+
+      <form id="expForm" class="modal-body">
+        <input type="hidden" id="expId">
+
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label for="expTitleInput">Experience Title *</label>
+            <input type="text" id="expTitleInput" class="form-control" placeholder="e.g. Sunset Pottery & Wine" required>
+          </div>
+          <div class="form-group col-6">
+            <label for="expCategoryInput">Category *</label>
+            <input type="text" id="expCategoryInput" class="form-control" placeholder="e.g. Creativity & Art" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="expSubtitleInput">Subtitle / Tagline</label>
+          <input type="text" id="expSubtitleInput" class="form-control" placeholder="An Exclusive Sunset Gathering..." required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-4">
+            <label for="expDateInput">Date String *</label>
+            <input type="text" id="expDateInput" class="form-control" placeholder="Saturday, Sept 05, 2026" required>
+          </div>
+          <div class="form-group col-4">
+            <label for="expTimeInput">Time *</label>
+            <input type="text" id="expTimeInput" class="form-control" placeholder="4:00 PM – 7:00 PM" required>
+          </div>
+          <div class="form-group col-4">
+            <label for="expPriceInput">Starting Price (₹) *</label>
+            <input type="number" id="expPriceInput" class="form-control" placeholder="1999" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label for="expLocationInput">Full Location Address</label>
+            <input type="text" id="expLocationInput" class="form-control" placeholder="Koramangala, Bengaluru" required>
+          </div>
+          <div class="form-group col-6">
+            <label for="expShortLocInput">Short Location Badge</label>
+            <input type="text" id="expShortLocInput" class="form-control" placeholder="Koramangala, Bengaluru" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label for="expTotalSeatsInput">Total Capacity Seats</label>
+            <input type="number" id="expTotalSeatsInput" class="form-control" value="10" required>
+          </div>
+          <div class="form-group col-6">
+            <label for="expFilledSeatsInput">Seats Currently Filled</label>
+            <input type="number" id="expFilledSeatsInput" class="form-control" value="0" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label>Event Cover Image (Drag & Drop Image)</label>
+            <div class="dropzone" id="expImgDropzone">
+              <input type="file" id="expImgFileInput" accept="image/*" class="dropzone-file-input">
+              <div class="dropzone-content" id="expImgDropContent">
+                <span class="dropzone-icon">📷</span>
+                <span class="dropzone-text">Drag & drop cover photo or <strong>browse</strong></span>
+                <span class="dropzone-hint">Supports .png, .jpg, .webp</span>
+              </div>
+              <div class="dropzone-preview hidden" id="expImgPreviewWrap">
+                <img id="expImgPreview" alt="Event Cover preview" style="max-height: 120px; border-radius: 8px; object-fit: cover;">
+                <button type="button" class="btn-clear-media" id="btnClearExpImg">&times;</button>
+              </div>
+            </div>
+            <input type="hidden" id="expHeroImgInput">
+          </div>
+
+          <div class="form-group col-6">
+            <label>Event Hero Video (Drag & Drop Video - Optional)</label>
+            <div class="dropzone" id="expVidDropzone">
+              <input type="file" id="expVidFileInput" accept="video/*" class="dropzone-file-input">
+              <div class="dropzone-content" id="expVidDropContent">
+                <span class="dropzone-icon">🎬</span>
+                <span class="dropzone-text">Drag & drop video file or <strong>browse</strong></span>
+                <span class="dropzone-hint">Supports .mp4, .webm</span>
+              </div>
+              <div class="dropzone-preview hidden" id="expVidPreviewWrap">
+                <video id="expVidPreview" controls style="max-height: 120px; width: 100%; border-radius: 8px;"></video>
+                <button type="button" class="btn-clear-media" id="btnClearExpVid">&times;</button>
+              </div>
+            </div>
+            <input type="hidden" id="expHeroVideoInput">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="expStoryInput">Event Story Text</label>
+          <textarea id="expStoryInput" class="form-control" rows="3" placeholder="Describe the story and feel of this experience..." required></textarea>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" id="btnCancelExp">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Experience & Sync</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL FOR ADDING / EDITING BANNER SLIDES -->
+  <div id="bannerModal" class="admin-modal-backdrop">
+    <div class="admin-modal-box">
+      <div class="modal-header">
+        <h3 id="bannerModalTitle">Add New Banner Slide</h3>
+        <button id="closeBannerModal" class="close-modal-btn">&times;</button>
+      </div>
+
+      <form id="bannerForm" class="modal-body">
+        <input type="hidden" id="bannerId">
+
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label for="bannerBadgeInput">Badge Tag Text</label>
+            <input type="text" id="bannerBadgeInput" class="form-control" placeholder="e.g. CURATED EXPERIENCES" required>
+          </div>
+          <div class="form-group col-6">
+            <label for="bannerTitleInput">Slide Title *</label>
+            <input type="text" id="bannerTitleInput" class="form-control" placeholder="e.g. Saddle & Soul Soirée" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="bannerSubtitleInput">Subtitle / Description</label>
+          <textarea id="bannerSubtitleInput" class="form-control" rows="2" placeholder="Slide description paragraph..." required></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label for="bannerBtnTextInput">CTA Button Text</label>
+            <input type="text" id="bannerBtnTextInput" class="form-control" placeholder="Explore Experience" required>
+          </div>
+          <div class="form-group col-6">
+            <label for="bannerBtnLinkInput">CTA Button Link Target</label>
+            <input type="text" id="bannerBtnLinkInput" class="form-control" placeholder="#event/saddle-and-soul" required>
+          </div>
+        </div>
+
+        <!-- Drag & Drop Media Upload for Banner -->
+        <div class="form-group">
+          <label>Banner Background Image or Video (Drag & Drop File)</label>
+          <div class="dropzone" id="bannerMediaDropzone">
+            <input type="file" id="bannerMediaFileInput" accept="image/*,video/*" class="dropzone-file-input">
+            <div class="dropzone-content" id="bannerMediaDropContent">
+              <span class="dropzone-icon">🖼🎬</span>
+              <span class="dropzone-text">Drag & drop banner image or video here or <strong>browse</strong></span>
+              <span class="dropzone-hint">Supports .png, .jpg, .webp, .mp4</span>
+            </div>
+            <div class="dropzone-preview hidden" id="bannerMediaPreviewWrap">
+              <img id="bannerImgPreview" alt="Banner Preview" style="max-height: 140px; border-radius: 8px; object-fit: cover;">
+              <video id="bannerVidPreview" controls style="max-height: 140px; width: 100%; border-radius: 8px;" class="hidden"></video>
+              <button type="button" class="btn-clear-media" id="btnClearBannerMedia">&times;</button>
+            </div>
+          </div>
+          <input type="hidden" id="bannerMediaUrlInput" required>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" id="btnCancelBanner">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Banner Slide & Sync</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL FOR FULL GUEST DOSSIER & BOOKING DETAILS -->
+  <div id="guestDossierModal" class="admin-modal-backdrop">
+    <div class="admin-modal-box" style="max-width: 650px;">
+      <div class="modal-header">
+        <h3 id="dossierModalTitle">Guest Booking Dossier</h3>
+        <button id="closeDossierModal" class="close-modal-btn">&times;</button>
+      </div>
+
+      <div class="modal-body" id="dossierModalBody">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" id="btnCloseDossier">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./admin.js"></script>
+</body>
+</html>

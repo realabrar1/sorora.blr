@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SORORA - Experiences That Stay With You</title>
+  <meta name="description"
+    content="Meaningful events for women who seek connection, adventure & memories that last. Join the Sorora community today.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+  <!-- Navigation Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="nav-container">
+      <!-- Logo -->
+      <a href="#home" class="logo" aria-label="Sorora Home">
+        <div class="logo-title">
+          S<span class="logo-o-wrapper">O<svg class="star-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M12 2L13.8 9.2L21 11L13.8 12.8L12 20L10.2 12.8L3 11L10.2 9.2L12 2Z" fill="currentColor" />
+            </svg></span>RORA
+        </div>
+        <div class="logo-tagline">EXPERIENCES THAT STAY WITH YOU</div>
+      </a>
+
+      <!-- Desktop Nav Menu -->
+      <nav class="nav-links" id="navMenu">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#book-experience" class="nav-link">Book An Experience</a>
+        <a href="#about" class="nav-link">About Us</a>
+        <a href="#community" class="nav-link">Community</a>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="nav-actions">
+        <a href="#book-experience" class="btn btn-book" id="openBookModalNav">Book Now</a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-header">
+      <a href="#home" class="logo">
+        <div class="logo-title">S<span class="logo-o-wrapper">O<svg class="star-icon" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor">
+              <path d="M12 2L13.8 9.2L21 11L13.8 12.8L12 20L10.2 12.8L3 11L10.2 9.2L12 2Z" fill="currentColor" />
+            </svg></span>RORA</div>
+      </a>
+      <button class="close-drawer" id="closeDrawer">&times;</button>
+    </div>
+    <div class="mobile-drawer-links">
+      <a href="#home" class="mobile-link">Home</a>
+      <a href="#book-experience" class="mobile-link">Book An Experience</a>
+      <a href="#about" class="mobile-link">About Us</a>
+      <a href="#community" class="mobile-link">Community</a>
+      <!-- <a href="#dashboard" class="mobile-link">Member Dashboard</a> -->
+      <a href="#book-experience" class="btn btn-book mobile-book-btn" id="openBookModalMobile">Book Now</a>
+    </div>
+  </div>
+
+  <!-- VIEW 1: HOME VIEW -->
+  <div id="homeView">
+    <main>
+      <!-- HERO SECTION -->
+      <section class="hero-section" id="home">
+        <video class="hero-bg-video" autoplay muted loop playsinline poster="/assets/hero_horse_bg.png">
+          <source src="/assets/sorora_hero.mp4" type="video/mp4">
+        </video>
+        <div class="hero-bg-overlay"></div>
+        <div class="hero-container">
+          <div class="hero-content">
+            <h1 class="hero-title">
+              EXPERIENCES THAT<br>
+              CONNECT YOU<br>
+              <span class="hero-script">To yourself & each other.</span>
+            </h1>
+            <p class="hero-subtitle">
+              Meaningful events for women who seek connection, adventure & memories that last.
+            </p>
+            <div class="hero-buttons">
+              <a href="#book-experience" class="btn btn-primary btn-sm-explore" id="exploreBtn">Explore Experiences
+                &rarr;</a>
+            </div>
+
+            <!-- Single Row Liquid Glass Feature Bar -->
+            <div class="hero-glass-bar">
+              <div class="glass-feature">
+                <div class="glass-icon">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path
+                      d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.72-8.72 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                    </path>
+                  </svg>
+                </div>
+                <div class="glass-text">Meaningful<br>Connections</div>
+              </div>
+
+              <div class="glass-feature">
+                <div class="glass-icon">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path
+                      d="M6 21L7.5 17C5 12 6.5 7 11 4.5C15 2.5 19.5 3.5 21 6C20.5 10.5 17.5 15.5 13 18C10.5 19.5 8 20.5 6 21Z">
+                    </path>
+                  </svg>
+                </div>
+                <div class="glass-text">Mindful<br>Experiences</div>
+              </div>
+
+              <div class="glass-feature">
+                <div class="glass-icon">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                    </polygon>
+                  </svg>
+                </div>
+                <div class="glass-text">Curated<br>with Love</div>
+              </div>
+
+              <div class="glass-feature">
+                <div class="glass-icon">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                    <circle cx="16.5" cy="5" r="2.2"></circle>
+                    <path d="M13 10.5a3.8 3.8 0 0 1 7 0"></path>
+                    <circle cx="12" cy="11.5" r="2.6"></circle>
+                    <path d="M7 19.5a5 5 0 0 1 10 0V21H7v-1.5z"></path>
+                  </svg>
+                </div>
+                <div class="glass-text">Community<br>of Women</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: UPCOMING EXPERIENCES -->
+      <section class="upcoming-section" id="experiences">
+        <div class="section-container">
+          <div class="upcoming-header">
+            <div class="eyebrow"><span class="eyebrow-text">UPCOMING EXPERIENCES</span></div>
+            <h2 class="section-title-exp">What’s Next?</h2>
+            <a href="#book-experience" class="view-all-link">View All Experiences &rarr;</a>
+          </div>
+
+          <div class="cards-grid">
+            <article class="experience-card" data-event-id="saddle-and-soul" style="cursor: pointer;">
+              <div class="card-image-wrap">
+                <img src="/assets/saddle_and_soul.png" alt="Saddle & Soul Event" class="card-img">
+                <div class="date-badge"><span class="date-num">02</span><span class="date-month">AUG</span></div>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title">Saddle & Soul</h3>
+                <div class="card-meta"><span>📍 Zippy Equestrian, JP Nagar</span></div>
+              </div>
+            </article>
+
+            <article class="experience-card" data-event-id="into-the-woods" style="cursor: pointer;">
+              <div class="card-image-wrap">
+                <img src="/assets/into_the_woods.png" alt="Into The Woods Event" class="card-img">
+                <div class="date-badge badge-special"><span class="date-special-num">14</span><span
+                    class="date-special-sub">AUG</span></div>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title">Into The Woods</h3>
+                <div class="card-meta"><span>📍 Bandipur Forest</span></div>
+              </div>
+            </article>
+
+            <article class="experience-card" data-event-id="morning-yoga" style="cursor: pointer;">
+              <div class="card-image-wrap">
+                <img src="/assets/morning_yoga.png" alt="Morning Yoga Event" class="card-img">
+                <div class="date-badge"><span class="date-num">16</span><span class="date-month">AUG</span></div>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title">Morning Yoga</h3>
+                <div class="card-meta"><span>📍 Sports Drome</span></div>
+              </div>
+            </article>
+
+            <article class="experience-card" data-event-id="detective-game-night" style="cursor: pointer;">
+              <div class="card-image-wrap">
+                <img src="/assets/detective_game.png" alt="Detective Game Night" class="card-img">
+                <div class="date-badge"><span class="date-num">22</span><span class="date-month">AUG</span></div>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title">Detective Game Night</h3>
+                <div class="card-meta"><span>📍 Indiranagar</span></div>
+              </div>
+            </article>
+          </div>
+
+          <div class="center-cta">
+            <a href="#book-experience" class="btn btn-outline">Explore All Upcoming Events &rarr;</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: WHY JOIN SORORA? -->
+      <section class="why-join-section" id="about">
+        <div class="section-container">
+          <div class="why-join-header text-center">
+            <span class="eyebrow-text">WHY JOIN SORORA?</span>
+            <h2 class="section-title">More Than Just Events</h2>
+            <div class="leaf-divider">
+              <svg width="60" height="12" viewBox="0 0 60 12" fill="none" stroke="currentColor" stroke-width="1.2">
+                <path d="M0 6Q15 0 30 6T60 6"></path>
+                <circle cx="30" cy="6" r="2" fill="currentColor"></circle>
+              </svg>
+            </div>
+          </div>
+
+          <div class="features-row">
+            <div class="feature-item">
+              <div class="feature-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
+              <h3 class="feature-title">Real Connections</h3>
+              <p class="feature-desc">Meet like-minded women & build lasting friendships.</p>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <path
+                    d="M6 21L7.5 17C5 12 6.5 7 11 4.5C15 2.5 19.5 3.5 21 6C20.5 10.5 17.5 15.5 13 18C10.5 19.5 8 20.5 6 21Z">
+                  </path>
+                  <path d="M6 21L15.5 8.5"></path>
+                </svg>
+              </div>
+              <h3 class="feature-title">Mindful Living</h3>
+              <p class="feature-desc">Wellness, reflection & experiences that nourish your soul.</p>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                  <circle cx="12" cy="13" r="4"></circle>
+                </svg>
+              </div>
+              <h3 class="feature-title">Unforgettable Memories</h3>
+              <p class="feature-desc">Curated moments that you'll cherish forever.</p>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <path d="M12 18v-6"></path>
+                </svg>
+              </div>
+              <h3 class="feature-title">Adventure & Fun</h3>
+              <p class="feature-desc">Step out of your routine and embrace new experiences.</p>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                  <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                  <line x1="6" y1="1" x2="6" y2="4"></line>
+                </svg>
+              </div>
+              <h3 class="feature-title">Relax & Enjoy</h3>
+              <p class="feature-desc">Good food, good vibes & beautiful places.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: COMMUNITY BANNER -->
+      <section class="community-banner-section" id="community">
+        <div class="banner-bg">
+          <img src="/assets/community_banner.png" alt="Sorora Community" class="banner-bg-img">
+          <div class="banner-overlay"></div>
+        </div>
+
+        <div class="community-container">
+          <div class="community-left">
+            <h2 class="community-title">A Community of Women<br>Who Choose Themselves</h2>
+            <p class="community-desc">
+              Step away from the noise. Be present. Connect.<br>
+              Create memories that stay with you long after the day ends.
+            </p>
+            <a href="#book-experience" class="btn btn-primary" id="joinCommunityBtn">Join Our Community</a>
+          </div>
+
+          <div class="community-gallery-grid" id="gallery">
+            <div class="gallery-thumb"><img src="/assets/saddle_and_soul.png" alt="Community moment 1"></div>
+            <div class="gallery-thumb"><img src="/assets/hero_horse_bg.png" alt="Community moment 2"></div>
+            <div class="gallery-thumb"><img src="/assets/morning_yoga.png" alt="Community moment 3"></div>
+            <div class="gallery-thumb"><img src="/assets/into_the_woods.png" alt="Community moment 4"></div>
+            <div class="gallery-thumb"><img src="/assets/detective_game.png" alt="Community moment 5"></div>
+            <div class="gallery-thumb"><img src="/assets/saddle_and_soul.png" alt="Community moment 6"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-grid">
+          <!-- Column 1: Logo & Info -->
+          <div class="footer-col footer-col-brand">
+            <a href="#home" class="logo footer-logo" aria-label="Sorora Home">
+              <div class="logo-title">
+                S<span class="logo-o-wrapper">O<svg class="star-icon" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor">
+                    <path d="M12 2L13.8 9.2L21 11L13.8 12.8L12 20L10.2 12.8L3 11L10.2 9.2L12 2Z" fill="currentColor" />
+                  </svg></span>RORA
+              </div>
+              <div class="logo-tagline">EXPERIENCES THAT STAY WITH YOU</div>
+            </a>
+            <p class="footer-bio">
+              We create soulful experiences that connect you to yourself, to nature & to beautiful people.
+            </p>
+            <div class="social-icons">
+              <a href="#" class="social-icon-btn" aria-label="Instagram">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </a>
+              <a href="#" class="social-icon-btn" aria-label="Facebook">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                </svg>
+              </a>
+              <a href="#" class="social-icon-btn" aria-label="WhatsApp">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path
+                    d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+                  </path>
+                </svg>
+              </a>
+              <a href="#" class="social-icon-btn" aria-label="LinkedIn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Column 2: Quick Links -->
+          <div class="footer-col">
+            <h4 class="footer-col-title">Quick Links</h4>
+            <ul class="footer-links">
+              <li><a href="#home">Home</a></li>
+              <li><a href="#experiences">Experiences</a></li>
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#community">Community</a></li>
+              <li><a href="#gallery">Gallery</a></li>
+              <li><a href="#blog">Blog</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 3: Support -->
+          <div class="footer-col">
+            <h4 class="footer-col-title">Support</h4>
+            <ul class="footer-links">
+              <li><a href="#">FAQs</a></li>
+              <li><a href="#">Terms & Conditions</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Cancellation Policy</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 4: Stay Connected -->
+          <div class="footer-col footer-col-newsletter" id="contact">
+            <h4 class="footer-col-title">Stay Connected</h4>
+            <p class="newsletter-sub">Be the first to know about our upcoming experiences & offers.</p>
+            <form class="newsletter-form" id="newsletterForm">
+              <input type="email" id="newsletterEmail" class="newsletter-input" placeholder="Enter your email address"
+                required>
+              <button type="submit" class="newsletter-submit-btn" aria-label="Subscribe">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+              </button>
+            </form>
+
+            <div class="botanical-art">
+              <svg width="140" height="160" viewBox="0 0 100 120" fill="none" stroke="rgba(255,255,255,0.12)"
+                stroke-width="1">
+                <path
+                  d="M10 110C30 90 50 60 70 10M70 10C65 25 50 35 35 30M70 10C75 25 90 35 95 30M50 45C40 55 25 55 15 45M50 45C60 55 75 55 85 45M35 70C25 80 15 80 5 70M35 70C45 80 55 80 65 70">
+                </path>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom text-center">
+          <p>&copy; 2025 Sorora. All Rights Reserved. | ✨</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- VIEW 2: DEDICATED BOOK AN EXPERIENCE PAGE (#book-experience) -->
+  <div id="bookExperienceView" class="hidden">
+    <div id="bookExperienceContainer"></div>
+  </div>
+
+  <!-- VIEW 3: DEDICATED EVENT DETAILS LANDING PAGE -->
+  <div id="eventDetailsView" class="hidden">
+    <div id="eventDetailsContainer"></div>
+  </div>
+
+  <!-- VIEW 4: MEMBER DASHBOARD PORTAL -->
+  <div id="dashboardView" class="hidden">
+    <div class="dashboard-header-bar">
+      <div class="section-container">
+        <a href="#home" class="back-link">&larr; Back to Home</a>
+        <h1 class="dash-title">Member Portal</h1>
+      </div>
+    </div>
+    <div class="section-container" id="dashboardBody" style="padding-top: 30px; padding-bottom: 60px;"></div>
+  </div>
+
+  <!-- VIEW 5: ADMIN MANAGEMENT PORTAL (#admin) -->
+  <div id="adminView" class="hidden">
+    <div class="section-container" id="adminBody" style="padding-top: 100px; padding-bottom: 60px;"></div>
+  </div>
+
+  <!-- GUEST / SIGN IN AUTH MODAL -->
+  <div class="modal-backdrop" id="authModal">
+    <div class="modal-content auth-modal-content text-center">
+      <button class="modal-close" id="closeAuthModal">&times;</button>
+      <div class="auth-icon">✨</div>
+      <h3 class="auth-title">Welcome to Sorora</h3>
+      <p class="auth-subtitle">Please select how you would like to proceed with your booking:</p>
+
+      <div class="auth-buttons-stack">
+        <button class="btn btn-primary btn-block" id="btnAuthGuest">Continue as Guest 👤</button>
+        <button class="btn btn-outline btn-block" id="btnAuthSignIn">Sign In to My Account 🔑</button>
+        <button class="btn btn-glass btn-block" id="btnAuthCreate">Create New Account 🌟</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7-STEP MULTI-STEP CHECKOUT DRAWER -->
+  <div class="booking-drawer-backdrop" id="bookingDrawer">
+    <div class="booking-drawer-panel">
+      <div class="drawer-header">
+        <div>
+          <h3 class="drawer-title" id="drawerEventTitle">Saddle & Soul</h3>
+          <span class="drawer-sub" id="drawerEventMeta">02 AUG | JP Nagar</span>
+        </div>
+        <button class="drawer-close" id="closeBookingDrawer">&times;</button>
+      </div>
+
+      <!-- 7 Step Indicator Bar -->
+      <div class="drawer-step-indicator">
+        <div class="step-indicator-item active">1. Event</div>
+        <div class="step-indicator-item">2. Date</div>
+        <div class="step-indicator-item">3. Pass</div>
+        <div class="step-indicator-item">4. Guests</div>
+        <div class="step-indicator-item">5. Info</div>
+        <div class="step-indicator-item">6. Review</div>
+        <div class="step-indicator-item">7. Pay</div>
+      </div>
+
+      <div class="drawer-body">
+        <!-- STEP 1: Choose Event -->
+        <div class="drawer-step-panel" id="stepPanel1">
+          <h4 class="step-heading">Step 1: Choose Your Experience</h4>
+          <div class="form-group">
+            <label for="step1EventSelect">Select Experience</label>
+            <select id="step1EventSelect" class="form-control"></select>
+          </div>
+          <div class="drawer-footer">
+            <button type="button" class="btn btn-primary btn-block" id="btnStep1Next">Continue to Date &rarr;</button>
+          </div>
+        </div>
+
+        <!-- STEP 2: Select Date -->
+        <div class="drawer-step-panel hidden" id="stepPanel2">
+          <h4 class="step-heading">Step 2: Choose Event Date</h4>
+          <div class="form-group">
+            <label for="step2DateSelect">Available Dates</label>
+            <select id="step2DateSelect" class="form-control"></select>
+          </div>
+          <div class="drawer-footer">
+            <button type="button" class="btn btn-outline" id="btnStep2Back">&larr; Back</button>
+            <button type="button" class="btn btn-primary" id="btnStep2Next">Continue to Ticket Pass &rarr;</button>
+          </div>
+        </div>
+
+        <!-- STEP 3: Choose Ticket Type -->
+        <div class="drawer-step-panel hidden" id="stepPanel3">
+          <h4 class="step-heading">Step 3: Choose Ticket Pass Type</h4>
+          <div class="tier-select-list">
+            <label class="tier-radio-card">
+              <input type="radio" name="bookingTier" value="earlyBird" checked>
+              <div class="tier-radio-content">
+                <strong>Early Bird Pass — ₹1,999</strong>
+                <span>Save ₹500 - Limited seats available</span>
+              </div>
+            </label>
+            <label class="tier-radio-card">
+              <input type="radio" name="bookingTier" value="regular">
+              <div class="tier-radio-content">
+                <strong>Regular Pass — ₹2,499</strong>
+                <span>Standard full experience access</span>
+              </div>
+            </label>
+            <label class="tier-radio-card">
+              <input type="radio" name="bookingTier" value="vip">
+              <div class="tier-radio-content">
+                <strong>VIP Pass — ₹3,499</strong>
+                <span>Front Seat + Sorora Welcome Gift Kit</span>
+              </div>
+            </label>
+            <label class="tier-radio-card">
+              <input type="radio" name="bookingTier" value="couple">
+              <div class="tier-radio-content">
+                <strong>Couple Pass — ₹3,699</strong>
+                <span>Entry for 2 Guests</span>
+              </div>
+            </label>
+          </div>
+          <div class="drawer-footer">
+            <button type="button" class="btn btn-outline" id="btnStep3Back">&larr; Back</button>
+            <button type="button" class="btn btn-primary" id="btnStep3Next">Continue to Guest Count &rarr;</button>
+          </div>
+        </div>
+
+        <!-- STEP 4: Number of Attendees -->
+        <div class="drawer-step-panel hidden" id="stepPanel4">
+          <h4 class="step-heading">Step 4: Select Number of Attendees</h4>
+          <div class="guest-counter-group">
+            <label>Number of Guests:</label>
+            <div class="counter-control">
+              <button type="button" class="btn-counter" id="btnMinusGuest">-</button>
+              <span id="guestCountSpan" class="guest-num-display">1</span>
+              <button type="button" class="btn-counter" id="btnPlusGuest">+</button>
+            </div>
+          </div>
+          <div class="drawer-footer">
+            <button type="button" class="btn btn-outline" id="btnStep4Back">&larr; Back</button>
+            <button type="button" class="btn btn-primary" id="btnStep4Next">Enter Attendee Details &rarr;</button>
+          </div>
+        </div>
+
+        <!-- STEP 5: Enter Attendee Details -->
+        <div class="drawer-step-panel hidden" id="stepPanel5">
+          <h4 class="step-heading">Step 5: Attendee Details & Preferences</h4>
+          <div class="form-group">
+            <label for="drawerGuestName">Full Name *</label>
+            <input type="text" id="drawerGuestName" class="form-control" value="Ananya Sharma" required>
+          </div>
+          <div class="form-group">
+            <label for="drawerGuestEmail">Email Address *</label>
+            <input type="email" id="drawerGuestEmail" class="form-control" value="ananya.sharma@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="drawerGuestPhone">Mobile Number (WhatsApp) *</label>
+            <input type="tel" id="drawerGuestPhone" class="form-control" value="+91 98765 43210" required>
+          </div>
+          <div class="form-group">
+            <label for="drawerEmergency">Emergency Contact *</label>
+            <input type="text" id="drawerEmergency" class="form-control" value="Rahul Sharma (+91 98111 22233)"
+              required>
+          </div>
+          <div class="form-group">
+            <label for="drawerDiet">Dietary Preferences</label>
+            <select id="drawerDiet" class="form-control">
+              <option value="Vegetarian">Vegetarian</option>
+              <option value="Vegan">Vegan</option>
+              <option value="Jain">Jain</option>
+              <option value="Non-Vegetarian">Non-Vegetarian</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="drawerRequests">Special Requests / Notes</label>
+            <input type="text" id="drawerRequests" class="form-control"
+              placeholder="Any special seating or requirements...">
+          </div>
+          <div class="drawer-footer">
+            <button type="button" class="btn btn-outline" id="btnStep5Back">&larr; Back</button>
+            <button type="button" class="btn btn-primary" id="btnStep5Next">Review Summary &rarr;</button>
+          </div>
+        </div>
+
+        <!-- STEP 6: Review Booking Summary -->
+        <div class="drawer-step-panel hidden" id="stepPanel6">
+          <h4 class="step-heading">Step 6: Review Booking Summary</h4>
+          <div id="summaryTableContainer" class="summary-table-wrap"></div>
+          <div class="drawer-footer">
+            <button type="button" class="btn btn-outline" id="btnStep6Back">&larr; Back</button>
+            <button type="button" class="btn btn-primary" id="btnStep6Next">Proceed to Secure Payment &rarr;</button>
+          </div>
+        </div>
+
+        <!-- STEP 7: Secure Payment -->
+        <div class="drawer-step-panel hidden" id="stepPanel7">
+          <h4 class="step-heading">Step 7: Select Payment Method</h4>
+          <form id="drawerPaymentForm">
+            <div class="payment-methods-grid">
+              <label class="payment-method-card">
+                <input type="radio" name="paymentOption" value="upi" checked>
+                <div class="payment-card-content">
+                  <strong>⚡ Instant UPI (GPay / PhonePe / Paytm)</strong>
+                  <span>Instant 1-click check-in</span>
+                </div>
+              </label>
+              <label class="payment-method-card">
+                <input type="radio" name="paymentOption" value="card">
+                <div class="payment-card-content">
+                  <strong>💳 Credit / Debit Card</strong>
+                  <span>Visa, Mastercard, RuPay</span>
+                </div>
+              </label>
+              <label class="payment-method-card">
+                <input type="radio" name="paymentOption" value="netbanking">
+                <div class="payment-card-content">
+                  <strong>🏦 Net Banking / Apple Pay</strong>
+                  <span>HDFC, ICICI, SBI, Axis</span>
+                </div>
+              </label>
+            </div>
+
+            <div class="secure-badge-box">🔒 256-Bit SSL Encrypted Payment powered by Razorpay</div>
+
+            <div class="drawer-footer">
+              <button type="button" class="btn btn-outline" id="btnStep7Back">&larr; Back</button>
+              <button type="submit" class="btn btn-primary" id="btnCompletePayment">Complete Booking & Pay
+                &rarr;</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUCCESS CELEBRATION MODAL -->
+  <div class="modal-backdrop" id="successModal">
+    <div class="modal-content text-center success-modal-content">
+      <button class="modal-close" id="closeSuccessModal">&times;</button>
+      <div class="success-icon-anim">🎉</div>
+      <h2 class="success-title">Booking Successful!</h2>
+      <p class="success-subtitle">Your pass for <strong id="successEventTitle">Saddle & Soul</strong> is confirmed.</p>
+      <span class="booking-code-badge">Booking ID: <strong id="successBookingId">SORORA-SS-89421</strong></span>
+
+      <div class="success-actions-grid">
+        <button class="btn btn-primary btn-block" id="btnViewDigitalTicket">View Digital QR Ticket 🎟</button>
+        <a href="https://calendar.google.com" target="_blank" class="btn btn-outline btn-block">Add to Google Calendar
+          📅</a>
+        <a href="https://chat.whatsapp.com" target="_blank" class="btn btn-glass btn-block">Join WhatsApp Community
+          💬</a>
+        <a href="#dashboard" class="btn btn-dark-pill btn-block"
+          onclick="document.getElementById('successModal').classList.remove('open')">View My Bookings</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIGITAL TICKET MODAL -->
+  <div class="modal-backdrop" id="ticketModal">
+    <div class="modal-content ticket-modal-content">
+      <button class="modal-close" id="closeTicketModal">&times;</button>
+      <div class="digital-ticket-card">
+        <div class="ticket-header-strip">
+          <div class="ticket-logo">SORORA CIRCLE TICKET</div>
+          <span class="ticket-status-pill">CONFIRMED PASS</span>
+        </div>
+        <div class="ticket-body-grid">
+          <div class="ticket-main-info">
+            <h3 class="ticket-event-name" id="ticketEventTitle">Saddle & Soul</h3>
+            <p class="ticket-date-time" id="ticketDate">Saturday, August 02, 2026</p>
+            <p class="ticket-time-val" id="ticketTime">3:00 PM – 6:30 PM</p>
+            <p class="ticket-venue-val" id="ticketVenue">Zippy Equestrian, JP Nagar</p>
+            <div class="ticket-meta-fields">
+              <div><strong>Guest:</strong> <span id="ticketGuest">Ananya Sharma</span></div>
+              <div><strong>Pass Tier:</strong> <span id="ticketTier">Early Bird Pass</span></div>
+              <div><strong>Booking ID:</strong> <span id="ticketBookingId">SORORA-SS-89421</span></div>
+            </div>
+          </div>
+          <div class="ticket-qr-side">
+            <canvas id="ticketCanvas" width="140" height="140"></canvas>
+            <span class="qr-label">Scan at Entry Gate</span>
+          </div>
+        </div>
+        <div class="ticket-actions-bar">
+          <button class="btn btn-outline btn-sm" onclick="window.print()">Download Ticket (PDF)</button>
+          <a href="#dashboard" class="btn btn-primary btn-sm"
+            onclick="document.getElementById('ticketModal').classList.remove('open')">View My Bookings</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script type="module" src="/main.js"></script>
+</body>
+
+</html>
