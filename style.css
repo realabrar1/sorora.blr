@@ -576,27 +576,8 @@ button {
   font-family: var(--font-serif);
   font-size: 3.2rem;
   font-weight: 500;
-  color: #fbfbfb;
+  color: #000000;
   line-height: 1.15;
-}
-
-.section-title-blk {
-  font-family: var(--font-serif);
-  font-size: 3.2rem;
-  font-weight: 500;
-  color: #fbfbfb;
-  line-height: 1.15;
-}
-
-
-
-.section-title-exp {
-  color: #000;
-  font-family: var(--font-serif);
-  font-size: 3.2rem;
-  font-weight: 500;
-  line-height: 1.15;
-
 }
 
 .section-sub {
