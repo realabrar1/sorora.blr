@@ -265,14 +265,39 @@ document.addEventListener('DOMContentLoaded', () => {
   initVisitorTracking();
 });
 
+function resolveMediaUrl(url) {
+  if (!url) return '';
+  if (url.startsWith('/uploads/')) {
+    return `https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public${url}`;
+  }
+  return url;
+}
+
 async function loadRemoteContentData() {
   try {
     const res = await fetch('/data/content.json?t=' + Date.now());
     if (res.ok) {
       const data = await res.json();
-      if (data.events) localStorage.setItem('SORORA_EVENTS_DATA', JSON.stringify(data.events));
-      if (data.hero) localStorage.setItem('SORORA_HERO_CONFIG', JSON.stringify(data.hero));
-      if (data.banners) localStorage.setItem('SORORA_BANNERS_DATA', JSON.stringify(data.banners));
+
+      // Normalize upload paths to raw GitHub CDN URLs
+      if (data.events) {
+        Object.values(data.events).forEach(e => {
+          if (e.heroImg) e.heroImg = resolveMediaUrl(e.heroImg);
+          if (e.heroVideo) e.heroVideo = resolveMediaUrl(e.heroVideo);
+        });
+        localStorage.setItem('SORORA_EVENTS_DATA', JSON.stringify(data.events));
+      }
+      if (data.hero) {
+        if (data.hero.video) data.hero.video = resolveMediaUrl(data.hero.video);
+        if (data.hero.poster) data.hero.poster = resolveMediaUrl(data.hero.poster);
+        localStorage.setItem('SORORA_HERO_CONFIG', JSON.stringify(data.hero));
+      }
+      if (data.banners) {
+        data.banners.forEach(b => {
+          if (b.mediaUrl) b.mediaUrl = resolveMediaUrl(b.mediaUrl);
+        });
+        localStorage.setItem('SORORA_BANNERS_DATA', JSON.stringify(data.banners));
+      }
       if (data.bookPage) localStorage.setItem('SORORA_BOOK_PAGE_CONFIG', JSON.stringify(data.bookPage));
       if (data.footer) localStorage.setItem('SORORA_FOOTER_CONFIG', JSON.stringify(data.footer));
       if (data.bookings) localStorage.setItem('SORORA_ADMIN_BOOKINGS', JSON.stringify(data.bookings));

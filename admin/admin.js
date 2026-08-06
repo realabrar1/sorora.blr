@@ -393,8 +393,8 @@ async function uploadMediaToGitHub(file, pathFolder = 'public/uploads') {
     }
 
     const data = await res.json();
-    const publicUrl = `/uploads/${fileName}`;
-    showGitHubToast('✅ Media file committed to GitHub! Vercel deployed.', 'success');
+    const publicUrl = `https://raw.githubusercontent.com/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/main/public/uploads/${fileName}`;
+    showGitHubToast('✅ Media file committed to GitHub! Live URL ready.', 'success');
     return publicUrl;
   } catch (err) {
     console.error('GitHub Upload Error:', err);
