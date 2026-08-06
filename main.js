@@ -615,7 +615,8 @@ function renderEventDetails(event) {
       <div class="section-container">
         <div class="text-center section-header">
           <span class="eyebrow-text">THE JOURNEY</span>
-          <h2 class="section-title">Event Schedule & Itinerary</h2>
+          <h2 class="section-title" style="color: black;">Event Schedule & Itinerary
+</h2>
         </div>
         <div class="vertical-timeline">
           ${(event.timeline || []).map((item, idx) => `
