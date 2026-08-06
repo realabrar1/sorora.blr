@@ -1069,7 +1069,8 @@ function renderBookExperiencePage() {
       <div class="section-container">
         <div class="section-header">
           <span class="eyebrow-text">HIGHLIGHTS</span>
-          <h2 class="section-title">Featured Experiences</h2>
+          <h2 class="section-title" style="color: black;">Featured Experiences
+</h2>
         </div>
         <div class="featured-grid" id="featuredGridContainer">
           ${renderFeaturedCardsHTML()}
@@ -1096,7 +1097,8 @@ function renderBookExperiencePage() {
       <div class="section-container">
         <div class="section-header">
           <span class="eyebrow-text">ALL EVENTS</span>
-          <h2 class="section-title">Upcoming Experiences (<span id="eventCountDisplay">0</span>)</h2>
+          <h2 class="section-title" style="color: black;">Upcoming Experiences (<span id="eventCountDisplay">0</span>)</h2>
+          
         </div>
         <div class="cards-grid" id="bookExperienceGrid">
           ${renderFilteredCardsHTML()}
