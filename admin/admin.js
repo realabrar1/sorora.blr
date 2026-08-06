@@ -1302,8 +1302,8 @@ function processMediaFile(file, hiddenInput, content, previewWrap, onFileLoaded)
 
 // LIVE VISITORS REAL-TIME MONITOR ENGINE
 function updateLiveVisitorsWidget() {
-  const total = Number(localStorage.getItem('SORORA_TOTAL_VISITORS') || 1482);
-  const today = Number(localStorage.getItem('SORORA_TODAY_VISITORS') || 234);
+  const total = Number(localStorage.getItem('SORORA_TOTAL_VISITORS') || 0);
+  const today = Number(localStorage.getItem('SORORA_TODAY_VISITORS') || 0);
 
   let activePings = 0;
   const now = Date.now();
@@ -1317,13 +1317,11 @@ function updateLiveVisitorsWidget() {
     }
   }
 
-  const currentCount = Math.max(1, activePings);
-  
   const elCurrent = document.getElementById('statCurrentVisitors');
   const elTotal = document.getElementById('statTotalVisitors');
   const elToday = document.getElementById('statTodayVisitors');
 
-  if (elCurrent) elCurrent.textContent = currentCount;
+  if (elCurrent) elCurrent.textContent = activePings;
   if (elTotal) elTotal.textContent = total.toLocaleString('en-IN');
   if (elToday) elToday.textContent = today.toLocaleString('en-IN');
 }

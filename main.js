@@ -312,22 +312,23 @@ async function loadRemoteContentData() {
 
 function initVisitorTracking() {
   const sessionKey = 'SORORA_SESSION_ACTIVE';
-  let total = Number(localStorage.getItem('SORORA_TOTAL_VISITORS') || 1482);
-  let today = Number(localStorage.getItem('SORORA_TODAY_VISITORS') || 234);
+  let total = Number(localStorage.getItem('SORORA_TOTAL_VISITORS') || 0);
+  let today = Number(localStorage.getItem('SORORA_TODAY_VISITORS') || 0);
   const lastDate = localStorage.getItem('SORORA_VISITORS_DATE');
   const currentDate = new Date().toISOString().split('T')[0];
 
   if (lastDate !== currentDate) {
-    today = Math.floor(Math.random() * 40) + 180;
+    today = 0;
     localStorage.setItem('SORORA_VISITORS_DATE', currentDate);
+    localStorage.setItem('SORORA_TODAY_VISITORS', '0');
   }
 
   if (!sessionStorage.getItem(sessionKey)) {
     sessionStorage.setItem(sessionKey, '1');
     total += 1;
     today += 1;
-    localStorage.setItem('SORORA_TOTAL_VISITORS', total);
-    localStorage.setItem('SORORA_TODAY_VISITORS', today);
+    localStorage.setItem('SORORA_TOTAL_VISITORS', total.toString());
+    localStorage.setItem('SORORA_TODAY_VISITORS', today.toString());
   }
 
   const tabId = 'tab_' + Math.random().toString(36).substring(2, 9);
