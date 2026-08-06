@@ -257,12 +257,33 @@ let ADMIN_BOOKINGS = [
 // INITIALIZATION
 document.addEventListener('DOMContentLoaded', () => {
   initHeader();
+  loadRemoteContentData();
   initRouter();
   initBookingDrawer();
   initAuthModal();
   initAdminPortal();
   initVisitorTracking();
 });
+
+async function loadRemoteContentData() {
+  try {
+    const res = await fetch('/data/content.json?t=' + Date.now());
+    if (res.ok) {
+      const data = await res.json();
+      if (data.events) localStorage.setItem('SORORA_EVENTS_DATA', JSON.stringify(data.events));
+      if (data.hero) localStorage.setItem('SORORA_HERO_CONFIG', JSON.stringify(data.hero));
+      if (data.banners) localStorage.setItem('SORORA_BANNERS_DATA', JSON.stringify(data.banners));
+      if (data.bookPage) localStorage.setItem('SORORA_BOOK_PAGE_CONFIG', JSON.stringify(data.bookPage));
+      if (data.footer) localStorage.setItem('SORORA_FOOTER_CONFIG', JSON.stringify(data.footer));
+      if (data.bookings) localStorage.setItem('SORORA_ADMIN_BOOKINGS', JSON.stringify(data.bookings));
+      
+      initRouter();
+      renderFooterDynamicData();
+    }
+  } catch (err) {
+    console.warn('Remote content fetch fallback:', err);
+  }
+}
 
 function initVisitorTracking() {
   const sessionKey = 'SORORA_SESSION_ACTIVE';

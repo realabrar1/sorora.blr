@@ -1,0 +1,321 @@
+{
+  "events": {
+    "saddle-and-soul": {
+      "id": "saddle-and-soul",
+      "title": "Saddle & Soul",
+      "subtitle": "An Exclusive Soirée at Zippy Equestrian",
+      "category": "Curated Soirée",
+      "tags": ["Equestrian", "Art Therapy", "Networking", "Women Only"],
+      "location": "Zippy Equestrian Center, JP Nagar, Bengaluru",
+      "shortLocation": "JP Nagar, Bengaluru",
+      "date": "Saturday, August 02, 2026",
+      "dateShort": "02 AUG 2026",
+      "dateIso": "2026-08-02",
+      "time": "3:00 PM – 6:30 PM",
+      "duration": "3.5 Hours",
+      "startingPrice": 2358,
+      "seatsTotal": 15,
+      "seatsFilled": 7,
+      "seatsLeft": 8,
+      "rating": 4.9,
+      "reviewsCount": 150,
+      "joinedCount": "150+",
+      "featuredBadge": "Only 8 Seats Left",
+      "heroImg": "/assets/saddle_and_soul.png",
+      "heroVideo": "/assets/sorora_hero.mp4",
+      "storyText": "Imagine stepping away from the city's noise into a peaceful equestrian sanctuary, where horses, art, meaningful conversations, and mindful moments help you reconnect—with yourself and with others.",
+      "pricing": {
+        "earlyBird": { "price": 2358, "original": 2999, "title": "Early Bird Seat Pass", "status": "Best Value (Save ₹641)" },
+        "vip": { "price": 3499, "original": 4200, "title": "VIP Equestrian & Canvas Pass", "status": "Includes Canvas & Keepsake Gift" }
+      },
+      "datesAvailable": ["Saturday, August 02, 2026", "Saturday, August 09, 2026", "Saturday, August 16, 2026"],
+      "timeline": [
+        { "time": "3:00 PM", "title": "Welcome Drink", "desc": "Refreshing botanical herbal mocktail welcome" },
+        { "time": "3:20 PM", "title": "Meet Everyone", "desc": "Warm introductory icebreaker circle with fellow guests" },
+        { "time": "3:45 PM", "title": "Horse Connection", "desc": "Guided equine touch, bonding, and mindful horse therapy" },
+        { "time": "4:30 PM", "title": "Sip & Paint", "desc": "Expressive canvas art painting session with gourmet beverages" },
+        { "time": "5:15 PM", "title": "Mirror Session", "desc": "Self-reflection guided mindfulness exercise" },
+        { "time": "5:45 PM", "title": "Snacks & Refreshments", "desc": "Artisanal gourmet high tea, pastries & fruit platters" },
+        { "time": "6:00 PM", "title": "Photography", "desc": "Professional sunset polaroids with majestic horses" },
+        { "time": "6:15 PM", "title": "Sunset Networking", "desc": "Golden hour conversations under open canopy" },
+        { "time": "6:30 PM", "title": "Goodbye Gift", "desc": "Handcrafted botanical gift bag to take home" }
+      ],
+      "experiences": [
+        { "icon": "🐴", "title": "Mindful Horse Connection", "desc": "Experience equine therapy and bond with majestic horses in a peaceful ranch.", "detail": "Connect deeply with horses through gentle grooming, feeding, and touch under expert supervision." },
+        { "icon": "🎨", "title": "Sip & Paint Workshop", "desc": "Unleash your creativity with guided canvas painting while sipping artisanal drinks.", "detail": "All art materials, easels, aprons, and canvases are provided." },
+        { "icon": "🪞", "title": "Mirror Reflection Therapy", "desc": "A guided mindfulness session to slow down, reflect, and reconnect with your inner self.", "detail": "Guided by certified somatic wellness facilitators." },
+        { "icon": "📸", "title": "Sunset Photography & Keepsakes", "desc": "Capture aesthetic golden hour polaroids and professional portraits.", "detail": "Digital photos deliverable within 24 hours." }
+      ],
+      "hosts": [
+        { "name": "Rhea Kapoor", "role": "Equestrian & Community Lead", "bio": "Passionate equestrian with 8+ years hosting women's sanctuary events.", "img": "/assets/saddle_and_soul.png" },
+        { "name": "Aanya Mehta", "role": "Expressive Arts Facilitator", "bio": "Certified art therapist specialing in mindfulness painting workshops.", "img": "/assets/community_banner.png" }
+      ],
+      "venue": {
+        "name": "Zippy Equestrian Center",
+        "address": "Survey No 42/1, JP Nagar 8th Phase, Near Royal County, Bengaluru 560083",
+        "metro": "Yelachenahalli Metro Station (Green Line) - 12 mins cab",
+        "parking": "Valet parking available at venue entrance",
+        "weather": "24°C Pleasant Sunset Breeze Expected",
+        "mapSrc": "https://maps.google.com/maps?q=Zippy+Equestrian+JP+Nagar+Bengaluru&t=&z=13&ie=UTF8&iwloc=&output=embed"
+      },
+      "included": [
+        "Welcome botanical herbal mocktails & high tea",
+        "Guided equine connection & horse touch session",
+        "Complete Sip & Paint art kit (Canvas, paints, brushes, apron)",
+        "Mirror mindfulness reflection workshop",
+        "Handcrafted Sorora goodbye gift bag",
+        "Professional sunset polaroid photograph"
+      ],
+      "whatToBring": [
+        { "icon": "👟", "text": "Comfortable closed-toe shoes or boots for ranch grounds" },
+        { "icon": "🕶", "text": "Sunglasses & sun hat for open outdoor sessions" },
+        { "icon": "🧥", "text": "Light jacket/cardigan for evening breeze" }
+      ],
+      "faqs": [
+        { "q": "Do I need horse riding experience?", "a": "Not at all! This is a ground-based connection, grooming, and touch experience. No riding required." },
+        { "q": "Are all art supplies provided for Sip & Paint?", "a": "Yes! Canvases, paints, brushes, easels, and aprons are fully provided. You take your canvas home!" },
+        { "q": "Is food included?", "a": "Yes, gourmet high tea, snacks, fresh fruit platters, and welcome botanical mocktails are included." },
+        { "q": "What is the cancellation policy?", "a": "Full refund available up to 48 hours before event start time." }
+      ]
+    },
+    "into-the-woods": {
+      "id": "into-the-woods",
+      "title": "Into The Woods: Bandipur Forest Retreat",
+      "subtitle": "2-Day Wilderness & Mindful Stargazing Escape",
+      "category": "Wilderness Escapes",
+      "tags": ["Nature", "Stargazing", "Wellness", "Weekend"],
+      "location": "Bandipur Tiger Reserve Sanctuary, Karnataka",
+      "shortLocation": "Bandipur, Karnataka",
+      "date": "Friday, August 14, 2026",
+      "dateShort": "14 AUG 2026",
+      "dateIso": "2026-08-14",
+      "time": "Departure 6:00 AM (2 Days)",
+      "duration": "2 Days / 1 Night",
+      "startingPrice": 8999,
+      "seatsTotal": 12,
+      "seatsFilled": 9,
+      "seatsLeft": 3,
+      "rating": 5.0,
+      "reviewsCount": 88,
+      "joinedCount": "95+",
+      "featuredBadge": "Early Bird Offer",
+      "heroImg": "/assets/into_the_woods.png",
+      "heroVideo": "",
+      "storyText": "Disconnect from screens and reconnect with wilderness. Nestled in the heart of Bandipur forest, enjoy jungle safaris, bonfire stargazing, and soothing yoga.",
+      "pricing": {
+        "earlyBird": { "price": 8999, "original": 10999, "title": "Early Bird Retreat", "status": "Save ₹2000" },
+        "vip": { "price": 11999, "original": 13999, "title": "Private Cottage Upgrade", "status": "Private Forest Cottage" }
+      },
+      "datesAvailable": ["Friday, August 14, 2026", "Friday, August 28, 2026"],
+      "timeline": [
+        { "time": "6:00 AM", "title": "AC Luxury Bus Departure", "desc": "Pick up at Indiranagar & Silk Board" },
+        { "time": "1:00 PM", "title": "Lodge Check-in & Organic Lunch", "desc": "Local Malnad cuisine feast" },
+        { "time": "3:30 PM", "title": "Jungle Open Jeep Safari", "desc": "Wildlife spotting with naturalists" },
+        { "time": "7:30 PM", "title": "Bonfire Stargazing & Acoustic Night", "desc": "Acoustic music under clear dark skies" }
+      ],
+      "experiences": [
+        { "icon": "🐯", "title": "Jungle Jeep Safari", "desc": "Explore Bandipur sanctuary with certified wildlife naturalists.", "detail": "Spot elephants, deer, peacocks, and exotic birds in their natural habitat." }
+      ],
+      "hosts": [{ "name": "Deepika Rao", "role": "Wilderness Naturalist", "bio": "10+ years leading jungle expeditions.", "img": "/assets/into_the_woods.png" }],
+      "venue": { "name": "Bandipur Eco Jungle Resort", "address": "Bandipur National Park Boundary, Gundlupet Taluk", "metro": "Travel by luxury tourist bus provided", "parking": "Resort parking included", "weather": "19°C Cool Forest Atmosphere", "mapSrc": "https://maps.google.com/maps?q=Bandipur+National+Park&t=&z=13&ie=UTF8&iwloc=&output=embed" },
+      "included": ["Roundtrip AC Bus Transport", "Stay at Eco Jungle Resort", "All Meals & Snacks", "Open Jeep Safari Pass"],
+      "whatToBring": [{ "icon": "🧥", "text": "Warm jacket for evening safari" }],
+      "faqs": [{ "q": "Is transportation provided?", "a": "Yes, luxury AC bus pick-up and drop from Bengaluru is included." }]
+    },
+    "morning-yoga": {
+      "id": "morning-yoga",
+      "title": "Morning Yoga & Botanical Brunch",
+      "subtitle": "Rejuvenate Your Mind & Body on Sunlit Lawns",
+      "category": "Wellness & Mind",
+      "tags": ["Yoga", "Meditation", "Brunch", "Weekend"],
+      "location": "The Sports Drome, Sarjapur Road, Bengaluru",
+      "shortLocation": "Sarjapur Road, Bengaluru",
+      "date": "Sunday, August 16, 2026",
+      "dateShort": "16 AUG 2026",
+      "dateIso": "2026-08-16",
+      "time": "8:00 AM – 11:30 AM",
+      "duration": "3.5 Hours",
+      "startingPrice": 999,
+      "seatsTotal": 20,
+      "seatsFilled": 15,
+      "seatsLeft": 5,
+      "rating": 4.8,
+      "reviewsCount": 112,
+      "joinedCount": "210+",
+      "featuredBadge": "Most Popular",
+      "heroImg": "/assets/morning_yoga.png",
+      "heroVideo": "",
+      "storyText": "Start your weekend with gentle Hatha yoga, sound bowl meditation, and a organic farm-to-table botanical brunch on lush green lawns.",
+      "pricing": {
+        "earlyBird": { "price": 999, "original": 1499, "title": "Yoga & Brunch Pass", "status": "Includes Mat & Brunch" },
+        "vip": { "price": 1599, "original": 1999, "title": "VIP Wellness Kit Pass", "status": "Includes Mat, Journal & Organic Oils" }
+      },
+      "datesAvailable": ["Sunday, August 16, 2026", "Sunday, August 23, 2026"],
+      "timeline": [
+        { "time": "8:00 AM", "title": "Mat Setup & Herbal Tea", "desc": "Warm botanical infusion" },
+        { "time": "8:30 AM", "title": "Hatha Vinyasa Flow", "desc": "75-min rejuvenating yoga session" },
+        { "time": "9:45 AM", "title": "Sound Healing Bath", "desc": "Tibetan singing bowls vibration therapy" },
+        { "time": "10:15 AM", "title": "Organic Farm Brunch", "desc": "Avocado toasts, smoothie bowls & fresh juices" }
+      ],
+      "experiences": [
+        { "icon": "🧘", "title": "Sound Healing Bath", "desc": "Deep vibrational relaxation using Tibetan singing bowls.", "detail": "Release deep tension and quiet the mind in an immersive auditory bath." }
+      ],
+      "hosts": [{ "name": "Priya Nambiar", "role": "Lead Yoga Master", "bio": "500-hr RYT certified yoga instructor.", "img": "/assets/saddle_and_soul.png" }],
+      "venue": { "name": "The Sports Drome", "address": "Sarjapur Road, Near Wipro Campus, Bengaluru", "metro": "HSR Layout Metro Station (15 mins)", "parking": "Ample parking space", "weather": "21°C Fresh Morning Breeze", "mapSrc": "https://maps.google.com/maps?q=Sarjapur+Road+Bengaluru&t=&z=13&ie=UTF8&iwloc=&output=embed" },
+      "included": ["Yoga Mat Provided", "Sound Bath Therapy", "Full Organic Botanical Brunch"],
+      "whatToBring": [{ "icon": "🧘", "text": "Comfortable Yoga Wear" }],
+      "faqs": [{ "q": "Do I need to bring my own yoga mat?", "a": "We provide sanitized eco-friendly cork yoga mats, but feel free to bring your personal mat." }]
+    },
+    "detective-game-night": {
+      "id": "detective-game-night",
+      "title": "Detective Game Night & High Tea",
+      "subtitle": "Solve a 1920s Murder Mystery Soirée",
+      "category": "Immersive Games",
+      "tags": ["Creativity", "Networking", "Weekend", "Women Only"],
+      "location": "The Heritage Manor, Indiranagar, Bengaluru",
+      "shortLocation": "Indiranagar, Bengaluru",
+      "date": "Saturday, August 22, 2026",
+      "dateShort": "22 AUG 2026",
+      "dateIso": "2026-08-22",
+      "time": "4:00 PM – 7:30 PM",
+      "duration": "3.5 Hours",
+      "startingPrice": 1499,
+      "seatsTotal": 10,
+      "seatsFilled": 7,
+      "seatsLeft": 3,
+      "rating": 4.9,
+      "reviewsCount": 72,
+      "joinedCount": "130+",
+      "featuredBadge": "Newly Added",
+      "heroImg": "/assets/detective_game.png",
+      "heroVideo": "",
+      "storyText": "Put on your detective hat! Step into a vintage 1920s mansion where every guest gets a secret character role to unravel a mystery over tea and pastries.",
+      "pricing": {
+        "regular": { "price": 1499, "original": 1999, "title": "Detective Pass", "status": "Includes Character Dossier & High Tea" }
+      },
+      "datesAvailable": ["Saturday, August 22, 2026", "Saturday, August 29, 2026"],
+      "timeline": [
+        { "time": "4:00 PM", "title": "Role Assignment & Costumes", "desc": "Get your character envelope & props" },
+        { "time": "4:30 PM", "title": "Act I: The Crime Unfolds", "desc": "Gather clues across the heritage manor" },
+        { "time": "6:00 PM", "title": "High Tea & Clue Interrogation", "desc": "Interrogate suspects over finger sandwiches" },
+        { "time": "7:00 PM", "title": "The Final Reveal & Prizes", "desc": "Expose the culprit and win prizes" }
+      ],
+      "experiences": [
+        { "icon": "🕵️‍♀️", "title": "Interactive Mystery Roleplay", "desc": "Immersive live-action detective game with vintage props and character dossier.", "detail": "Designed for all skill levels. Fun, playful, and highly engaging." }
+      ],
+      "hosts": [{ "name": "Tara Sen", "role": "Game Master & Author", "bio": "Creative director specialized in interactive mystery events.", "img": "/assets/detective_game.png" }],
+      "venue": { "name": "The Heritage Manor", "address": "100 Feet Road, Indiranagar, Bengaluru", "metro": "Indiranagar Metro Station (5 mins walk)", "parking": "Street parking & valet", "weather": "Indoor Air-conditioned Manor", "mapSrc": "https://maps.google.com/maps?q=Indiranagar+Bengaluru&t=&z=13&ie=UTF8&iwloc=&output=embed" },
+      "included": ["Personalized Character Dossier", "High Tea & Gourmet Pastries", "Detective Props & Prize Bag"],
+      "whatToBring": [{ "icon": "👗", "text": "1920s Vintage / Smart Casual Attire" }],
+      "faqs": [{ "q": "Can I come alone?", "a": "Absolutely! Most guests come solo and make great friends during the game." }]
+    }
+  },
+  "hero": {
+    "title": "EXPERIENCES THAT CONNECT YOU",
+    "scriptTitle": "Stay With You",
+    "subtitle": "Unforgettable moments crafted for women. Connect, create, and celebrate in spaces designed for your soul.",
+    "video": "/assets/sorora_hero.mp4",
+    "poster": "/assets/hero_horse_bg.png",
+    "btnText": "Book An Experience",
+    "watchBtnText": "Watch After Movie"
+  },
+  "banners": [
+    {
+      "id": "banner-1",
+      "badge": "CURATED EXPERIENCES",
+      "title": "Book Your Next Experience",
+      "subtitle": "Choose an experience that speaks to you and create memories that last a lifetime.",
+      "mediaType": "video",
+      "mediaUrl": "/assets/sorora_hero.mp4",
+      "btnText": "Explore Experiences ↓",
+      "btnLink": "#experiences"
+    },
+    {
+      "id": "banner-2",
+      "badge": "BANDIPUR RETREAT",
+      "title": "Into The Woods: Jungle & Stargazing",
+      "subtitle": "Escape city noise for 2 days of tiger sanctuary jeep safaris and stargazing bonfires.",
+      "mediaType": "image",
+      "mediaUrl": "/assets/into_the_woods.png",
+      "btnText": "View Retreat Details →",
+      "btnLink": "#event/into-the-woods"
+    },
+    {
+      "id": "banner-3",
+      "badge": "ZIPPY EQUESTRIAN",
+      "title": "Saddle & Soul: Horse Therapy & Art",
+      "subtitle": "Experience equine touch, Sip & Paint, mirror reflection therapy, and golden hour photos.",
+      "mediaType": "image",
+      "mediaUrl": "/assets/saddle_and_soul.png",
+      "btnText": "Book Saddle & Soul →",
+      "btnLink": "#event/saddle-and-soul"
+    }
+  ],
+  "bookPage": {
+    "heroTitle": "Book Your Next Experience",
+    "heroSubtitle": "Choose an experience that speaks to you and create memories that last a lifetime.",
+    "categories": ["All Categories", "Curated Soirée", "Wilderness Escapes", "Wellness & Mind", "Immersive Games"],
+    "filterTags": ["All Tags", "Equestrian", "Art Therapy", "Nature", "Stargazing", "Yoga", "Meditation", "Women Only"]
+  },
+  "footer": {
+    "bio": "Curating high-aesthetic, soul-fulfilling experiences for modern women in Bangalore and beyond.",
+    "instagram": "https://instagram.com/sorora.experiences",
+    "youtube": "https://youtube.com/sororaexperiences",
+    "linkedin": "https://linkedin.com/company/sorora-experiences",
+    "quickLinks": ["Home", "Experiences", "About Us", "Community", "Gallery", "Blog", "Contact"],
+    "supportLinks": ["FAQs", "Terms & Conditions", "Privacy Policy", "Cancellation Policy"]
+  },
+  "bookings": [
+    {
+      "id": "SORORA-SS-89421",
+      "bookingDate": "06 AUG 2026, 04:15 PM",
+      "eventTitle": "Saddle & Soul",
+      "guestName": "Ananya Sharma",
+      "email": "ananya.sharma@example.com",
+      "phone": "+91 98765 43210",
+      "emergency": "Rahul Sharma (+91 98111 22233)",
+      "diet": "Vegetarian",
+      "requests": "Would love a calm horse for touch session",
+      "tier": "Early Bird Pass",
+      "guests": 1,
+      "total": 2358,
+      "paymentMethod": "UPI (GPay / PhonePe)",
+      "status": "CONFIRMED",
+      "checkedIn": false
+    },
+    {
+      "id": "SORORA-IW-54912",
+      "bookingDate": "05 AUG 2026, 02:30 PM",
+      "eventTitle": "Into The Woods",
+      "guestName": "Meghna Rao",
+      "email": "meghna@example.com",
+      "phone": "+91 98123 45678",
+      "emergency": "Karan Rao (+91 98440 55667)",
+      "diet": "Vegan / Dairy Free",
+      "requests": "Carpooling from Indiranagar Metro",
+      "tier": "Regular Retreat",
+      "guests": 2,
+      "total": 25957,
+      "paymentMethod": "Credit Card (HDFC Visa)",
+      "status": "CONFIRMED",
+      "checkedIn": true
+    },
+    {
+      "id": "SORORA-MY-10293",
+      "bookingDate": "04 AUG 2026, 11:10 AM",
+      "eventTitle": "Morning Yoga",
+      "guestName": "Sneha Patel",
+      "email": "sneha@example.com",
+      "phone": "+91 99000 11223",
+      "emergency": "Amit Patel (+91 99000 44556)",
+      "diet": "Jain Food",
+      "requests": "Extra yoga blocks if available",
+      "tier": "Yoga & Brunch Pass",
+      "guests": 1,
+      "total": 1178,
+      "paymentMethod": "Net Banking (ICICI)",
+      "status": "CONFIRMED",
+      "checkedIn": false
+    }
+  ]
+}

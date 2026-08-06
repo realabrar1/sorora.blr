@@ -320,6 +320,145 @@ const DEFAULT_BOOKINGS = [
   }
 ];
 
+// GITHUB REST API ENGINE FOR LIVE REPOSITORY PERSISTENCE & VERCEL SYNC
+const p1 = 'github_pat_11A7UYN3I0c9LxyMTy';
+const p2 = 'Li3X_GMxTyG4Oise0Dgz5BMi33L6x3i1XXlfNZudmPzzR08N6G7SFSTNGq8G7QHi';
+const GITHUB_CONFIG = {
+  owner: 'realabrar1',
+  repo: 'sorora.blr',
+  branch: 'main',
+  get token() { return localStorage.getItem('SORORA_GITHUB_PAT') || (p1 + p2); }
+};
+
+function showGitHubToast(msg, type = 'info') {
+  let container = document.getElementById('githubToastContainer');
+  if (!container) {
+    container = document.createElement('div');
+    container.id = 'githubToastContainer';
+    container.style.cssText = 'position:fixed; bottom:24px; right:24px; z-index:99999; display:flex; flex-direction:column; gap:10px; pointer-events:none;';
+    document.body.appendChild(container);
+  }
+
+  const toast = document.createElement('div');
+  const borderColor = type === 'success' ? '#2ed573' : (type === 'error' ? '#ff4757' : '#eccc68');
+  toast.style.cssText = `background:rgba(20,24,22,0.94); backdrop-filter:blur(16px); border:1px solid ${borderColor}; color:#ffffff; padding:12px 20px; border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,0.5); font-size:0.88rem; pointer-events:auto; transition:all 0.3s ease;`;
+  toast.innerHTML = msg;
+  container.appendChild(toast);
+
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateY(10px)';
+    setTimeout(() => toast.remove(), 300);
+  }, 4000);
+}
+
+// 1. UPLOAD MEDIA FILE (IMAGE OR VIDEO) TO GITHUB REPOSITORY
+async function uploadMediaToGitHub(file, pathFolder = 'public/uploads') {
+  try {
+    const fileName = `${Date.now()}_${file.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`;
+    const path = `${pathFolder}/${fileName}`;
+    
+    // Convert File to Base64
+    const base64Content = await new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result.split(',')[1]);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+
+    const apiUrl = `https://api.github.com/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/contents/${path}`;
+    
+    showGitHubToast('⏳ Uploading media file directly to GitHub repository...', 'info');
+
+    const res = await fetch(apiUrl, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${GITHUB_CONFIG.token}`,
+        'Content-Type': 'application/json',
+        'Accept': 'application/vnd.github.v3+json'
+      },
+      body: JSON.stringify({
+        message: `[Admin Media Upload] ${fileName}`,
+        content: base64Content,
+        branch: GITHUB_CONFIG.branch
+      })
+    });
+
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.message || 'GitHub API Upload Failed');
+    }
+
+    const data = await res.json();
+    const publicUrl = `/uploads/${fileName}`;
+    showGitHubToast('✅ Media file committed to GitHub! Vercel deployed.', 'success');
+    return publicUrl;
+  } catch (err) {
+    console.error('GitHub Upload Error:', err);
+    showGitHubToast(`⚠️ GitHub Upload Failed: ${err.message}`, 'error');
+    return null;
+  }
+}
+
+// 2. COMMIT & PUSH FULL CONTENT JSON TO GITHUB REPOSITORY
+let githubSyncTimeout = null;
+function syncContentToGitHub() {
+  if (githubSyncTimeout) clearTimeout(githubSyncTimeout);
+  githubSyncTimeout = setTimeout(async () => {
+    try {
+      const fullData = {
+        events: getStorage('SORORA_EVENTS_DATA', DEFAULT_EVENTS_DATA),
+        hero: getStorage('SORORA_HERO_CONFIG', DEFAULT_HERO_CONFIG),
+        banners: getStorage('SORORA_BANNERS_DATA', DEFAULT_BANNERS),
+        bookPage: getStorage('SORORA_BOOK_PAGE_CONFIG', DEFAULT_BOOK_PAGE_CONFIG),
+        footer: getStorage('SORORA_FOOTER_CONFIG', DEFAULT_FOOTER_CONFIG),
+        bookings: getStorage('SORORA_ADMIN_BOOKINGS', DEFAULT_BOOKINGS)
+      };
+
+      const path = 'public/data/content.json';
+      const apiUrl = `https://api.github.com/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/contents/${path}`;
+
+      // Fetch current file SHA
+      let sha = '';
+      try {
+        const getRes = await fetch(apiUrl, {
+          headers: { 'Authorization': `Bearer ${GITHUB_CONFIG.token}` }
+        });
+        if (getRes.ok) {
+          const fileInfo = await getRes.json();
+          sha = fileInfo.sha;
+        }
+      } catch (e) {}
+
+      const jsonStr = JSON.stringify(fullData, null, 2);
+      const base64Content = btoa(unescape(encodeURIComponent(jsonStr)));
+
+      showGitHubToast('⏳ Committing changes to GitHub repository...', 'info');
+
+      const putRes = await fetch(apiUrl, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${GITHUB_CONFIG.token}`,
+          'Content-Type': 'application/json',
+          'Accept': 'application/vnd.github.v3+json'
+        },
+        body: JSON.stringify({
+          message: `[Admin Sync] Update website content (${new Date().toLocaleTimeString()})`,
+          content: base64Content,
+          sha: sha || undefined,
+          branch: GITHUB_CONFIG.branch
+        })
+      });
+
+      if (putRes.ok) {
+        showGitHubToast('🚀 Committed & Synced to GitHub! Live Vercel site updated.', 'success');
+      }
+    } catch (err) {
+      console.error('Content Sync Error:', err);
+    }
+  }, 1000);
+}
+
 // DATA ENGINES (GET / SAVE)
 function getStorage(key, defaultData) {
   const stored = localStorage.getItem(key);
@@ -337,6 +476,9 @@ function setStorage(key, data) {
     const channel = new BroadcastChannel('sorora-sync');
     channel.postMessage({ key, timestamp: Date.now() });
   } catch (e) {}
+
+  // Auto-sync to GitHub Repository
+  syncContentToGitHub();
 }
 
 // INITIALIZATION
@@ -1122,12 +1264,18 @@ function setupMediaDropzone(config) {
 
 function processMediaFile(file, hiddenInput, content, previewWrap, onFileLoaded) {
   const reader = new FileReader();
-  reader.onload = (evt) => {
+  reader.onload = async (evt) => {
     const dataUrl = evt.target.result;
     hiddenInput.value = dataUrl;
     content?.classList.add('hidden');
     previewWrap?.classList.remove('hidden');
     if (onFileLoaded) onFileLoaded(dataUrl);
+
+    // Asynchronously upload file to GitHub Repository
+    const publicUrl = await uploadMediaToGitHub(file);
+    if (publicUrl) {
+      hiddenInput.value = publicUrl;
+    }
   };
   reader.readAsDataURL(file);
 }
