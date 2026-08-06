@@ -657,7 +657,7 @@ function renderEventDetails(event) {
       <div class="section-container">
         <div class="text-center section-header">
           <span class="eyebrow-text">MEMORIES</span>
-          <h2 class="section-title">Photo & Video Gallery</h2>
+          <h2 class="section-title-blk">Photo & Video Gallery</h2>
         </div>
         <div class="masonry-gallery-grid">
           <div class="gallery-item" data-img="${event.heroImg}"><img src="${event.heroImg}" alt="Gallery 1"><div class="gallery-zoom-icon">🔍</div></div>
