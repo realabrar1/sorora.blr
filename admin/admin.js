@@ -1305,14 +1305,25 @@ function updateLiveVisitorsWidget() {
   const total = Number(localStorage.getItem('SORORA_TOTAL_VISITORS') || 0);
   const today = Number(localStorage.getItem('SORORA_TODAY_VISITORS') || 0);
 
-  let activePings = 0;
+  let activeCount = 0;
   const now = Date.now();
-  for (let i = 0; i < localStorage.length; i++) {
-    const key = localStorage.key(i);
-    if (key && key.startsWith('SORORA_PING_')) {
-      const pingTime = Number(localStorage.getItem(key));
-      if (now - pingTime < 8000) {
-        activePings++;
+
+  // Method 1: Scan active sessions registry object
+  try {
+    const activeObj = JSON.parse(localStorage.getItem('SORORA_ACTIVE_SESSIONS') || '{}');
+    const validSessions = Object.keys(activeObj).filter(sid => (now - activeObj[sid]) < 12000);
+    activeCount = validSessions.length;
+  } catch (e) {}
+
+  // Method 2: Fallback scan individual ping keys
+  if (activeCount === 0) {
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key && key.startsWith('SORORA_PING_')) {
+        const pingTime = Number(localStorage.getItem(key));
+        if (now - pingTime < 12000) {
+          activeCount++;
+        }
       }
     }
   }
@@ -1321,9 +1332,20 @@ function updateLiveVisitorsWidget() {
   const elTotal = document.getElementById('statTotalVisitors');
   const elToday = document.getElementById('statTodayVisitors');
 
-  if (elCurrent) elCurrent.textContent = activePings;
+  if (elCurrent) elCurrent.textContent = activeCount;
   if (elTotal) elTotal.textContent = total.toLocaleString('en-IN');
   if (elToday) elToday.textContent = today.toLocaleString('en-IN');
 }
 
-setInterval(updateLiveVisitorsWidget, 2000);
+// Listen to storage and broadcast ping events for instant real-time UI updates
+window.addEventListener('storage', updateLiveVisitorsWidget);
+try {
+  const syncChannel = new BroadcastChannel('sorora-sync');
+  syncChannel.onmessage = (e) => {
+    if (e.data && (e.data.type === 'PING' || e.data.key)) {
+      updateLiveVisitorsWidget();
+    }
+  };
+} catch (e) {}
+
+setInterval(updateLiveVisitorsWidget, 1500);

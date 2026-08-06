@@ -323,6 +323,7 @@ function initVisitorTracking() {
     localStorage.setItem('SORORA_TODAY_VISITORS', '0');
   }
 
+  // Record session & pageview
   if (!sessionStorage.getItem(sessionKey)) {
     sessionStorage.setItem(sessionKey, '1');
     total += 1;
@@ -331,17 +332,44 @@ function initVisitorTracking() {
     localStorage.setItem('SORORA_TODAY_VISITORS', today.toString());
   }
 
-  const tabId = 'tab_' + Math.random().toString(36).substring(2, 9);
+  let sessionId = sessionStorage.getItem('SORORA_CLIENT_SESSION_ID');
+  if (!sessionId) {
+    sessionId = 'sess_' + Math.random().toString(36).substring(2, 9);
+    sessionStorage.setItem('SORORA_CLIENT_SESSION_ID', sessionId);
+  }
   
   function sendHeartbeat() {
-    localStorage.setItem('SORORA_PING_' + tabId, Date.now().toString());
+    const now = Date.now();
+    localStorage.setItem('SORORA_PING_' + sessionId, now.toString());
+
+    // Update active sessions registry object
+    try {
+      const activeObj = JSON.parse(localStorage.getItem('SORORA_ACTIVE_SESSIONS') || '{}');
+      activeObj[sessionId] = now;
+      // Clean stale sessions older than 15 seconds
+      Object.keys(activeObj).forEach(sid => {
+        if (now - activeObj[sid] > 15000) delete activeObj[sid];
+      });
+      localStorage.setItem('SORORA_ACTIVE_SESSIONS', JSON.stringify(activeObj));
+    } catch (e) {}
+
+    // Broadcast live ping
+    try {
+      const channel = new BroadcastChannel('sorora-sync');
+      channel.postMessage({ type: 'PING', sessionId, timestamp: now });
+    } catch (e) {}
   }
 
   sendHeartbeat();
-  setInterval(sendHeartbeat, 3000);
+  setInterval(sendHeartbeat, 2000);
 
   window.addEventListener('beforeunload', () => {
-    localStorage.removeItem('SORORA_PING_' + tabId);
+    try {
+      localStorage.removeItem('SORORA_PING_' + sessionId);
+      const activeObj = JSON.parse(localStorage.getItem('SORORA_ACTIVE_SESSIONS') || '{}');
+      delete activeObj[sessionId];
+      localStorage.setItem('SORORA_ACTIVE_SESSIONS', JSON.stringify(activeObj));
+    } catch (e) {}
   });
 }
 
