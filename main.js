@@ -855,7 +855,7 @@ function renderEventDetails(event) {
       <div class="section-container">
         <div class="text-center section-header">
           <span class="eyebrow-text">FREQUENTLY ASKED</span>
-          <h2 class="section-title">Got Questions?</h2>
+          <h2 class="section-title" style="color: black;">Got Questions?</h2>
         </div>
         <div class="faq-accordion">
           ${(event.faqs || [
