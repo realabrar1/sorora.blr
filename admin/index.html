@@ -182,11 +182,22 @@
 
           <div class="dashboard-panels-grid">
             <div class="panel-card">
-              <h3 class="panel-title">Quick Actions</h3>
-              <div class="quick-buttons">
+              <h3 class="panel-title">Quick Actions & GitHub Sync</h3>
+              <div class="quick-buttons" style="margin-bottom: 16px;">
                 <button class="btn btn-primary" onclick="switchTab('experiencesTab')">+ Add New Experience</button>
                 <button class="btn btn-outline" onclick="switchTab('heroTab')">Edit Homepage Hero</button>
                 <button class="btn btn-outline" onclick="switchTab('footerTab')">Manage Social Links</button>
+              </div>
+
+              <div style="border-top: 1px solid rgba(255,255,255,0.08); padding-top: 14px;">
+                <h4 style="font-size: 0.95rem; color: #fff; margin-bottom: 4px;">⚡ GitHub Live Deployment Token</h4>
+                <p style="font-size: 0.78rem; color: var(--color-admin-sub); margin-bottom: 10px;">
+                  Repo: <code>realabrar1/sorora.blr</code>. Token must have <strong>Repository Permissions &rarr; Contents: Read & Write</strong>.
+                </p>
+                <form id="githubPatConfigForm" style="display: flex; gap: 8px;">
+                  <input type="password" id="githubPatInput" class="form-control" placeholder="Paste GitHub PAT Token" style="font-size: 0.82rem;" required>
+                  <button type="submit" class="btn btn-outline btn-sm" style="white-space: nowrap;">Save Token 🔑</button>
+                </form>
               </div>
             </div>
 

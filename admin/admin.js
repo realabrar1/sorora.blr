@@ -386,6 +386,9 @@ async function uploadMediaToGitHub(file, pathFolder = 'public/uploads') {
 
     if (!res.ok) {
       const err = await res.json();
+      if (res.status === 403 || res.status === 401) {
+        throw new Error('Token permissions issue. Ensure fine-grained PAT has "Contents: Read & Write" enabled in GitHub Settings.');
+      }
       throw new Error(err.message || 'GitHub API Upload Failed');
     }
 
@@ -395,7 +398,7 @@ async function uploadMediaToGitHub(file, pathFolder = 'public/uploads') {
     return publicUrl;
   } catch (err) {
     console.error('GitHub Upload Error:', err);
-    showGitHubToast(`⚠️ GitHub Upload Failed: ${err.message}`, 'error');
+    showGitHubToast(`⚠️ GitHub Upload Note: ${err.message}`, 'error');
     return null;
   }
 }
@@ -860,6 +863,23 @@ window.viewGuestDossier = function(bookingId) {
 
 // FORMS BINDING
 function initForms() {
+  // GITHUB PAT FORM
+  const patForm = document.getElementById('githubPatConfigForm');
+  const patInput = document.getElementById('githubPatInput');
+  if (patInput) {
+    patInput.value = localStorage.getItem('SORORA_GITHUB_PAT') || '';
+  }
+
+  patForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const token = patInput?.value.trim();
+    if (token) {
+      localStorage.setItem('SORORA_GITHUB_PAT', token);
+      showGitHubToast('🔑 GitHub PAT token saved! Testing connection...', 'success');
+      syncContentToGitHub();
+    }
+  });
+
   // HERO FORM
   document.getElementById('heroConfigForm')?.addEventListener('submit', (e) => {
     e.preventDefault();
