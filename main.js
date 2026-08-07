@@ -257,6 +257,7 @@ let ADMIN_BOOKINGS = [
 // INITIALIZATION
 document.addEventListener('DOMContentLoaded', () => {
   initHeader();
+  syncClientDOMFromStorage();
   loadRemoteContentData();
   initRouter();
   initBookingDrawer();
@@ -302,6 +303,7 @@ async function loadRemoteContentData() {
       if (data.footer) localStorage.setItem('SORORA_FOOTER_CONFIG', JSON.stringify(data.footer));
       if (data.bookings) localStorage.setItem('SORORA_ADMIN_BOOKINGS', JSON.stringify(data.bookings));
       
+      syncClientDOMFromStorage();
       initRouter();
       renderFooterDynamicData();
     }
@@ -453,64 +455,93 @@ function getLiveFooterConfig() {
 }
 
 function syncClientDOMFromStorage() {
-  // 1. Sync Hero Section
-  const hero = getLiveHeroConfig();
-  const heroTitle = document.querySelector('.hero-title');
-  if (heroTitle) {
-    const mainTextNode = heroTitle.childNodes[0];
-    if (mainTextNode && hero.title) mainTextNode.nodeValue = hero.title + ' ';
-    const scriptElem = heroTitle.querySelector('.hero-title-script');
-    if (scriptElem && hero.scriptTitle) scriptElem.textContent = hero.scriptTitle;
-  }
+  try {
+    // 1. Sync Hero Section
+    const hero = getLiveHeroConfig();
+    const heroTitle = document.querySelector('.hero-title');
+    if (heroTitle) {
+      const mainTextNode = heroTitle.childNodes[0];
+      if (mainTextNode && hero.title) mainTextNode.nodeValue = hero.title + ' ';
+      const scriptElem = heroTitle.querySelector('.hero-title-script');
+      if (scriptElem && hero.scriptTitle) scriptElem.textContent = hero.scriptTitle;
+    }
 
-  const heroSubtitle = document.querySelector('.hero-subtitle');
-  if (heroSubtitle && hero.subtitle) heroSubtitle.textContent = hero.subtitle;
+    const heroSubtitle = document.querySelector('.hero-subtitle');
+    if (heroSubtitle && hero.subtitle) heroSubtitle.textContent = hero.subtitle;
 
-  const exploreBtn = document.getElementById('exploreBtn');
-  if (exploreBtn && hero.btnText) exploreBtn.innerHTML = `${hero.btnText} &rarr;`;
+    const exploreBtn = document.getElementById('exploreBtn');
+    if (exploreBtn && hero.btnText) exploreBtn.innerHTML = `${hero.btnText} &rarr;`;
 
-  // 2. Sync Homepage Upcoming Events Cards Grid
-  const homepageUpcomingGrid = document.querySelector('.upcoming-section .cards-grid');
-  if (homepageUpcomingGrid) {
-    const liveEvents = Object.values(getLiveEventsData());
-    homepageUpcomingGrid.innerHTML = liveEvents.slice(0, 4).map(event => `
-      <article class="experience-card" data-event-id="${event.id}" style="cursor: pointer;">
-        <div class="card-image-wrap">
-          <img src="${event.heroImg}" alt="${event.title}" class="card-img">
-          <div class="date-badge">
-            <span class="date-num">${event.dateShort.split(' ')[0] || '02'}</span>
-            <span class="date-month">${event.dateShort.split(' ')[1] || 'AUG'}</span>
-          </div>
-        </div>
-        <div class="card-body">
-          <h3 class="card-title">${event.title}</h3>
-          <div class="card-meta"><span>📍 ${event.shortLocation}</span></div>
-          <div class="card-price-seats-row" style="margin-top: 10px;">
-            <div class="price-box">From <strong>₹${event.startingPrice}</strong></div>
-            <div class="tag-pill">${event.seatsLeft} Seats Left</div>
-          </div>
-        </div>
-      </article>
-    `).join('');
-  }
+    const heroVideoElem = document.querySelector('.hero-video-bg video');
+    if (heroVideoElem && hero.video) {
+      const vidUrl = resolveMediaUrl(hero.video);
+      if (heroVideoElem.getAttribute('src') !== vidUrl) {
+        heroVideoElem.src = vidUrl;
+        const sourceElem = heroVideoElem.querySelector('source');
+        if (sourceElem) sourceElem.src = vidUrl;
+        heroVideoElem.load();
+      }
+      if (hero.poster) heroVideoElem.poster = resolveMediaUrl(hero.poster);
+    }
 
-  // 3. Sync Footer Links & Bio
-  const footer = getLiveFooterConfig();
-  const footerBio = document.querySelector('.footer-bio');
-  if (footerBio && footer.bioText) footerBio.textContent = footer.bioText;
+    // 2. Sync Homepage Upcoming Events Cards Grid
+    const homepageUpcomingGrid = document.querySelector('.upcoming-section .cards-grid');
+    if (homepageUpcomingGrid) {
+      const liveEvents = Object.values(getLiveEventsData());
+      if (liveEvents.length > 0) {
+        homepageUpcomingGrid.innerHTML = liveEvents.map(event => {
+          const imgUrl = resolveMediaUrl(event.heroImg || '/assets/saddle_and_soul.png');
+          const dateStr = String(event.dateShort || event.date || '02 AUG 2026');
+          const dateParts = dateStr.trim().split(/\s+/);
+          const dayNum = dateParts[0] || '02';
+          const monthName = dateParts[1] || 'AUG';
+          const shortLoc = event.shortLocation || event.location || 'Bengaluru';
+          const price = event.startingPrice ? event.startingPrice.toLocaleString('en-IN') : '1,999';
+          const seats = event.seatsLeft !== undefined ? event.seatsLeft : 8;
 
-  const socialBtns = document.querySelectorAll('.social-icons .social-icon-btn');
-  if (socialBtns.length >= 4) {
-    if (footer.socialInsta) socialBtns[0].href = footer.socialInsta;
-    if (footer.socialFB) socialBtns[1].href = footer.socialFB;
-    if (footer.socialWA) socialBtns[2].href = footer.socialWA;
-    if (footer.socialLinkedIn) socialBtns[3].href = footer.socialLinkedIn;
-  }
+          return `
+            <article class="experience-card" data-event-id="${event.id}" style="cursor: pointer;" onclick="window.location.hash='#event/${event.id}'">
+              <div class="card-image-wrap">
+                <img src="${imgUrl}" alt="${event.title || 'Sorora Event'}" class="card-img" onerror="this.src='/assets/saddle_and_soul.png'">
+                <div class="date-badge">
+                  <span class="date-num">${dayNum}</span>
+                  <span class="date-month">${monthName}</span>
+                </div>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title">${event.title || 'Sorora Experience'}</h3>
+                <div class="card-meta"><span>📍 ${shortLoc}</span></div>
+                <div class="card-price-seats-row" style="margin-top: 10px; display: flex; justify-content: space-between; align-items: center;">
+                  <div class="price-box" style="font-size: 0.88rem; color: #ffffff;">From <strong style="color: var(--color-primary-terracotta);">₹${price}</strong></div>
+                  <div class="tag-pill" style="font-size: 0.75rem; background: rgba(200, 131, 115, 0.15); color: var(--color-primary-terracotta); padding: 2px 8px; border-radius: 10px;">${seats} Seats Left</div>
+                </div>
+              </div>
+            </article>
+          `;
+        }).join('');
+      }
+    }
 
-  // 4. Refresh Book Experience Page if active
-  const bookExperienceView = document.getElementById('bookExperienceView');
-  if (bookExperienceView && !bookExperienceView.classList.contains('hidden')) {
-    updateFilteredGrid();
+    // 3. Sync Footer Links & Bio
+    const footer = getLiveFooterConfig();
+    const footerBio = document.querySelector('.footer-bio');
+    if (footerBio && footer.bioText) footerBio.textContent = footer.bioText;
+
+    const socialBtns = document.querySelectorAll('.social-icons .social-icon-btn');
+    if (socialBtns.length >= 4) {
+      if (footer.socialInsta) socialBtns[0].href = footer.socialInsta;
+      if (footer.socialFB) socialBtns[1].href = footer.socialFB;
+      if (footer.socialWA) socialBtns[2].href = footer.socialWA;
+      if (footer.socialLinkedIn) socialBtns[3].href = footer.socialLinkedIn;
+    }
+
+    // 4. Refresh active views
+    const bookExperienceView = document.getElementById('bookExperienceView');
+    if (bookExperienceView && !bookExperienceView.classList.contains('hidden')) {
+      if (typeof updateFilteredGrid === 'function') updateFilteredGrid();
+    }
+  } catch (err) {
+    console.error('Error syncing client DOM from storage:', err);
   }
 }
 

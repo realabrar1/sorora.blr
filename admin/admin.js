@@ -357,7 +357,7 @@ async function uploadMediaToGitHub(file, pathFolder = 'public/uploads') {
   try {
     const fileName = `${Date.now()}_${file.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`;
     const path = `${pathFolder}/${fileName}`;
-    
+
     // Convert File to Base64
     const base64Content = await new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -367,7 +367,7 @@ async function uploadMediaToGitHub(file, pathFolder = 'public/uploads') {
     });
 
     const apiUrl = `https://api.github.com/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/contents/${path}`;
-    
+
     showGitHubToast('⏳ Uploading media file directly to GitHub repository...', 'info');
 
     const res = await fetch(apiUrl, {
@@ -431,7 +431,7 @@ function syncContentToGitHub() {
           const fileInfo = await getRes.json();
           sha = fileInfo.sha;
         }
-      } catch (e) {}
+      } catch (e) { }
 
       const jsonStr = JSON.stringify(fullData, null, 2);
       const base64Content = btoa(unescape(encodeURIComponent(jsonStr)));
@@ -478,7 +478,7 @@ function setStorage(key, data) {
   try {
     const channel = new BroadcastChannel('sorora-sync');
     channel.postMessage({ key, timestamp: Date.now() });
-  } catch (e) {}
+  } catch (e) { }
 
   // Auto-sync to GitHub Repository
   syncContentToGitHub();
@@ -745,7 +745,7 @@ function renderEventsTable(events) {
   `).join('');
 }
 
-window.moveEventOrder = function(id, direction) {
+window.moveEventOrder = function (id, direction) {
   const eventsObj = getStorage('SORORA_EVENTS_DATA', DEFAULT_EVENTS_DATA);
   let eventList = Array.isArray(eventsObj) ? eventsObj : Object.values(eventsObj);
 
@@ -819,7 +819,7 @@ function renderBookingsTable(bookings) {
   `).join('');
 }
 
-window.viewGuestDossier = function(bookingId) {
+window.viewGuestDossier = function (bookingId) {
   const bookings = getStorage('SORORA_ADMIN_BOOKINGS', DEFAULT_BOOKINGS);
   const b = bookings.find(item => item.id === bookingId);
   if (!b) return;
@@ -1033,7 +1033,7 @@ function initModal() {
 }
 
 // EDIT / DELETE HANDLERS
-window.editEvent = function(id) {
+window.editEvent = function (id) {
   const events = getStorage('SORORA_EVENTS_DATA', DEFAULT_EVENTS_DATA);
   const e = events[id];
   if (!e) return;
@@ -1079,7 +1079,7 @@ window.editEvent = function(id) {
   document.getElementById('experienceModal').classList.add('open');
 };
 
-window.deleteEvent = function(id) {
+window.deleteEvent = function (id) {
   if (confirm(`Are you sure you want to delete this experience?`)) {
     const events = getStorage('SORORA_EVENTS_DATA', DEFAULT_EVENTS_DATA);
     delete events[id];
@@ -1089,7 +1089,7 @@ window.deleteEvent = function(id) {
   }
 };
 
-window.toggleCheckIn = function(bookingId) {
+window.toggleCheckIn = function (bookingId) {
   const bookings = getStorage('SORORA_ADMIN_BOOKINGS', DEFAULT_BOOKINGS);
   const booking = bookings.find(b => b.id === bookingId);
   if (booking) {
@@ -1224,7 +1224,7 @@ function initBannerModal() {
   });
 }
 
-window.editBanner = function(id) {
+window.editBanner = function (id) {
   const banners = getStorage('SORORA_BANNERS_DATA', DEFAULT_BANNERS);
   const b = banners.find(item => item.id === id);
   if (!b) return;
@@ -1255,7 +1255,7 @@ window.editBanner = function(id) {
   document.getElementById('bannerModal').classList.add('open');
 };
 
-window.deleteBanner = function(id) {
+window.deleteBanner = function (id) {
   if (confirm('Delete this banner slide?')) {
     let banners = getStorage('SORORA_BANNERS_DATA', DEFAULT_BANNERS);
     banners = banners.filter(b => b.id !== id);
@@ -1341,7 +1341,7 @@ function updateLiveVisitorsWidget() {
     const activeObj = JSON.parse(localStorage.getItem('SORORA_ACTIVE_SESSIONS') || '{}');
     const validSessions = Object.keys(activeObj).filter(sid => (now - activeObj[sid]) < 12000);
     activeCount = validSessions.length;
-  } catch (e) {}
+  } catch (e) { }
 
   // Method 2: Fallback scan individual ping keys
   if (activeCount === 0) {
@@ -1374,6 +1374,6 @@ try {
       updateLiveVisitorsWidget();
     }
   };
-} catch (e) {}
+} catch (e) { }
 
 setInterval(updateLiveVisitorsWidget, 1500);
