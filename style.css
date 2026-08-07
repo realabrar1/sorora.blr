@@ -3923,3 +3923,11 @@ button {
     margin-top: 150px; /* Increase this value until it reaches the position you want */
   }
 }
+
+
+/* Mobile only */
+@media (max-width: 768px) {
+  .hero-content {
+    margin-top: 140px; /* Increase this value to move it further down */
+  }
+}
