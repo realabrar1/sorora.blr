@@ -1266,7 +1266,7 @@ button {
 /* hero glas bar mobile */
 @media (max-width: 768px) {
   .hero-glass-bar {
-    margin-top: 40px;
+    margin-top: 60px;
   }
 }
 
