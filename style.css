@@ -1263,12 +1263,7 @@ button {
     border-radius: 16px;
   }
 
-/* hero glas bar mobile */
-@media (max-width: 768px) {
-  .hero-glass-bar {
-    margin-top: 60px;
-  }
-}
+
 
 
    
@@ -3920,4 +3915,28 @@ button {
     min-height: 80vh !important;
     object-fit: cover !important;
   }
+}
+
+/* Mobile Only */
+@media (max-width: 768px) {
+
+  .hero-glass-bar {
+    margin-top: 60px;
+    width: 100%;
+    padding: 18px;
+    gap: 18px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .glass-feature {
+    width: calc(50% - 10px);
+    justify-content: center;
+    text-align: center;
+  }
+
+  .glass-divider {
+    display: none;
+  }
+
 }
