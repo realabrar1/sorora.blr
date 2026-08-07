@@ -3919,24 +3919,7 @@ button {
 
 /* Mobile Only */
 @media (max-width: 768px) {
-
   .hero-glass-bar {
-    margin-top: 60px;
-    width: 100%;
-    padding: 18px;
-    gap: 18px;
-    flex-wrap: wrap;
-    justify-content: center;
+    margin-top: 100px; /* Increase this value until it reaches the position you want */
   }
-
-  .glass-feature {
-    width: calc(50% - 10px);
-    justify-content: center;
-    text-align: center;
-  }
-
-  .glass-divider {
-    display: none;
-  }
-
 }
