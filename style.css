@@ -3897,3 +3897,18 @@ button {
     overflow-x: auto;
   }
 }
+
+/* MOBILE HERO BANNER VIDEO HEIGHT ENHANCEMENT */
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: 120vh !important;
+    padding-top: 140px;
+    padding-bottom: 80px;
+  }
+
+  .hero-bg-video {
+    height: 100% !important;
+    min-height: 120vh !important;
+    object-fit: cover !important;
+  }
+}
