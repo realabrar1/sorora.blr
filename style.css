@@ -1263,12 +1263,15 @@ button {
     border-radius: 16px;
   }
 
-
-   @media (max-width: 768px) {
+/* hero glas bar mobile */
+@media (max-width: 768px) {
   .hero-glass-bar {
-    margin-top: 20px;
+    margin-top: 40px;
   }
 }
+
+
+   
   .glass-divider {
     display: none;
   }
