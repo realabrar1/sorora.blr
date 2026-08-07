@@ -3907,7 +3907,7 @@ button {
   }
 
   .hero-bg-video {
-    height: 100% !important;
+    height: 90% !important;
     min-height: 120vh !important;
     object-fit: cover !important;
   }
