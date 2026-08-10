@@ -454,13 +454,33 @@ async function uploadMediaToGitHub(file, pathFolder = 'public/uploads') {
   }
 }
 
+function sanitizeObjectForSync(obj) {
+  if (!obj || typeof obj !== 'object') return obj;
+  const clone = Array.isArray(obj) ? [] : {};
+  for (let k in obj) {
+    if (typeof obj[k] === 'string') {
+      if (obj[k].startsWith('data:') || obj[k].length > 2000) {
+        // Fallback clean path if legacy base64 string is trapped in localStorage
+        clone[k] = '/assets/sorora_hero.mp4';
+      } else {
+        clone[k] = obj[k];
+      }
+    } else if (typeof obj[k] === 'object' && obj[k] !== null) {
+      clone[k] = sanitizeObjectForSync(obj[k]);
+    } else {
+      clone[k] = obj[k];
+    }
+  }
+  return clone;
+}
+
 // 2. COMMIT & PUSH FULL CONTENT JSON TO GITHUB REPOSITORY
 let githubSyncTimeout = null;
 function syncContentToGitHub() {
   if (githubSyncTimeout) clearTimeout(githubSyncTimeout);
   githubSyncTimeout = setTimeout(async () => {
     try {
-      const fullData = {
+      const rawData = {
         events: getStorage('SORORA_EVENTS_DATA', DEFAULT_EVENTS_DATA),
         hero: getStorage('SORORA_HERO_CONFIG', DEFAULT_HERO_CONFIG),
         banners: getStorage('SORORA_BANNERS_DATA', DEFAULT_BANNERS),
@@ -471,6 +491,8 @@ function syncContentToGitHub() {
         footer: getStorage('SORORA_FOOTER_CONFIG', DEFAULT_FOOTER_CONFIG),
         bookings: getStorage('SORORA_ADMIN_BOOKINGS', DEFAULT_BOOKINGS)
       };
+
+      const fullData = sanitizeObjectForSync(rawData);
 
       const path = 'public/data/content.json';
       const apiUrl = `https://api.github.com/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/contents/${path}`;
@@ -509,6 +531,10 @@ function syncContentToGitHub() {
 
       if (putRes.ok) {
         showGitHubToast('🚀 Committed & Synced to GitHub! Live Vercel site updated.', 'success');
+      } else {
+        const errText = await putRes.text();
+        console.error('GitHub Sync failed response:', errText);
+        showGitHubToast(`⚠️ Sync notice: ${putRes.statusText}`, 'error');
       }
     } catch (err) {
       console.error('Content Sync Error:', err);
@@ -527,7 +553,8 @@ function getStorage(key, defaultData) {
 }
 
 function setStorage(key, data) {
-  localStorage.setItem(key, JSON.stringify(data));
+  const cleanData = sanitizeObjectForSync(data);
+  localStorage.setItem(key, JSON.stringify(cleanData));
   window.dispatchEvent(new Event('storage'));
   try {
     const channel = new BroadcastChannel('sorora-sync');
