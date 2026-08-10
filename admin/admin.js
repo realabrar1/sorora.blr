@@ -1610,11 +1610,41 @@ function initReelModal() {
     }
   });
 
+  // Target Slot Selection Listener
+  const actionSelect = document.getElementById('reelActionSelect');
+  actionSelect?.addEventListener('change', (e) => {
+    const val = e.target.value;
+    if (val === 'new') {
+      document.getElementById('reelId').value = '';
+      document.getElementById('reelTitleInput').value = '';
+      document.getElementById('reelDurationInput').value = '0:20';
+      document.getElementById('reelViewsInput').value = '10.5K';
+      document.getElementById('reelVideoUrlInput').value = '';
+      document.getElementById('reelPosterUrlInput').value = '';
+      if (vidPreview) { vidPreview.src = ''; vidPreview.classList.add('hidden'); }
+      if (imgPreview) { imgPreview.src = ''; imgPreview.classList.add('hidden'); }
+    } else {
+      const reels = getStorage('SORORA_REELS_DATA', DEFAULT_REELS_DATA);
+      const r = reels.find(item => item.id === val);
+      if (r) {
+        document.getElementById('reelId').value = r.id;
+        document.getElementById('reelTitleInput').value = r.title || '';
+        document.getElementById('reelDurationInput').value = r.duration || '0:20';
+        document.getElementById('reelViewsInput').value = r.views || '10.5K';
+        document.getElementById('reelVideoUrlInput').value = r.videoUrl || '';
+        document.getElementById('reelPosterUrlInput').value = r.posterUrl || '';
+        if (vidPreview && r.videoUrl) { vidPreview.src = r.videoUrl; vidPreview.classList.remove('hidden'); }
+        if (imgPreview && r.posterUrl) { imgPreview.src = r.posterUrl; imgPreview.classList.remove('hidden'); }
+      }
+    }
+  });
+
   // Save Reel Form Submit
   form?.addEventListener('submit', (e) => {
     e.preventDefault();
     let reels = getStorage('SORORA_REELS_DATA', DEFAULT_REELS_DATA);
     let id = document.getElementById('reelId').value;
+    const isUpdate = Boolean(id);
     if (!id) id = `reel_${Date.now()}`;
 
     const videoUrl = document.getElementById('reelVideoUrlInput').value.trim();
@@ -1630,8 +1660,8 @@ function initReelModal() {
       title: document.getElementById('reelTitleInput').value.trim(),
       duration: document.getElementById('reelDurationInput').value.trim() || '0:20',
       views: document.getElementById('reelViewsInput').value.trim() || '10.5K',
-      videoUrl: videoUrl || '/assets/sorora_hero.mp4',
-      posterUrl: posterUrl || 'https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025558204_photo__3_.jpeg'
+      videoUrl: videoUrl,
+      posterUrl: posterUrl || 'https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025917347_photo__3_.jpeg'
     };
 
     const idx = reels.findIndex(r => r.id === id);
@@ -1641,7 +1671,7 @@ function initReelModal() {
     setStorage('SORORA_REELS_DATA', reels);
     modal?.classList.remove('open');
     loadDashboardData();
-    showGitHubToast('✅ New Reel Video added & synced live to website!', 'success');
+    showGitHubToast(isUpdate ? '✅ Older video updated with new video & synced live!' : '✅ New Reel Video added & synced live to website!', 'success');
   });
 
   // Instagram Config Form Submit
@@ -1657,7 +1687,19 @@ function initReelModal() {
   });
 }
 
+function populateReelActionSelect(selectedId = '') {
+  const select = document.getElementById('reelActionSelect');
+  if (!select) return;
+  const reels = getStorage('SORORA_REELS_DATA', DEFAULT_REELS_DATA);
+  let html = `<option value="new">+ Add as Brand New Video Reel</option>`;
+  reels.forEach((r, idx) => {
+    html += `<option value="${r.id}" ${r.id === selectedId ? 'selected' : ''}>Replace / Update Older Video in #${idx + 1}: ${r.title}</option>`;
+  });
+  select.innerHTML = html;
+}
+
 window.openReelModal = function () {
+  populateReelActionSelect('');
   document.getElementById('reelModalTitle').textContent = 'Upload / Add New Reel Video';
   document.getElementById('reelId').value = '';
   document.getElementById('reelTitleInput').value = '';
@@ -1690,7 +1732,8 @@ window.editReel = function (id) {
   const r = reels.find(item => item.id === id);
   if (!r) return;
 
-  document.getElementById('reelModalTitle').textContent = `Edit Reel: ${r.title}`;
+  populateReelActionSelect(r.id);
+  document.getElementById('reelModalTitle').textContent = `Edit & Replace Video: ${r.title}`;
   document.getElementById('reelId').value = r.id;
   document.getElementById('reelTitleInput').value = r.title || '';
   document.getElementById('reelDurationInput').value = r.duration || '0:20';
