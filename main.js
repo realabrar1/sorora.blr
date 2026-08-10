@@ -1984,6 +1984,45 @@ function showToast(message) {
 // ==========================================================================
 // GLIMPSES / REELS VIDEO CAROUSEL SECTION CONTROLLER
 // ==========================================================================
+async function loadLiveContentFromGitHub() {
+  try {
+    const rawUrl = `https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/data/content.json?t=${Date.now()}`;
+    const res = await fetch(rawUrl);
+    if (res.ok) {
+      const data = await res.json();
+      
+      // Sync events data
+      if (data.events) {
+        for (let id in data.events) {
+          EVENTS_DATA[id] = { ...EVENTS_DATA[id], ...data.events[id] };
+        }
+      }
+      
+      // Sync reels data
+      if (data.reels && Array.isArray(data.reels)) {
+        localStorage.setItem('SORORA_REELS_DATA', JSON.stringify(data.reels));
+      }
+
+      // Sync instagram configs
+      if (data.instagramHandle) localStorage.setItem('SORORA_INSTA_HANDLE', data.instagramHandle);
+      if (data.instagramUrl) localStorage.setItem('SORORA_INSTA_URL', data.instagramUrl);
+
+      // Re-render UI components
+      initReelsSection();
+      if (typeof renderEventsGrid === 'function') renderEventsGrid();
+    }
+  } catch (err) {
+    console.warn('Note: Loaded local fallback content for Sorora:', err);
+  }
+}
+
+// Automatically fetch live content from GitHub on page load
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', loadLiveContentFromGitHub);
+} else {
+  loadLiveContentFromGitHub();
+}
+
 function getLiveReelsData() {
   const stored = localStorage.getItem('SORORA_REELS_DATA');
   if (stored) {
@@ -1995,7 +2034,7 @@ function getLiveReelsData() {
       title: "Saddle up for soulful mornings",
       duration: "0:24",
       views: "12.4K",
-      videoUrl: "/assets/sorora_hero.mp4",
+      videoUrl: "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360980907_yoga.mp4",
       posterUrl: "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025558204_photo__3_.jpeg"
     },
     {
@@ -2003,7 +2042,7 @@ function getLiveReelsData() {
       title: "Into the wild, into yourself",
       duration: "0:18",
       views: "8.7K",
-      videoUrl: "/assets/sorora_hero.mp4",
+      videoUrl: "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360980907_yoga.mp4",
       posterUrl: "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025917347_photo__3_.jpeg"
     },
     {
@@ -2011,15 +2050,15 @@ function getLiveReelsData() {
       title: "Breathe. Stretch. Be present.",
       duration: "0:21",
       views: "15.2K",
-      videoUrl: "/assets/sorora_hero.mp4",
-      posterUrl: "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025558204_photo__3_.jpeg"
+      videoUrl: "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360980907_yoga.mp4",
+      posterUrl: "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360992528_photo__5_.jpeg"
     },
     {
       id: "reel-4",
       title: "Mystery nights & mind games",
       duration: "0:17",
       views: "6.3K",
-      videoUrl: "/assets/sorora_hero.mp4",
+      videoUrl: "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360980907_yoga.mp4",
       posterUrl: "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025946841_Detective_Game_Night.jpg"
     },
     {
@@ -2027,7 +2066,7 @@ function getLiveReelsData() {
       title: "Conversations that heal",
       duration: "0:19",
       views: "11.8K",
-      videoUrl: "/assets/sorora_hero.mp4",
+      videoUrl: "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360980907_yoga.mp4",
       posterUrl: "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025917347_photo__3_.jpeg"
     },
     {
@@ -2035,7 +2074,7 @@ function getLiveReelsData() {
       title: "Stronger together, always",
       duration: "0:22",
       views: "9.6K",
-      videoUrl: "/assets/sorora_hero.mp4",
+      videoUrl: "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360980907_yoga.mp4",
       posterUrl: "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025558204_photo__3_.jpeg"
     }
   ];
@@ -2056,8 +2095,8 @@ function initReelsSection() {
   if (btnEl) btnEl.href = instaUrl;
 
   grid.innerHTML = reels.map(r => {
-    const videoSrc = resolveMediaUrl(r.videoUrl || '/assets/sorora_hero.mp4');
-    const posterSrc = resolveMediaUrl(r.posterUrl || 'https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025558204_photo__3_.jpeg');
+    const videoSrc = resolveMediaUrl(r.videoUrl || 'https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360980907_yoga.mp4');
+    const posterSrc = resolveMediaUrl(r.posterUrl || 'https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025917347_photo__3_.jpeg');
 
     return `
       <div class="reel-card" data-reel-id="${r.id}">

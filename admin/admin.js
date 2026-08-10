@@ -6,8 +6,8 @@ const DEFAULT_HERO_CONFIG = {
   title: 'EXPERIENCES THAT CONNECT YOU',
   scriptTitle: 'To yourself & each other.',
   subtitle: 'Meaningful events for women who seek connection, adventure & memories that last.',
-  video: '/assets/sorora_hero.mp4',
-  poster: '/assets/hero_horse_bg.png',
+  video: 'https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360980907_yoga.mp4',
+  poster: 'https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025917347_photo__3_.jpeg',
   btnText: 'Explore Experiences',
   watchBtnText: 'Watch Video'
 };
@@ -18,7 +18,7 @@ const DEFAULT_REELS_DATA = [
     title: "Saddle up for soulful mornings",
     duration: "0:24",
     views: "12.4K",
-    videoUrl: "/assets/sorora_hero.mp4",
+    videoUrl: "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360980907_yoga.mp4",
     posterUrl: "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025558204_photo__3_.jpeg"
   },
   {
@@ -26,7 +26,7 @@ const DEFAULT_REELS_DATA = [
     title: "Into the wild, into yourself",
     duration: "0:18",
     views: "8.7K",
-    videoUrl: "/assets/sorora_hero.mp4",
+    videoUrl: "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360980907_yoga.mp4",
     posterUrl: "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025917347_photo__3_.jpeg"
   },
   {
@@ -34,15 +34,15 @@ const DEFAULT_REELS_DATA = [
     title: "Breathe. Stretch. Be present.",
     duration: "0:21",
     views: "15.2K",
-    videoUrl: "/assets/sorora_hero.mp4",
-    posterUrl: "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025558204_photo__3_.jpeg"
+    videoUrl: "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360980907_yoga.mp4",
+    posterUrl: "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360992528_photo__5_.jpeg"
   },
   {
     id: "reel-4",
     title: "Mystery nights & mind games",
     duration: "0:17",
     views: "6.3K",
-    videoUrl: "/assets/sorora_hero.mp4",
+    videoUrl: "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360980907_yoga.mp4",
     posterUrl: "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025946841_Detective_Game_Night.jpg"
   },
   {
@@ -50,7 +50,7 @@ const DEFAULT_REELS_DATA = [
     title: "Conversations that heal",
     duration: "0:19",
     views: "11.8K",
-    videoUrl: "/assets/sorora_hero.mp4",
+    videoUrl: "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360980907_yoga.mp4",
     posterUrl: "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025917347_photo__3_.jpeg"
   },
   {
@@ -58,7 +58,7 @@ const DEFAULT_REELS_DATA = [
     title: "Stronger together, always",
     duration: "0:22",
     views: "9.6K",
-    videoUrl: "/assets/sorora_hero.mp4",
+    videoUrl: "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360980907_yoga.mp4",
     posterUrl: "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025558204_photo__3_.jpeg"
   }
 ];
@@ -85,8 +85,8 @@ const DEFAULT_EVENTS_DATA = {
     reviewsCount: 124,
     joinedCount: '150+',
     featuredBadge: 'Limited Spots',
-    heroImg: 'https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025558204_photo__3_.jpeg',
-    heroVideo: '/assets/sorora_hero.mp4',
+    heroImg: 'https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025917347_photo__3_.jpeg',
+    heroVideo: 'https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360980907_yoga.mp4',
     storyText: "Imagine stepping away from the city's noise into a peaceful equestrian sanctuary, where horses, art, meaningful conversations, and mindful moments help you reconnect—with yourself and with others.",
     pricing: {
       earlyBird: { price: 1999, original: 2499, title: 'Early Bird Pass', status: 'Save ₹500 - Limited Seats' },
@@ -153,8 +153,8 @@ const DEFAULT_EVENTS_DATA = {
     reviewsCount: 88,
     joinedCount: '95+',
     featuredBadge: 'Early Bird Offer',
-    heroImg: 'https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025917347_photo__3_.jpeg',
-    heroVideo: '/assets/sorora_hero.mp4',
+    heroImg: 'https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025558204_photo__3_.jpeg',
+    heroVideo: 'https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360980907_yoga.mp4',
     storyText: "Disconnect from screens and reconnect with wild nature in an eco-luxury jungle lodge. Guided safaris, forest bathing, starry campfire circles, and deep sisterhood bond.",
     pricing: {
       earlyBird: { price: 8999, original: 10999, title: 'Early Bird Retreat', status: 'Includes All Meals & Safari' },
@@ -197,8 +197,8 @@ const DEFAULT_EVENTS_DATA = {
     reviewsCount: 96,
     joinedCount: '210+',
     featuredBadge: 'Most Popular',
-    heroImg: 'https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025558204_photo__3_.jpeg',
-    heroVideo: '/assets/sorora_hero.mp4',
+    heroImg: 'https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360992528_photo__5_.jpeg',
+    heroVideo: 'https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360980907_yoga.mp4',
     storyText: "Start your Sunday morning with gentle Hatha yoga Flow surrounded by lush greenery, followed by a sound bowl meditation and a delicious farm-fresh botanical brunch.",
     pricing: {
       regular: { price: 999, original: 1299, title: 'Yoga & Brunch Pass', status: 'Includes Mat & Brunch' }
@@ -238,7 +238,7 @@ const DEFAULT_EVENTS_DATA = {
     joinedCount: '130+',
     featuredBadge: 'Newly Added',
     heroImg: 'https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025946841_Detective_Game_Night.jpg',
-    heroVideo: '/assets/sorora_hero.mp4',
+    heroVideo: 'https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360980907_yoga.mp4',
     storyText: "Put on your detective hat! Step into a vintage 1920s mansion where every guest gets a secret character role to unravel a mystery over tea and pastries.",
     pricing: {
       regular: { price: 1499, original: 1999, title: 'Detective Pass', status: 'Includes Character Dossier & High Tea' }
@@ -460,8 +460,13 @@ function sanitizeObjectForSync(obj) {
   for (let k in obj) {
     if (typeof obj[k] === 'string') {
       if (obj[k].startsWith('data:') || obj[k].length > 2000) {
-        // Fallback clean path if legacy base64 string is trapped in localStorage
-        clone[k] = '/assets/sorora_hero.mp4';
+        // Differentiate between video and image fields for clean CDN fallbacks
+        const keyLower = k.toLowerCase();
+        if (keyLower.includes('video') || keyLower.includes('mp4')) {
+          clone[k] = 'https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360980907_yoga.mp4';
+        } else {
+          clone[k] = 'https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025917347_photo__3_.jpeg';
+        }
       } else {
         clone[k] = obj[k];
       }
