@@ -269,8 +269,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function resolveMediaUrl(url) {
   if (!url) return '';
+  if (url.startsWith('data:') || url.startsWith('http://') || url.startsWith('https://') || url.startsWith('blob:')) {
+    return url;
+  }
   if (url.startsWith('/uploads/')) {
     return `https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public${url}`;
+  }
+  if (url.startsWith('uploads/')) {
+    return `https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/${url}`;
+  }
+  if (url.startsWith('/public/uploads/')) {
+    return `https://raw.githubusercontent.com/realabrar1/sorora.blr/main${url}`;
   }
   return url;
 }
@@ -2046,29 +2055,36 @@ function initReelsSection() {
   const btnEl = document.getElementById('reelsInstagramBtn');
   if (btnEl) btnEl.href = instaUrl;
 
-  grid.innerHTML = reels.map(r => `
-    <div class="reel-card" data-reel-id="${r.id}">
-      <video class="reel-video" src="${r.videoUrl}" poster="${r.posterUrl}" playsinline loop preload="metadata"></video>
-      <div class="reel-overlay-top">
-        <span class="reel-badge-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/>
-            <polygon points="10,8 16,12 10,16"/>
-          </svg>
-        </span>
-        <span class="reel-duration-badge">${r.duration || '0:20'}</span>
-      </div>
+  grid.innerHTML = reels.map(r => {
+    const videoSrc = resolveMediaUrl(r.videoUrl || '/assets/sorora_hero.mp4');
+    const posterSrc = resolveMediaUrl(r.posterUrl || 'https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025558204_photo__3_.jpeg');
 
-      <div class="reel-play-btn-overlay">
-        <span class="play-icon-shape">▶</span>
-      </div>
+    return `
+      <div class="reel-card" data-reel-id="${r.id}">
+        <video class="reel-video" src="${videoSrc}" poster="${posterSrc}" playsinline loop preload="metadata">
+          <source src="${videoSrc}" type="video/mp4">
+        </video>
+        <div class="reel-overlay-top">
+          <span class="reel-badge-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/>
+              <polygon points="10,8 16,12 10,16"/>
+            </svg>
+          </span>
+          <span class="reel-duration-badge">${r.duration || '0:20'}</span>
+        </div>
 
-      <div class="reel-overlay-bottom">
-        <h4 class="reel-title">${r.title}</h4>
-        <div class="reel-views-pill">▶ ${r.views || '10.2K'}</div>
+        <div class="reel-play-btn-overlay">
+          <span class="play-icon-shape">▶</span>
+        </div>
+
+        <div class="reel-overlay-bottom">
+          <h4 class="reel-title">${r.title}</h4>
+          <div class="reel-views-pill">▶ ${r.views || '10.2K'}</div>
+        </div>
       </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 
   // Click-to-Play/Pause logic
   const reelCards = grid.querySelectorAll('.reel-card');

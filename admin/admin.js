@@ -1491,39 +1491,49 @@ function initReelModal() {
   const vidPreview = document.getElementById('reelModalVidPreview');
   const imgPreview = document.getElementById('reelModalImgPreview');
 
-  videoInput?.addEventListener('change', async (e) => {
+  videoInput?.addEventListener('change', (e) => {
     const file = e.target.files[0];
     if (file) {
-      // Local preview
-      const localUrl = URL.createObjectURL(file);
-      if (vidPreview) {
-        vidPreview.src = localUrl;
-        vidPreview.classList.remove('hidden');
-      }
-      document.getElementById('reelVideoUrlInput').value = 'Uploading video file to GitHub...';
+      const reader = new FileReader();
+      reader.onload = async (evt) => {
+        const dataUrl = evt.target.result;
+        document.getElementById('reelVideoUrlInput').value = dataUrl;
+        if (vidPreview) {
+          vidPreview.src = dataUrl;
+          vidPreview.classList.remove('hidden');
+        }
 
-      const publicUrl = await uploadMediaToGitHub(file);
-      if (publicUrl) {
-        document.getElementById('reelVideoUrlInput').value = publicUrl;
-      }
+        // Upload to GitHub CDN in background
+        const publicUrl = await uploadMediaToGitHub(file);
+        if (publicUrl) {
+          document.getElementById('reelVideoUrlInput').value = publicUrl;
+          if (vidPreview) vidPreview.src = publicUrl;
+        }
+      };
+      reader.readAsDataURL(file);
     }
   });
 
-  posterInput?.addEventListener('change', async (e) => {
+  posterInput?.addEventListener('change', (e) => {
     const file = e.target.files[0];
     if (file) {
-      // Local preview
-      const localUrl = URL.createObjectURL(file);
-      if (imgPreview) {
-        imgPreview.src = localUrl;
-        imgPreview.classList.remove('hidden');
-      }
-      document.getElementById('reelPosterUrlInput').value = 'Uploading cover image to GitHub...';
+      const reader = new FileReader();
+      reader.onload = async (evt) => {
+        const dataUrl = evt.target.result;
+        document.getElementById('reelPosterUrlInput').value = dataUrl;
+        if (imgPreview) {
+          imgPreview.src = dataUrl;
+          imgPreview.classList.remove('hidden');
+        }
 
-      const publicUrl = await uploadMediaToGitHub(file);
-      if (publicUrl) {
-        document.getElementById('reelPosterUrlInput').value = publicUrl;
-      }
+        // Upload to GitHub CDN in background
+        const publicUrl = await uploadMediaToGitHub(file);
+        if (publicUrl) {
+          document.getElementById('reelPosterUrlInput').value = publicUrl;
+          if (imgPreview) imgPreview.src = publicUrl;
+        }
+      };
+      reader.readAsDataURL(file);
     }
   });
 
