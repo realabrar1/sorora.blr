@@ -684,7 +684,7 @@
 
   <!-- ADD / EDIT REEL MODAL -->
   <div id="reelModal" class="admin-modal-backdrop">
-    <div class="admin-modal-box">
+    <div class="admin-modal-box" style="max-width: 620px;">
       <div class="modal-header">
         <h3 id="reelModalTitle">Upload / Add New Reel Video</h3>
         <button id="closeReelModal" class="close-modal-btn">&times;</button>
@@ -709,21 +709,37 @@
           </div>
         </div>
 
+        <!-- 1. VIDEO FILE UPLOADER & LINK -->
         <div class="form-group">
-          <label>Video File (Upload MP4 or enter Video URL) *</label>
-          <input type="file" id="reelVideoFileInput" class="form-control" accept="video/mp4,video/*" style="margin-bottom: 8px;">
-          <input type="text" id="reelVideoUrlInput" class="form-control" placeholder="Or paste MP4 video URL (e.g. /assets/sorora_hero.mp4)" required>
+          <label style="font-weight: 600;">1. Video File Upload (MP4 Video) *</label>
+          <div style="background: rgba(255,255,255,0.03); border: 1px dashed rgba(200,131,115,0.4); border-radius: 12px; padding: 16px; text-align: center; margin-bottom: 8px;">
+            <p style="font-size: 0.82rem; color: var(--color-admin-sub); margin-bottom: 10px;">
+              📁 Select MP4 Video file from your computer (Auto-uploads to GitHub CDN)
+            </p>
+            <input type="file" id="reelVideoFileInput" class="form-control" accept="video/mp4,video/*" style="font-size: 0.8rem;">
+            <video id="reelModalVidPreview" controls style="max-height: 140px; width: 100%; border-radius: 8px; margin-top: 10px;" class="hidden"></video>
+          </div>
+          <label for="reelVideoUrlInput" style="font-size: 0.78rem; color: var(--color-admin-sub);">Or Video Direct URL / Path:</label>
+          <input type="text" id="reelVideoUrlInput" class="form-control" placeholder="https://raw.githubusercontent.com/... or /assets/sorora_hero.mp4" required>
         </div>
 
+        <!-- 2. POSTER THUMBNAIL IMAGE UPLOADER & LINK -->
         <div class="form-group">
-          <label>Poster Thumbnail Image (Upload or enter Image URL) *</label>
-          <input type="file" id="reelPosterFileInput" class="form-control" accept="image/*" style="margin-bottom: 8px;">
-          <input type="text" id="reelPosterUrlInput" class="form-control" placeholder="Or paste Poster Image URL" required>
+          <label style="font-weight: 600;">2. Poster Thumbnail Cover Image *</label>
+          <div style="background: rgba(255,255,255,0.03); border: 1px dashed rgba(200,131,115,0.4); border-radius: 12px; padding: 16px; text-align: center; margin-bottom: 8px;">
+            <p style="font-size: 0.82rem; color: var(--color-admin-sub); margin-bottom: 10px;">
+              🖼️ Select Cover Image file (PNG / JPG) for the video thumbnail
+            </p>
+            <input type="file" id="reelPosterFileInput" class="form-control" accept="image/*" style="font-size: 0.8rem;">
+            <img id="reelModalImgPreview" alt="Poster Preview" style="max-height: 120px; border-radius: 8px; margin-top: 10px; object-fit: cover;" class="hidden">
+          </div>
+          <label for="reelPosterUrlInput" style="font-size: 0.78rem; color: var(--color-admin-sub);">Or Poster Image URL:</label>
+          <input type="text" id="reelPosterUrlInput" class="form-control" placeholder="https://raw.githubusercontent.com/... or /assets/photo.jpeg" required>
         </div>
 
         <div class="modal-footer">
           <button type="button" class="btn btn-outline" id="cancelReelBtn">Cancel</button>
-          <button type="submit" class="btn btn-primary">Save Reel Video &rarr;</button>
+          <button type="submit" class="btn btn-primary" id="saveReelSubmitBtn">Save Reel Video & Sync Live &rarr;</button>
         </div>
       </form>
     </div>
