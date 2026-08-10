@@ -276,7 +276,12 @@ function resolveMediaUrl(url) {
 
 async function loadRemoteContentData() {
   try {
-    const res = await fetch('/data/content.json?t=' + Date.now());
+    const rawCdnUrl = 'https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/data/content.json?t=' + Date.now();
+    let res = await fetch(rawCdnUrl);
+    if (!res.ok) {
+      res = await fetch('/data/content.json?t=' + Date.now());
+    }
+
     if (res.ok) {
       const data = await res.json();
 
