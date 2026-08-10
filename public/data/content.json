@@ -25,8 +25,8 @@
       "reviewsCount": 72,
       "joinedCount": "130+",
       "featuredBadge": "Newly Added",
-      "heroImg": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025946841_Detective_Game_Night.jpg",
-      "heroVideo": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360980907_yoga.mp4",
+      "heroImg": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786364092873_Detective_Game_Night.jpg",
+      "heroVideo": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786364064369_animate_this_image_thriller_da__1_.mp4",
       "storyText": "Put on your detective hat! Step into a vintage 1920s mansion where every guest gets a secret character role to unravel a mystery over tea and pastries.",
       "pricing": {
         "regular": {
@@ -285,7 +285,7 @@
       "reviewsCount": 88,
       "joinedCount": "95+",
       "featuredBadge": "Early Bird Offer",
-      "heroImg": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025558204_photo__3_.jpeg",
+      "heroImg": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786364136366_SnapInsta.to_729896798_18089834705138218_6372860788470209982_n.jpg",
       "heroVideo": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360980907_yoga.mp4",
       "storyText": "Disconnect from screens and reconnect with wild nature in an eco-luxury jungle lodge. Guided safaris, forest bathing, starry campfire circles, and deep sisterhood bond.",
       "pricing": {
@@ -400,8 +400,8 @@
       "reviewsCount": 96,
       "joinedCount": "210+",
       "featuredBadge": "Most Popular",
-      "heroImg": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360992528_photo__5_.jpeg",
-      "heroVideo": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360980907_yoga.mp4",
+      "heroImg": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786364287402_photo__4_.jpeg",
+      "heroVideo": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786364902432_animate_only_the_text_video.mp4",
       "storyText": "Start your Sunday morning with gentle Hatha yoga Flow surrounded by lush greenery, followed by a sound bowl meditation and a delicious farm-fresh botanical brunch.",
       "pricing": {
         "regular": {
@@ -483,8 +483,8 @@
     "title": "EXPERIENCES THAT",
     "scriptTitle": "To yourself & each other.",
     "subtitle": "Meaningful events for women who seek connection, adventure & memories that last.",
-    "video": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360980907_yoga.mp4",
-    "poster": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025917347_photo__3_.jpeg",
+    "video": "/assets/sorora_hero.mp4",
+    "poster": "/assets/hero_horse_bg.png",
     "btnText": "Explore Experiences",
     "watchBtnText": "Watch Video"
   },
@@ -544,7 +544,7 @@
       "title": "Saddle up for soulful mornings",
       "duration": "0:24",
       "views": "12.4K",
-      "videoUrl": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360980907_yoga.mp4",
+      "videoUrl": "/assets/sorora_hero.mp4",
       "posterUrl": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025558204_photo__3_.jpeg"
     },
     {
@@ -552,7 +552,7 @@
       "title": "Into the wild, into yourself",
       "duration": "0:18",
       "views": "8.7K",
-      "videoUrl": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360980907_yoga.mp4",
+      "videoUrl": "/assets/sorora_hero.mp4",
       "posterUrl": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025917347_photo__3_.jpeg"
     },
     {
@@ -560,7 +560,7 @@
       "title": "Mystery nights & mind games",
       "duration": "0:17",
       "views": "6.3K",
-      "videoUrl": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360980907_yoga.mp4",
+      "videoUrl": "/assets/sorora_hero.mp4",
       "posterUrl": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025946841_Detective_Game_Night.jpg"
     },
     {
@@ -568,15 +568,15 @@
       "title": "Conversations that heal",
       "duration": "0:19",
       "views": "11.8K",
-      "videoUrl": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360980907_yoga.mp4",
-      "posterUrl": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360992528_photo__5_.jpeg"
+      "videoUrl": "/assets/sorora_hero.mp4",
+      "posterUrl": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025917347_photo__3_.jpeg"
     },
     {
       "id": "reel-6",
       "title": "Stronger together, always",
       "duration": "0:22",
       "views": "9.6K",
-      "videoUrl": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360980907_yoga.mp4",
+      "videoUrl": "/assets/sorora_hero.mp4",
       "posterUrl": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025558204_photo__3_.jpeg"
     }
   ],
