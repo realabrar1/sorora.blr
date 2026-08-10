@@ -25,7 +25,7 @@ const EVENTS_DATA = {
     reviewsCount: 120,
     joinedCount: '150+',
     featuredBadge: 'Limited Spots',
-    heroImg: '/assets/saddle_and_soul.png',
+    heroImg: 'https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025558204_photo__3_.jpeg',
     heroVideo: '/assets/sorora_hero.mp4',
     storyText: "Imagine stepping away from the city's noise into a peaceful equestrian sanctuary, where horses, art, meaningful conversations, and mindful moments help you reconnect—with yourself and with others.",
     pricing: {
@@ -107,7 +107,7 @@ const EVENTS_DATA = {
     reviewsCount: 88,
     joinedCount: '95+',
     featuredBadge: 'Early Bird Offer',
-    heroImg: '/assets/into_the_woods.png',
+    heroImg: 'https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025917347_photo__3_.jpeg',
     heroVideo: '',
     storyText: "Disconnect from screens and reconnect with wilderness. Nestled in the heart of Bandipur forest, enjoy jungle safaris, bonfire stargazing, and soothing yoga.",
     pricing: {
@@ -151,7 +151,7 @@ const EVENTS_DATA = {
     reviewsCount: 64,
     joinedCount: '210+',
     featuredBadge: 'Most Popular',
-    heroImg: '/assets/morning_yoga.png',
+    heroImg: 'https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025558204_photo__3_.jpeg',
     heroVideo: '',
     storyText: "Start your weekend with gentle Hatha yoga, sound bowl meditation, and a organic farm-to-table botanical brunch on lush green lawns.",
     pricing: {
@@ -195,7 +195,7 @@ const EVENTS_DATA = {
     reviewsCount: 72,
     joinedCount: '130+',
     featuredBadge: 'Newly Added',
-    heroImg: '/assets/detective_game.png',
+    heroImg: 'https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025946841_Detective_Game_Night.jpg',
     heroVideo: '',
     storyText: "Put on your detective hat! Step into a vintage 1920s mansion where every guest gets a secret character role to unravel a mystery over tea and pastries.",
     pricing: {

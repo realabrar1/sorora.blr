@@ -34,7 +34,7 @@ const DEFAULT_EVENTS_DATA = {
     reviewsCount: 124,
     joinedCount: '150+',
     featuredBadge: 'Limited Spots',
-    heroImg: '/assets/saddle_and_soul.png',
+    heroImg: 'https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025558204_photo__3_.jpeg',
     heroVideo: '/assets/sorora_hero.mp4',
     storyText: "Imagine stepping away from the city's noise into a peaceful equestrian sanctuary, where horses, art, meaningful conversations, and mindful moments help you reconnect—with yourself and with others.",
     pricing: {
@@ -102,7 +102,7 @@ const DEFAULT_EVENTS_DATA = {
     reviewsCount: 88,
     joinedCount: '95+',
     featuredBadge: 'Early Bird Offer',
-    heroImg: '/assets/into_the_woods.png',
+    heroImg: 'https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025917347_photo__3_.jpeg',
     heroVideo: '/assets/sorora_hero.mp4',
     storyText: "Disconnect from screens and reconnect with wild nature in an eco-luxury jungle lodge. Guided safaris, forest bathing, starry campfire circles, and deep sisterhood bond.",
     pricing: {
@@ -146,7 +146,7 @@ const DEFAULT_EVENTS_DATA = {
     reviewsCount: 96,
     joinedCount: '210+',
     featuredBadge: 'Most Popular',
-    heroImg: '/assets/morning_yoga.png',
+    heroImg: 'https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025558204_photo__3_.jpeg',
     heroVideo: '/assets/sorora_hero.mp4',
     storyText: "Start your Sunday morning with gentle Hatha yoga Flow surrounded by lush greenery, followed by a sound bowl meditation and a delicious farm-fresh botanical brunch.",
     pricing: {
@@ -186,7 +186,7 @@ const DEFAULT_EVENTS_DATA = {
     reviewsCount: 72,
     joinedCount: '130+',
     featuredBadge: 'Newly Added',
-    heroImg: '/assets/detective_game.png',
+    heroImg: 'https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025946841_Detective_Game_Night.jpg',
     heroVideo: '/assets/sorora_hero.mp4',
     storyText: "Put on your detective hat! Step into a vintage 1920s mansion where every guest gets a secret character role to unravel a mystery over tea and pastries.",
     pricing: {
@@ -222,7 +222,7 @@ const DEFAULT_BANNERS = [
     title: 'Saddle & Soul — Exclusive Soirée',
     subtitle: 'Equine connection, easel painting, and organic high tea at Zippy Equestrian.',
     badge: 'LIMITED 8 SEATS ONLY',
-    mediaUrl: '/assets/saddle_and_soul.png',
+    mediaUrl: 'https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025558204_photo__3_.jpeg',
     mediaType: 'image',
     btnText: 'View Saddle & Soul Details',
     btnLink: '#event/saddle-and-soul'
@@ -232,7 +232,7 @@ const DEFAULT_BANNERS = [
     title: 'Into The Woods — Bandipur Getaway',
     subtitle: 'A 3-day eco-luxury forest retreat, open jeep safaris, and starry campfires.',
     badge: 'WEEKEND ESCAPE',
-    mediaUrl: '/assets/into_the_woods.png',
+    mediaUrl: 'https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025917347_photo__3_.jpeg',
     mediaType: 'image',
     btnText: 'Explore Bandipur Retreat',
     btnLink: '#event/into-the-woods'
