@@ -1450,12 +1450,19 @@ function renderReelsAdminTable(reels) {
   if (!tbody) return;
 
   if (!reels || reels.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; padding: 24px; color: var(--color-admin-sub);">No reels added yet. Click "+ Upload / Add New Reel Video" to add one!</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; padding: 24px; color: var(--color-admin-sub);">No reels added yet. Click "+ Upload / Add New Reel Video" to add one!</td></tr>`;
     return;
   }
 
-  tbody.innerHTML = reels.map(r => `
+  tbody.innerHTML = reels.map((r, index) => `
     <tr>
+      <td>
+        <div style="display: flex; gap: 4px; align-items: center;">
+          <button class="btn btn-outline btn-sm" onclick="moveReelUp(${index})" ${index === 0 ? 'disabled style="opacity:0.3; cursor:not-allowed;"' : ''} title="Move Up in List">⬆</button>
+          <button class="btn btn-outline btn-sm" onclick="moveReelDown(${index})" ${index === reels.length - 1 ? 'disabled style="opacity:0.3; cursor:not-allowed;"' : ''} title="Move Down in List">⬇</button>
+          <span style="font-size: 0.8rem; font-weight: 600; color: var(--color-admin-sub); margin-left: 4px;">#${index + 1}</span>
+        </div>
+      </td>
       <td>
         <img src="${r.posterUrl}" alt="${r.title}" style="width: 50px; height: 75px; object-fit: cover; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
       </td>
@@ -1475,6 +1482,28 @@ function renderReelsAdminTable(reels) {
     </tr>
   `).join('');
 }
+
+window.moveReelUp = function (index) {
+  let reels = getStorage('SORORA_REELS_DATA', DEFAULT_REELS_DATA);
+  if (index <= 0 || index >= reels.length) return;
+  const temp = reels[index];
+  reels[index] = reels[index - 1];
+  reels[index - 1] = temp;
+  setStorage('SORORA_REELS_DATA', reels);
+  loadDashboardData();
+  showGitHubToast(`⬆ Moved "${temp.title}" up to position #${index}! Saved & Synced live.`, 'success');
+};
+
+window.moveReelDown = function (index) {
+  let reels = getStorage('SORORA_REELS_DATA', DEFAULT_REELS_DATA);
+  if (index < 0 || index >= reels.length - 1) return;
+  const temp = reels[index];
+  reels[index] = reels[index + 1];
+  reels[index + 1] = temp;
+  setStorage('SORORA_REELS_DATA', reels);
+  loadDashboardData();
+  showGitHubToast(`⬇ Moved "${temp.title}" down to position #${index + 2}! Saved & Synced live.`, 'success');
+};
 
 function initReelModal() {
   const modal = document.getElementById('reelModal');
