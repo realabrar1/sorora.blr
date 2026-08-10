@@ -264,6 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initAuthModal();
   initAdminPortal();
   initVisitorTracking();
+  initReelsSection();
 });
 
 function resolveMediaUrl(url) {
@@ -304,6 +305,15 @@ async function loadRemoteContentData() {
         });
         localStorage.setItem('SORORA_BANNERS_DATA', JSON.stringify(data.banners));
       }
+      if (data.reels) {
+        data.reels.forEach(r => {
+          if (r.videoUrl) r.videoUrl = resolveMediaUrl(r.videoUrl);
+          if (r.posterUrl) r.posterUrl = resolveMediaUrl(r.posterUrl);
+        });
+        localStorage.setItem('SORORA_REELS_DATA', JSON.stringify(data.reels));
+      }
+      if (data.instagramHandle) localStorage.setItem('SORORA_INSTA_HANDLE', data.instagramHandle);
+      if (data.instagramUrl) localStorage.setItem('SORORA_INSTA_URL', data.instagramUrl);
       if (data.bookPage) localStorage.setItem('SORORA_BOOK_PAGE_CONFIG', JSON.stringify(data.bookPage));
       if (data.footer) localStorage.setItem('SORORA_FOOTER_CONFIG', JSON.stringify(data.footer));
       if (data.bookings) localStorage.setItem('SORORA_ADMIN_BOOKINGS', JSON.stringify(data.bookings));
@@ -311,6 +321,7 @@ async function loadRemoteContentData() {
       syncClientDOMFromStorage();
       initRouter();
       renderFooterDynamicData();
+      initReelsSection();
     }
   } catch (err) {
     console.warn('Remote content fetch fallback:', err);
@@ -1959,4 +1970,151 @@ function showToast(message) {
   toast.textContent = message;
   container.appendChild(toast);
   setTimeout(() => toast.remove(), 3000);
+}
+
+// ==========================================================================
+// GLIMPSES / REELS VIDEO CAROUSEL SECTION CONTROLLER
+// ==========================================================================
+function getLiveReelsData() {
+  const stored = localStorage.getItem('SORORA_REELS_DATA');
+  if (stored) {
+    try { return JSON.parse(stored); } catch (e) {}
+  }
+  return [
+    {
+      id: "reel-1",
+      title: "Saddle up for soulful mornings",
+      duration: "0:24",
+      views: "12.4K",
+      videoUrl: "/assets/sorora_hero.mp4",
+      posterUrl: "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025558204_photo__3_.jpeg"
+    },
+    {
+      id: "reel-2",
+      title: "Into the wild, into yourself",
+      duration: "0:18",
+      views: "8.7K",
+      videoUrl: "/assets/sorora_hero.mp4",
+      posterUrl: "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025917347_photo__3_.jpeg"
+    },
+    {
+      id: "reel-3",
+      title: "Breathe. Stretch. Be present.",
+      duration: "0:21",
+      views: "15.2K",
+      videoUrl: "/assets/sorora_hero.mp4",
+      posterUrl: "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025558204_photo__3_.jpeg"
+    },
+    {
+      id: "reel-4",
+      title: "Mystery nights & mind games",
+      duration: "0:17",
+      views: "6.3K",
+      videoUrl: "/assets/sorora_hero.mp4",
+      posterUrl: "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025946841_Detective_Game_Night.jpg"
+    },
+    {
+      id: "reel-5",
+      title: "Conversations that heal",
+      duration: "0:19",
+      views: "11.8K",
+      videoUrl: "/assets/sorora_hero.mp4",
+      posterUrl: "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025917347_photo__3_.jpeg"
+    },
+    {
+      id: "reel-6",
+      title: "Stronger together, always",
+      duration: "0:22",
+      views: "9.6K",
+      videoUrl: "/assets/sorora_hero.mp4",
+      posterUrl: "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025558204_photo__3_.jpeg"
+    }
+  ];
+}
+
+function initReelsSection() {
+  const grid = document.getElementById('reelsGrid');
+  if (!grid) return;
+
+  const reels = getLiveReelsData();
+  const instaHandle = localStorage.getItem('SORORA_INSTA_HANDLE') || '@sorora.experiences';
+  const instaUrl = localStorage.getItem('SORORA_INSTA_URL') || 'https://instagram.com/sorora.experiences';
+
+  const handleEl = document.getElementById('reelsInstagramHandle');
+  if (handleEl) handleEl.textContent = instaHandle;
+
+  const btnEl = document.getElementById('reelsInstagramBtn');
+  if (btnEl) btnEl.href = instaUrl;
+
+  grid.innerHTML = reels.map(r => `
+    <div class="reel-card" data-reel-id="${r.id}">
+      <video class="reel-video" src="${r.videoUrl}" poster="${r.posterUrl}" playsinline loop preload="metadata"></video>
+      <div class="reel-overlay-top">
+        <span class="reel-badge-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/>
+            <polygon points="10,8 16,12 10,16"/>
+          </svg>
+        </span>
+        <span class="reel-duration-badge">${r.duration || '0:20'}</span>
+      </div>
+
+      <div class="reel-play-btn-overlay">
+        <span class="play-icon-shape">▶</span>
+      </div>
+
+      <div class="reel-overlay-bottom">
+        <h4 class="reel-title">${r.title}</h4>
+        <div class="reel-views-pill">▶ ${r.views || '10.2K'}</div>
+      </div>
+    </div>
+  `).join('');
+
+  // Click-to-Play/Pause logic
+  const reelCards = grid.querySelectorAll('.reel-card');
+  reelCards.forEach(card => {
+    const video = card.querySelector('.reel-video');
+
+    card.addEventListener('click', (e) => {
+      e.stopPropagation();
+
+      // Pause all other videos first
+      document.querySelectorAll('.reel-video').forEach(v => {
+        if (v !== video) {
+          v.pause();
+          v.closest('.reel-card')?.classList.remove('is-playing');
+        }
+      });
+
+      if (video.paused) {
+        video.play().then(() => {
+          card.classList.add('is-playing');
+        }).catch(err => {
+          console.warn('Video playback notice:', err);
+        });
+      } else {
+        video.pause();
+        card.classList.remove('is-playing');
+      }
+    });
+  });
+
+  // Carousel Arrow Navigation
+  const track = document.getElementById('reelsTrackContainer');
+  const prevBtn = document.getElementById('btnReelsPrev');
+  const nextBtn = document.getElementById('btnReelsNext');
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      track?.scrollBy({ left: -260, behavior: 'smooth' });
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      track?.scrollBy({ left: 260, behavior: 'smooth' });
+    });
+  }
 }

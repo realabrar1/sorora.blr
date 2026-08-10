@@ -12,6 +12,57 @@ const DEFAULT_HERO_CONFIG = {
   watchBtnText: 'Watch Video'
 };
 
+const DEFAULT_REELS_DATA = [
+  {
+    id: "reel-1",
+    title: "Saddle up for soulful mornings",
+    duration: "0:24",
+    views: "12.4K",
+    videoUrl: "/assets/sorora_hero.mp4",
+    posterUrl: "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025558204_photo__3_.jpeg"
+  },
+  {
+    id: "reel-2",
+    title: "Into the wild, into yourself",
+    duration: "0:18",
+    views: "8.7K",
+    videoUrl: "/assets/sorora_hero.mp4",
+    posterUrl: "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025917347_photo__3_.jpeg"
+  },
+  {
+    id: "reel-3",
+    title: "Breathe. Stretch. Be present.",
+    duration: "0:21",
+    views: "15.2K",
+    videoUrl: "/assets/sorora_hero.mp4",
+    posterUrl: "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025558204_photo__3_.jpeg"
+  },
+  {
+    id: "reel-4",
+    title: "Mystery nights & mind games",
+    duration: "0:17",
+    views: "6.3K",
+    videoUrl: "/assets/sorora_hero.mp4",
+    posterUrl: "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025946841_Detective_Game_Night.jpg"
+  },
+  {
+    id: "reel-5",
+    title: "Conversations that heal",
+    duration: "0:19",
+    views: "11.8K",
+    videoUrl: "/assets/sorora_hero.mp4",
+    posterUrl: "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025917347_photo__3_.jpeg"
+  },
+  {
+    id: "reel-6",
+    title: "Stronger together, always",
+    duration: "0:22",
+    views: "9.6K",
+    videoUrl: "/assets/sorora_hero.mp4",
+    posterUrl: "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025558204_photo__3_.jpeg"
+  }
+];
+
 const DEFAULT_EVENTS_DATA = {
   'saddle-and-soul': {
     id: 'saddle-and-soul',
@@ -413,6 +464,9 @@ function syncContentToGitHub() {
         events: getStorage('SORORA_EVENTS_DATA', DEFAULT_EVENTS_DATA),
         hero: getStorage('SORORA_HERO_CONFIG', DEFAULT_HERO_CONFIG),
         banners: getStorage('SORORA_BANNERS_DATA', DEFAULT_BANNERS),
+        reels: getStorage('SORORA_REELS_DATA', DEFAULT_REELS_DATA),
+        instagramHandle: localStorage.getItem('SORORA_INSTA_HANDLE') || '@sorora.experiences',
+        instagramUrl: localStorage.getItem('SORORA_INSTA_URL') || 'https://instagram.com/sorora.experiences',
         bookPage: getStorage('SORORA_BOOK_PAGE_CONFIG', DEFAULT_BOOK_PAGE_CONFIG),
         footer: getStorage('SORORA_FOOTER_CONFIG', DEFAULT_FOOTER_CONFIG),
         bookings: getStorage('SORORA_ADMIN_BOOKINGS', DEFAULT_BOOKINGS)
@@ -493,6 +547,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initModal();
   initDropzones();
   initBannerModal();
+  initReelModal();
 });
 
 // AUTHENTICATION CONTROLLER
@@ -685,6 +740,15 @@ function loadDashboardData() {
 
   // 7. BOOKINGS TABLE
   renderBookingsTable(bookings);
+
+  // 8. REELS TABLE & INSTAGRAM CONFIG
+  const reels = getStorage('SORORA_REELS_DATA', DEFAULT_REELS_DATA);
+  const adminInstaHandle = document.getElementById('adminInstaHandle');
+  const adminInstaUrl = document.getElementById('adminInstaUrl');
+  if (adminInstaHandle) adminInstaHandle.value = localStorage.getItem('SORORA_INSTA_HANDLE') || '@sorora.experiences';
+  if (adminInstaUrl) adminInstaUrl.value = localStorage.getItem('SORORA_INSTA_URL') || 'https://instagram.com/sorora.experiences';
+
+  renderReelsAdminTable(reels);
 }
 
 // RENDER BANNERS TABLE
@@ -1377,3 +1441,145 @@ try {
 } catch (e) { }
 
 setInterval(updateLiveVisitorsWidget, 1500);
+
+// ==========================================================================
+// REELS & GLIMPSES VIDEO MANAGER CONTROLLER
+// ==========================================================================
+function renderReelsAdminTable(reels) {
+  const tbody = document.getElementById('reelsTableBody');
+  if (!tbody) return;
+
+  if (!reels || reels.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; padding: 24px; color: var(--color-admin-sub);">No reels added yet. Click "+ Upload / Add New Reel Video" to add one!</td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = reels.map(r => `
+    <tr>
+      <td>
+        <img src="${r.posterUrl}" alt="${r.title}" style="width: 50px; height: 75px; object-fit: cover; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+      </td>
+      <td>
+        <strong>${r.title}</strong>
+        <br><small style="color: var(--color-admin-sub);">ID: ${r.id}</small>
+      </td>
+      <td><span class="status-badge" style="background: rgba(255,255,255,0.1); color: #fff;">${r.duration || '0:20'}</span></td>
+      <td><strong style="color: var(--color-primary-terracotta);">▶ ${r.views || '10.2K'}</strong></td>
+      <td style="max-width: 180px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
+        <small style="color: var(--color-admin-sub);">${r.videoUrl}</small>
+      </td>
+      <td>
+        <button class="btn btn-outline btn-sm" onclick="editReel('${r.id}')" style="margin-right: 6px;">Edit ✏️</button>
+        <button class="btn btn-outline btn-sm" onclick="deleteReel('${r.id}')" style="color: #ff4757; border-color: #ff4757;">Delete 🗑️</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function initReelModal() {
+  const modal = document.getElementById('reelModal');
+  const form = document.getElementById('reelForm');
+  const closeBtn = document.getElementById('closeReelModal');
+  const cancelBtn = document.getElementById('cancelReelBtn');
+
+  closeBtn?.addEventListener('click', () => modal?.classList.remove('open'));
+  cancelBtn?.addEventListener('click', () => modal?.classList.remove('open'));
+
+  // Video File Upload directly to GitHub Repository
+  const videoInput = document.getElementById('reelVideoFileInput');
+  const posterInput = document.getElementById('reelPosterFileInput');
+
+  videoInput?.addEventListener('change', async (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const publicUrl = await uploadMediaToGitHub(file);
+      if (publicUrl) {
+        document.getElementById('reelVideoUrlInput').value = publicUrl;
+      }
+    }
+  });
+
+  posterInput?.addEventListener('change', async (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const publicUrl = await uploadMediaToGitHub(file);
+      if (publicUrl) {
+        document.getElementById('reelPosterUrlInput').value = publicUrl;
+      }
+    }
+  });
+
+  // Save Reel Form Submit
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let reels = getStorage('SORORA_REELS_DATA', DEFAULT_REELS_DATA);
+    let id = document.getElementById('reelId').value;
+    if (!id) id = `reel_${Date.now()}`;
+
+    const newReel = {
+      id,
+      title: document.getElementById('reelTitleInput').value.trim(),
+      duration: document.getElementById('reelDurationInput').value.trim(),
+      views: document.getElementById('reelViewsInput').value.trim(),
+      videoUrl: document.getElementById('reelVideoUrlInput').value.trim(),
+      posterUrl: document.getElementById('reelPosterUrlInput').value.trim()
+    };
+
+    const idx = reels.findIndex(r => r.id === id);
+    if (idx >= 0) reels[idx] = newReel;
+    else reels.push(newReel);
+
+    setStorage('SORORA_REELS_DATA', reels);
+    modal?.classList.remove('open');
+    loadDashboardData();
+    showGitHubToast('✅ Reel video saved successfully & synced with live website!', 'success');
+  });
+
+  // Instagram Config Form Submit
+  const instaForm = document.getElementById('reelsConfigForm');
+  instaForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const handle = document.getElementById('adminInstaHandle').value.trim();
+    const url = document.getElementById('adminInstaUrl').value.trim();
+    localStorage.setItem('SORORA_INSTA_HANDLE', handle);
+    localStorage.setItem('SORORA_INSTA_URL', url);
+    syncContentToGitHub();
+    showGitHubToast('✅ Instagram Follow settings saved & synced live!', 'success');
+  });
+}
+
+window.openReelModal = function () {
+  document.getElementById('reelModalTitle').textContent = 'Upload / Add New Reel Video';
+  document.getElementById('reelId').value = '';
+  document.getElementById('reelTitleInput').value = '';
+  document.getElementById('reelDurationInput').value = '0:20';
+  document.getElementById('reelViewsInput').value = '10.5K';
+  document.getElementById('reelVideoUrlInput').value = '/assets/sorora_hero.mp4';
+  document.getElementById('reelPosterUrlInput').value = 'https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025558204_photo__3_.jpeg';
+  document.getElementById('reelModal').classList.add('open');
+};
+
+window.editReel = function (id) {
+  const reels = getStorage('SORORA_REELS_DATA', DEFAULT_REELS_DATA);
+  const r = reels.find(item => item.id === id);
+  if (!r) return;
+
+  document.getElementById('reelModalTitle').textContent = `Edit Reel: ${r.title}`;
+  document.getElementById('reelId').value = r.id;
+  document.getElementById('reelTitleInput').value = r.title || '';
+  document.getElementById('reelDurationInput').value = r.duration || '0:20';
+  document.getElementById('reelViewsInput').value = r.views || '10.5K';
+  document.getElementById('reelVideoUrlInput').value = r.videoUrl || '';
+  document.getElementById('reelPosterUrlInput').value = r.posterUrl || '';
+  document.getElementById('reelModal').classList.add('open');
+};
+
+window.deleteReel = function (id) {
+  if (confirm('Are you sure you want to delete this Reel video?')) {
+    let reels = getStorage('SORORA_REELS_DATA', DEFAULT_REELS_DATA);
+    reels = reels.filter(r => r.id !== id);
+    setStorage('SORORA_REELS_DATA', reels);
+    loadDashboardData();
+    showGitHubToast('🗑️ Reel video deleted and synced!', 'info');
+  }
+};

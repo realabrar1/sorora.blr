@@ -4598,3 +4598,280 @@ button {
 .slider-arrow {
   display: none !important;
 }
+
+/* ==========================================================================
+   WATCH, FEEL & CONNECT — GLIMPSES REELS SECTION STYLING
+   ========================================================================== */
+.reels-section {
+  padding: 85px 0;
+  background: #FAF6F0;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(200, 131, 115, 0.12);
+  border-bottom: 1px solid rgba(200, 131, 115, 0.12);
+}
+
+.reels-section::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(200, 131, 115, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.reels-header {
+  margin-bottom: 24px;
+}
+
+.reels-main-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.1rem, 4.8vw, 3.2rem);
+  color: var(--color-dark-olive);
+  margin-top: 6px;
+  margin-bottom: 8px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.reels-carousel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 36px 0 40px 0;
+}
+
+.reels-track-container {
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  width: 100%;
+  padding: 16px 4px 24px 4px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.reels-track-container::-webkit-scrollbar {
+  display: none;
+}
+
+.reels-grid {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  align-items: center;
+}
+
+.reels-arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(200, 131, 115, 0.35);
+  background: #ffffff;
+  color: var(--color-dark-olive);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  z-index: 5;
+}
+
+.reels-arrow:hover {
+  background: var(--color-primary-terracotta);
+  color: #ffffff;
+  border-color: var(--color-primary-terracotta);
+  box-shadow: 0 8px 20px rgba(200, 131, 115, 0.3);
+  transform: scale(1.08);
+}
+
+.reel-card {
+  width: 220px;
+  height: 350px;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  flex-shrink: 0;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  background: #111111;
+}
+
+.reel-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.22);
+}
+
+.reel-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  display: block;
+}
+
+.reel-overlay-top {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 3;
+}
+
+.reel-badge-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+}
+
+.reel-duration-badge {
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.reel-play-btn-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  z-index: 3;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.reel-card:hover .reel-play-btn-overlay {
+  transform: translate(-50%, -50%) scale(1.1);
+  background: var(--color-primary-terracotta);
+  border-color: var(--color-primary-terracotta);
+}
+
+.reel-card.is-playing .reel-play-btn-overlay {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.7);
+  pointer-events: none;
+}
+
+.reel-overlay-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 45px 14px 14px 14px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.45) 60%, transparent 100%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.reel-title {
+  color: #ffffff;
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.35;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.reel-views-pill {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.reels-cta-wrapper {
+  margin-top: 10px;
+}
+
+.btn-instagram-pill {
+  border-radius: 50px !important;
+  padding: 12px 30px !important;
+  font-size: 0.95rem !important;
+  font-weight: 600 !important;
+  border-color: var(--color-primary-terracotta) !important;
+  color: var(--color-dark-olive) !important;
+  background: transparent !important;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  box-shadow: 0 4px 14px rgba(200, 131, 115, 0.15) !important;
+}
+
+.btn-instagram-pill:hover {
+  background: var(--color-primary-terracotta) !important;
+  color: #ffffff !important;
+  border-color: var(--color-primary-terracotta) !important;
+  box-shadow: 0 8px 24px rgba(200, 131, 115, 0.32) !important;
+  transform: translateY(-2px) !important;
+}
+
+.instagram-handle-sub {
+  margin-top: 10px;
+  font-size: 0.88rem;
+  color: var(--color-primary-terracotta);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .reels-section {
+    padding: 50px 0;
+  }
+
+  .reel-card {
+    width: 175px;
+    height: 285px;
+    border-radius: 16px;
+  }
+
+  .reel-video {
+    border-radius: 16px;
+  }
+
+  .reel-title {
+    font-size: 0.82rem;
+  }
+
+  .reels-arrow {
+    display: none !important;
+  }
+
+  .reels-carousel-wrapper {
+    margin: 24px 0 28px 0;
+  }
+}

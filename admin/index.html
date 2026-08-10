@@ -81,6 +81,9 @@
         <button class="nav-item" data-tab="footerTab">
           <span class="nav-icon">🔗</span> Footer & Social Links
         </button>
+        <button class="nav-item" data-tab="reelsTab">
+          <span class="nav-icon">🎬</span> Video Reels & Glimpses
+        </button>
         <button class="nav-item" data-tab="bookingsTab">
           <span class="nav-icon">📋</span> Guest Bookings
         </button>
@@ -433,6 +436,50 @@
               </table>
             </div>
           </div>
+        <!-- TAB 7: VIDEO REELS & GLIMPSES -->
+        <section id="reelsTab" class="tab-pane">
+          <div class="panel-card">
+            <div class="panel-header-actions" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
+              <div>
+                <h3 class="panel-title" style="margin-bottom: 4px;">Watch, Feel & Connect — Video Reels Manager</h3>
+                <p class="panel-desc">Manage video stories, reel previews, durations, views counts, and Instagram handle link.</p>
+              </div>
+              <button class="btn btn-primary" onclick="openReelModal()">+ Upload / Add New Reel Video</button>
+            </div>
+
+            <form id="reelsConfigForm" style="margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.08);">
+              <h4 class="form-sub-heading" style="margin-bottom: 12px;">Instagram Profile & Follow Button Config</h4>
+              <div class="form-row">
+                <div class="form-group col-6">
+                  <label for="adminInstaHandle">Instagram Handle Subtext</label>
+                  <input type="text" id="adminInstaHandle" class="form-control" value="@sorora.experiences" required>
+                </div>
+                <div class="form-group col-6">
+                  <label for="adminInstaUrl">Instagram Profile URL (Follow Button Link)</label>
+                  <input type="text" id="adminInstaUrl" class="form-control" value="https://instagram.com/sorora.experiences" required>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-outline btn-sm">Save Instagram Link Settings 🔑</button>
+            </form>
+
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Poster / Preview</th>
+                    <th>Caption Title</th>
+                    <th>Duration</th>
+                    <th>Views Count</th>
+                    <th>Video Source</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="reelsTableBody">
+                  <!-- Dynamically Rendered -->
+                </tbody>
+              </table>
+            </div>
+          </div>
         </section>
 
       </div>
@@ -632,6 +679,53 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-outline" id="btnCloseDossier">Close</button>
       </div>
+    </div>
+  </div>
+
+  <!-- ADD / EDIT REEL MODAL -->
+  <div id="reelModal" class="admin-modal-backdrop">
+    <div class="admin-modal-box">
+      <div class="modal-header">
+        <h3 id="reelModalTitle">Upload / Add New Reel Video</h3>
+        <button id="closeReelModal" class="close-modal-btn">&times;</button>
+      </div>
+
+      <form id="reelForm" class="modal-body">
+        <input type="hidden" id="reelId">
+
+        <div class="form-group">
+          <label for="reelTitleInput">Reel Caption Title *</label>
+          <input type="text" id="reelTitleInput" class="form-control" placeholder="e.g. Saddle up for soulful mornings" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label for="reelDurationInput">Video Duration Badge *</label>
+            <input type="text" id="reelDurationInput" class="form-control" placeholder="e.g. 0:24" required>
+          </div>
+          <div class="form-group col-6">
+            <label for="reelViewsInput">Views Count Display *</label>
+            <input type="text" id="reelViewsInput" class="form-control" placeholder="e.g. 12.4K" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Video File (Upload MP4 or enter Video URL) *</label>
+          <input type="file" id="reelVideoFileInput" class="form-control" accept="video/mp4,video/*" style="margin-bottom: 8px;">
+          <input type="text" id="reelVideoUrlInput" class="form-control" placeholder="Or paste MP4 video URL (e.g. /assets/sorora_hero.mp4)" required>
+        </div>
+
+        <div class="form-group">
+          <label>Poster Thumbnail Image (Upload or enter Image URL) *</label>
+          <input type="file" id="reelPosterFileInput" class="form-control" accept="image/*" style="margin-bottom: 8px;">
+          <input type="text" id="reelPosterUrlInput" class="form-control" placeholder="Or paste Poster Image URL" required>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" id="cancelReelBtn">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Reel Video &rarr;</button>
+        </div>
+      </form>
     </div>
   </div>
 
