@@ -1106,11 +1106,6 @@ function renderBookExperiencePage() {
                 <option value="Wellness & Mindfulness">Wellness & Mindfulness</option>
                 <option value="Immersive Games">Immersive Games</option>
               </select>
-
-              <div class="price-slider-wrap">
-                <label>Max Price: <strong id="priceDisplay">₹${currentFilters.maxPrice}</strong></label>
-                <input type="range" id="priceRangeSlider" min="500" max="20000" step="500" value="${currentFilters.maxPrice}">
-              </div>
             </div>
           </div>
 
@@ -1307,7 +1302,6 @@ function renderMonthlyCalendarHTML() {
 
 function renderFilteredCardsHTML() {
   const events = Object.values(getLiveEventsData());
-  const maxPriceLimit = Number(currentFilters.maxPrice) || 20000;
 
   const filtered = events.filter(event => {
     // Search filter
@@ -1326,11 +1320,6 @@ function renderFilteredCardsHTML() {
     if (currentFilters.tag !== 'ALL' && !(event.tags || []).includes(currentFilters.tag)) {
       return false;
     }
-    // Price filter (Convert event.startingPrice to Number to fix string comparison bug)
-    const eventPrice = Number(event.startingPrice) || 0;
-    if (eventPrice > maxPriceLimit) {
-      return false;
-    }
     // Date filter
     if (currentFilters.dateIso && event.dateIso !== currentFilters.dateIso) {
       return false;
@@ -1343,8 +1332,8 @@ function renderFilteredCardsHTML() {
 
   if (filtered.length === 0) {
     return `<div class="no-results-box" style="grid-column: 1 / -1; text-align: center; padding: 40px 20px; background: rgba(200, 131, 115, 0.08); border-radius: 16px; margin: 20px 0;">
-      <h3 style="font-size: 1.3rem; color: var(--color-dark-olive); margin-bottom: 8px;">No experiences found matching max price ₹${Number(currentFilters.maxPrice).toLocaleString()}</h3>
-      <p style="color: var(--color-text-body); font-size: 0.9rem; margin-bottom: 16px;">Try increasing your price slider or resetting filters to view all experiences.</p>
+      <h3 style="font-size: 1.3rem; color: var(--color-dark-olive); margin-bottom: 8px;">No experiences found matching your search or category filters</h3>
+      <p style="color: var(--color-text-body); font-size: 0.9rem; margin-bottom: 16px;">Try clearing your search terms or selecting a different category to view all experiences.</p>
       <button class="btn btn-outline" id="btnResetFilters">Reset Filters</button>
     </div>`;
   }
@@ -1389,8 +1378,6 @@ function renderFilteredCardsHTML() {
 function bindFilterEvents() {
   const searchInput = document.getElementById('searchExperienceInput');
   const catSelect = document.getElementById('categoryFilterSelect');
-  const priceSlider = document.getElementById('priceRangeSlider');
-  const priceDisplay = document.getElementById('priceDisplay');
   const tagChips = document.querySelectorAll('.tag-chip');
 
   searchInput?.addEventListener('input', (e) => {
@@ -1402,15 +1389,6 @@ function bindFilterEvents() {
     currentFilters.category = e.target.value;
     updateFilteredGrid();
   });
-
-  const handlePriceUpdate = (e) => {
-    currentFilters.maxPrice = Number(e.target.value);
-    if (priceDisplay) priceDisplay.textContent = `₹${currentFilters.maxPrice.toLocaleString()}`;
-    updateFilteredGrid();
-  };
-
-  priceSlider?.addEventListener('input', handlePriceUpdate);
-  priceSlider?.addEventListener('change', handlePriceUpdate);
 
   tagChips.forEach(chip => {
     chip.addEventListener('click', () => {
@@ -1443,7 +1421,7 @@ function bindFilterEvents() {
 
   document.addEventListener('click', (e) => {
     if (e.target && e.target.id === 'btnResetFilters') {
-      currentFilters = { search: '', category: 'ALL', tag: 'ALL', maxPrice: 20000, dateIso: '' };
+      currentFilters = { search: '', category: 'ALL', tag: 'ALL', dateIso: '' };
       renderBookExperiencePage();
     }
   });
