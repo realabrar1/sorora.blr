@@ -243,7 +243,7 @@ let currentFilters = {
   search: '',
   category: 'ALL',
   tag: 'ALL',
-  maxPrice: 15000,
+  maxPrice: 20000,
   dateIso: ''
 };
 
@@ -1307,13 +1307,15 @@ function renderMonthlyCalendarHTML() {
 
 function renderFilteredCardsHTML() {
   const events = Object.values(getLiveEventsData());
+  const maxPriceLimit = Number(currentFilters.maxPrice) || 20000;
+
   const filtered = events.filter(event => {
     // Search filter
     if (currentFilters.search) {
       const q = currentFilters.search.toLowerCase();
-      const match = event.title.toLowerCase().includes(q) ||
-        event.shortLocation.toLowerCase().includes(q) ||
-        event.category.toLowerCase().includes(q);
+      const match = (event.title || '').toLowerCase().includes(q) ||
+        (event.shortLocation || '').toLowerCase().includes(q) ||
+        (event.category || '').toLowerCase().includes(q);
       if (!match) return false;
     }
     // Category filter
@@ -1321,11 +1323,12 @@ function renderFilteredCardsHTML() {
       return false;
     }
     // Tag filter
-    if (currentFilters.tag !== 'ALL' && !event.tags.includes(currentFilters.tag)) {
+    if (currentFilters.tag !== 'ALL' && !(event.tags || []).includes(currentFilters.tag)) {
       return false;
     }
-    // Price filter
-    if (event.startingPrice > currentFilters.maxPrice) {
+    // Price filter (Convert event.startingPrice to Number to fix string comparison bug)
+    const eventPrice = Number(event.startingPrice) || 0;
+    if (eventPrice > maxPriceLimit) {
       return false;
     }
     // Date filter
@@ -1339,41 +1342,48 @@ function renderFilteredCardsHTML() {
   if (countDisplay) countDisplay.textContent = filtered.length;
 
   if (filtered.length === 0) {
-    return `<div class="no-results-box">
-      <h3>No experiences found matching your filters</h3>
-      <p>Try clearing search terms or increasing your price filter.</p>
+    return `<div class="no-results-box" style="grid-column: 1 / -1; text-align: center; padding: 40px 20px; background: rgba(200, 131, 115, 0.08); border-radius: 16px; margin: 20px 0;">
+      <h3 style="font-size: 1.3rem; color: var(--color-dark-olive); margin-bottom: 8px;">No experiences found matching max price ₹${Number(currentFilters.maxPrice).toLocaleString()}</h3>
+      <p style="color: var(--color-text-body); font-size: 0.9rem; margin-bottom: 16px;">Try increasing your price slider or resetting filters to view all experiences.</p>
       <button class="btn btn-outline" id="btnResetFilters">Reset Filters</button>
     </div>`;
   }
 
-  return filtered.map(event => `
-    <article class="experience-card card-enhanced" data-event-id="${event.id}">
-      <div class="card-image-wrap">
-        <img src="${event.heroImg}" alt="${event.title}" class="card-img" loading="lazy">
-        <div class="date-badge">
-          <span class="date-num">${event.dateShort.split(' ')[0]}</span>
-          <span class="date-month">${event.dateShort.split(' ')[1]}</span>
+  return filtered.map(event => {
+    const parts = (event.dateShort || '01 AUG').split(' ');
+    const dayNum = parts[0] || '01';
+    const monthStr = parts[1] || 'AUG';
+    const priceFormatted = Number(event.startingPrice || 0).toLocaleString();
+
+    return `
+      <article class="experience-card card-enhanced" data-event-id="${event.id}">
+        <div class="card-image-wrap">
+          <img src="${event.heroImg}" alt="${event.title}" class="card-img" loading="lazy">
+          <div class="date-badge">
+            <span class="date-num">${dayNum}</span>
+            <span class="date-month">${monthStr}</span>
+          </div>
+          ${event.seatsLeft <= 3 ? `<div class="urgent-seats-badge">🔥 Only ${event.seatsLeft} Seats Left</div>` : ''}
         </div>
-        ${event.seatsLeft <= 3 ? `<div class="urgent-seats-badge">🔥 Only ${event.seatsLeft} Seats Left</div>` : ''}
-      </div>
-      <div class="card-body">
-        <div class="card-category-strip">${event.category}</div>
-        <h3 class="card-title">${event.title}</h3>
-        <div class="card-meta">
-          <span class="meta-item">📍 ${event.shortLocation}</span>
-          <span class="meta-item">⏰ ${event.duration}</span>
+        <div class="card-body">
+          <div class="card-category-strip">${event.category}</div>
+          <h3 class="card-title">${event.title}</h3>
+          <div class="card-meta">
+            <span class="meta-item">📍 ${event.shortLocation}</span>
+            <span class="meta-item">⏰ ${event.duration}</span>
+          </div>
+          <div class="card-price-seats-row">
+            <div class="price-box">Starting <strong>₹${priceFormatted}</strong></div>
+            <div class="seats-left-pill">${event.seatsLeft} Seats Left</div>
+          </div>
+          <div class="card-actions-grid">
+            <a href="#event/${event.id}" class="btn btn-outline btn-sm">View Details</a>
+            <button class="btn btn-primary btn-sm trigger-book-now" data-event-id="${event.id}">Book Now</button>
+          </div>
         </div>
-        <div class="card-price-seats-row">
-          <div class="price-box">Starting <strong>₹${event.startingPrice}</strong></div>
-          <div class="seats-left-pill">${event.seatsLeft} Seats Left</div>
-        </div>
-        <div class="card-actions-grid">
-          <a href="#event/${event.id}" class="btn btn-outline btn-sm">View Details</a>
-          <button class="btn btn-primary btn-sm trigger-book-now" data-event-id="${event.id}">Book Now</button>
-        </div>
-      </div>
-    </article>
-  `).join('');
+      </article>
+    `;
+  }).join('');
 }
 
 function bindFilterEvents() {
@@ -1393,11 +1403,14 @@ function bindFilterEvents() {
     updateFilteredGrid();
   });
 
-  priceSlider?.addEventListener('input', (e) => {
+  const handlePriceUpdate = (e) => {
     currentFilters.maxPrice = Number(e.target.value);
-    if (priceDisplay) priceDisplay.textContent = `₹${currentFilters.maxPrice}`;
+    if (priceDisplay) priceDisplay.textContent = `₹${currentFilters.maxPrice.toLocaleString()}`;
     updateFilteredGrid();
-  });
+  };
+
+  priceSlider?.addEventListener('input', handlePriceUpdate);
+  priceSlider?.addEventListener('change', handlePriceUpdate);
 
   tagChips.forEach(chip => {
     chip.addEventListener('click', () => {
@@ -1428,9 +1441,11 @@ function bindFilterEvents() {
     }
   });
 
-  document.getElementById('btnResetFilters')?.addEventListener('click', () => {
-    currentFilters = { search: '', category: 'ALL', tag: 'ALL', maxPrice: 15000, dateIso: '' };
-    renderBookExperiencePage();
+  document.addEventListener('click', (e) => {
+    if (e.target && e.target.id === 'btnResetFilters') {
+      currentFilters = { search: '', category: 'ALL', tag: 'ALL', maxPrice: 20000, dateIso: '' };
+      renderBookExperiencePage();
+    }
   });
 }
 
