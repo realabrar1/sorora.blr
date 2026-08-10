@@ -532,20 +532,20 @@
   ],
   "reels": [
     {
-      "id": "reel-1",
-      "title": "Saddle up for soulful mornings",
-      "duration": "0:24",
-      "views": "12.4K",
-      "videoUrl": "/assets/sorora_hero.mp4",
-      "posterUrl": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025558204_photo__3_.jpeg"
-    },
-    {
       "id": "reel_1786361409624",
       "title": "Breathe. Stretch. Be present.",
       "duration": "0:44",
       "views": "10.5K",
       "videoUrl": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786361372138_1786358081605_yoga.mp4",
       "posterUrl": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786361377144_photo__5_.jpeg"
+    },
+    {
+      "id": "reel-1",
+      "title": "Saddle up for soulful mornings",
+      "duration": "0:24",
+      "views": "12.4K",
+      "videoUrl": "/assets/sorora_hero.mp4",
+      "posterUrl": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025558204_photo__3_.jpeg"
     },
     {
       "id": "reel-2",
