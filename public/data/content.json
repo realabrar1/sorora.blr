@@ -1,99 +1,5 @@
 {
   "events": {
-    "detective-game-night": {
-      "id": "detective-game-night",
-      "title": "Detective Game Night & High Tea",
-      "subtitle": "Solve a 1920s Murder Mystery Soirée",
-      "category": "Immersive Games",
-      "tags": [
-        "Women Only",
-        "Wellness",
-        "Weekend"
-      ],
-      "location": "The Heritage Manor, Indiranagar, Bengaluru",
-      "shortLocation": "Indiranagar, Bengaluru",
-      "date": "Saturday, August 22, 2026",
-      "dateShort": "August 22  2026",
-      "dateIso": "2026-08-22",
-      "time": "4:00 PM – 7:30 PM",
-      "duration": "4:00 PM – 7:30 PM",
-      "startingPrice": 1499,
-      "seatsTotal": 10,
-      "seatsFilled": 7,
-      "seatsLeft": 3,
-      "rating": 4.9,
-      "reviewsCount": 72,
-      "joinedCount": "130+",
-      "featuredBadge": "Newly Added",
-      "heroImg": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786364092873_Detective_Game_Night.jpg",
-      "heroVideo": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786364064369_animate_this_image_thriller_da__1_.mp4",
-      "storyText": "Put on your detective hat! Step into a vintage 1920s mansion where every guest gets a secret character role to unravel a mystery over tea and pastries.",
-      "pricing": {
-        "regular": {
-          "price": 1499,
-          "original": 1999,
-          "title": "Detective Pass",
-          "status": "Includes Character Dossier & High Tea"
-        }
-      },
-      "datesAvailable": [
-        "Saturday, August 22, 2026"
-      ],
-      "timeline": [
-        {
-          "time": "4:00 PM",
-          "title": "Role Assignment",
-          "desc": "Receive secret character card"
-        },
-        {
-          "time": "4:30 PM",
-          "title": "Investigation Round",
-          "desc": "Interrogate suspects & uncover clues"
-        }
-      ],
-      "experiences": [
-        {
-          "icon": "🕵️‍♀️",
-          "title": "Live Mystery Game",
-          "desc": "Interactive murder mystery game.",
-          "detail": "Full props & character cards."
-        }
-      ],
-      "hosts": [
-        {
-          "name": "Tara Varma",
-          "role": "Game Master",
-          "bio": "Narrative mystery creator.",
-          "img": "/assets/detective_game.png"
-        }
-      ],
-      "venue": {
-        "name": "The Heritage Manor",
-        "address": "Indiranagar, Bengaluru",
-        "metro": "Indiranagar Metro Station",
-        "parking": "Valet parking",
-        "weather": "25°C Indoor Parlor",
-        "mapSrc": "https://maps.google.com/maps?q=Indiranagar+Bengaluru&t=&z=13&ie=UTF8&iwloc=&output=embed"
-      },
-      "included": [
-        "Custom Character File",
-        "High Tea & Mocktails",
-        "Mystery Prizes"
-      ],
-      "whatToBring": [
-        {
-          "icon": "🕵️‍♀️",
-          "text": "1920s Vintage Accessory"
-        }
-      ],
-      "faqs": [
-        {
-          "q": "Do I need acting experience?",
-          "a": "No! It is super easy and playful."
-        }
-      ],
-      "order": 0
-    },
     "saddle-and-soul": {
       "id": "saddle-and-soul",
       "title": "Saddle & Soul",
@@ -102,15 +8,16 @@
       "tags": [
         "Women Only",
         "Wellness",
+        "Creativity",
         "Weekend"
       ],
       "location": "Zippy Equestrian, JP Nagar, Bengaluru",
       "shortLocation": "JP Nagar, Bengaluru",
       "date": "Saturday, August 02, 2026",
-      "dateShort": "August 02  2026",
+      "dateShort": "02 AUG 2026",
       "dateIso": "2026-08-02",
       "time": "3:00 PM – 6:30 PM",
-      "duration": "3:00 PM – 6:30 PM",
+      "duration": "3.5 Hours",
       "startingPrice": 1999,
       "seatsTotal": 8,
       "seatsFilled": 6,
@@ -119,8 +26,8 @@
       "reviewsCount": 124,
       "joinedCount": "150+",
       "featuredBadge": "Limited Spots",
-      "heroImg": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025917347_photo__3_.jpeg",
-      "heroVideo": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786367318546_animate_only_the_text_video__1_.mp4",
+      "heroImg": "/assets/saddle_and_soul.png",
+      "heroVideo": "/assets/sorora_hero.mp4",
       "storyText": "Imagine stepping away from the city's noise into a peaceful equestrian sanctuary, where horses, art, meaningful conversations, and mindful moments help you reconnect—with yourself and with others.",
       "pricing": {
         "earlyBird": {
@@ -257,8 +164,7 @@
           "q": "Can I come alone?",
           "a": "Absolutely! Over 70% of our attendees join solo and build lifelong connections."
         }
-      ],
-      "order": 1
+      ]
     },
     "into-the-woods": {
       "id": "into-the-woods",
@@ -266,6 +172,7 @@
       "subtitle": "A Serene Weekend Escape into Bandipur Forest",
       "category": "Weekend Getaway",
       "tags": [
+        "Adventure",
         "Women Only",
         "Wellness",
         "Weekend"
@@ -273,10 +180,10 @@
       "location": "Bandipur Forest Reserve, Karnataka",
       "shortLocation": "Bandipur Forest",
       "date": "Friday, August 14, 2026",
-      "dateShort": "August 14  2026",
+      "dateShort": "14 AUG 2026",
       "dateIso": "2026-08-14",
       "time": "3 Days & 2 Nights",
-      "duration": "3 Days & 2 Nights",
+      "duration": "3 Days 2 Nights",
       "startingPrice": 8999,
       "seatsTotal": 12,
       "seatsFilled": 9,
@@ -285,8 +192,8 @@
       "reviewsCount": 88,
       "joinedCount": "95+",
       "featuredBadge": "Early Bird Offer",
-      "heroImg": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786364136366_SnapInsta.to_729896798_18089834705138218_6372860788470209982_n.jpg",
-      "heroVideo": "",
+      "heroImg": "/assets/into_the_woods.png",
+      "heroVideo": "/assets/sorora_hero.mp4",
       "storyText": "Disconnect from screens and reconnect with wild nature in an eco-luxury jungle lodge. Guided safaris, forest bathing, starry campfire circles, and deep sisterhood bond.",
       "pricing": {
         "earlyBird": {
@@ -372,8 +279,7 @@
           "q": "Is transportation provided?",
           "a": "We arrange shared carpools from Indiranagar, Bengaluru!"
         }
-      ],
-      "order": 2
+      ]
     },
     "morning-yoga": {
       "id": "morning-yoga",
@@ -381,17 +287,18 @@
       "subtitle": "Nourish Your Body and Mind in Nature",
       "category": "Wellness & Mindfulness",
       "tags": [
-        "Women Only",
         "Wellness",
+        "Women Only",
+        "Networking",
         "Weekend"
       ],
       "location": "Sports Drome, Sarjapur Road, Bengaluru",
       "shortLocation": "Sports Drome, Sarjapur Road",
       "date": "Sunday, August 16, 2026",
-      "dateShort": "August 16  2026",
+      "dateShort": "16 AUG 2026",
       "dateIso": "2026-08-16",
       "time": "9:00 AM – 12:30 PM",
-      "duration": "9:00 AM – 12:30 PM",
+      "duration": "3.5 Hours",
       "startingPrice": 999,
       "seatsTotal": 15,
       "seatsFilled": 9,
@@ -400,8 +307,8 @@
       "reviewsCount": 96,
       "joinedCount": "210+",
       "featuredBadge": "Most Popular",
-      "heroImg": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786364287402_photo__4_.jpeg",
-      "heroVideo": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786364902432_animate_only_the_text_video.mp4",
+      "heroImg": "/assets/morning_yoga.png",
+      "heroVideo": "/assets/sorora_hero.mp4",
       "storyText": "Start your Sunday morning with gentle Hatha yoga Flow surrounded by lush greenery, followed by a sound bowl meditation and a delicious farm-fresh botanical brunch.",
       "pricing": {
         "regular": {
@@ -475,12 +382,105 @@
           "q": "Can beginners join?",
           "a": "Yes! The flow is soft, accessible, and beginner friendly."
         }
+      ]
+    },
+    "detective-game-night": {
+      "id": "detective-game-night",
+      "title": "Detective Game Night & High Tea",
+      "subtitle": "Solve a 1920s Murder Mystery Soirée",
+      "category": "Immersive Games",
+      "tags": [
+        "Creativity",
+        "Networking",
+        "Weekend",
+        "Women Only"
       ],
-      "order": 3
+      "location": "The Heritage Manor, Indiranagar, Bengaluru",
+      "shortLocation": "Indiranagar, Bengaluru",
+      "date": "Saturday, August 22, 2026",
+      "dateShort": "22 AUG 2026",
+      "dateIso": "2026-08-22",
+      "time": "4:00 PM – 7:30 PM",
+      "duration": "3.5 Hours",
+      "startingPrice": 1499,
+      "seatsTotal": 10,
+      "seatsFilled": 7,
+      "seatsLeft": 3,
+      "rating": 4.9,
+      "reviewsCount": 72,
+      "joinedCount": "130+",
+      "featuredBadge": "Newly Added",
+      "heroImg": "/assets/detective_game.png",
+      "heroVideo": "/assets/sorora_hero.mp4",
+      "storyText": "Put on your detective hat! Step into a vintage 1920s mansion where every guest gets a secret character role to unravel a mystery over tea and pastries.",
+      "pricing": {
+        "regular": {
+          "price": 1499,
+          "original": 1999,
+          "title": "Detective Pass",
+          "status": "Includes Character Dossier & High Tea"
+        }
+      },
+      "datesAvailable": [
+        "Saturday, August 22, 2026"
+      ],
+      "timeline": [
+        {
+          "time": "4:00 PM",
+          "title": "Role Assignment",
+          "desc": "Receive secret character card"
+        },
+        {
+          "time": "4:30 PM",
+          "title": "Investigation Round",
+          "desc": "Interrogate suspects & uncover clues"
+        }
+      ],
+      "experiences": [
+        {
+          "icon": "🕵️‍♀️",
+          "title": "Live Mystery Game",
+          "desc": "Interactive murder mystery game.",
+          "detail": "Full props & character cards."
+        }
+      ],
+      "hosts": [
+        {
+          "name": "Tara Varma",
+          "role": "Game Master",
+          "bio": "Narrative mystery creator.",
+          "img": "/assets/detective_game.png"
+        }
+      ],
+      "venue": {
+        "name": "The Heritage Manor",
+        "address": "Indiranagar, Bengaluru",
+        "metro": "Indiranagar Metro Station",
+        "parking": "Valet parking",
+        "weather": "25°C Indoor Parlor",
+        "mapSrc": "https://maps.google.com/maps?q=Indiranagar+Bengaluru&t=&z=13&ie=UTF8&iwloc=&output=embed"
+      },
+      "included": [
+        "Custom Character File",
+        "High Tea & Mocktails",
+        "Mystery Prizes"
+      ],
+      "whatToBring": [
+        {
+          "icon": "🕵️‍♀️",
+          "text": "1920s Vintage Accessory"
+        }
+      ],
+      "faqs": [
+        {
+          "q": "Do I need acting experience?",
+          "a": "No! It is super easy and playful."
+        }
+      ]
     }
   },
   "hero": {
-    "title": "EXPERIENCES THAT",
+    "title": "EXPERIENCES THAT CONNECT YOU",
     "scriptTitle": "To yourself & each other.",
     "subtitle": "Meaningful events for women who seek connection, adventure & memories that last.",
     "video": "/assets/sorora_hero.mp4",
@@ -532,19 +532,11 @@
   ],
   "reels": [
     {
-      "id": "reel_1786361409624",
-      "title": "Breathe. Stretch. Be present.",
-      "duration": "0:44",
-      "views": "10.5K",
-      "videoUrl": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786361372138_1786358081605_yoga.mp4",
-      "posterUrl": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786361377144_photo__5_.jpeg"
-    },
-    {
       "id": "reel-1",
       "title": "Saddle up for soulful mornings",
       "duration": "0:24",
       "views": "12.4K",
-      "videoUrl": "/assets/sorora_hero.mp4",
+      "videoUrl": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360980907_yoga.mp4",
       "posterUrl": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025558204_photo__3_.jpeg"
     },
     {
@@ -552,15 +544,23 @@
       "title": "Into the wild, into yourself",
       "duration": "0:18",
       "views": "8.7K",
-      "videoUrl": "/assets/sorora_hero.mp4",
+      "videoUrl": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360980907_yoga.mp4",
       "posterUrl": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025917347_photo__3_.jpeg"
+    },
+    {
+      "id": "reel-3",
+      "title": "Breathe. Stretch. Be present.",
+      "duration": "0:21",
+      "views": "15.2K",
+      "videoUrl": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360980907_yoga.mp4",
+      "posterUrl": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360992528_photo__5_.jpeg"
     },
     {
       "id": "reel-4",
       "title": "Mystery nights & mind games",
       "duration": "0:17",
       "views": "6.3K",
-      "videoUrl": "/assets/sorora_hero.mp4",
+      "videoUrl": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360980907_yoga.mp4",
       "posterUrl": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025946841_Detective_Game_Night.jpg"
     },
     {
@@ -568,7 +568,7 @@
       "title": "Conversations that heal",
       "duration": "0:19",
       "views": "11.8K",
-      "videoUrl": "/assets/sorora_hero.mp4",
+      "videoUrl": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360980907_yoga.mp4",
       "posterUrl": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025917347_photo__3_.jpeg"
     },
     {
@@ -576,12 +576,12 @@
       "title": "Stronger together, always",
       "duration": "0:22",
       "views": "9.6K",
-      "videoUrl": "/assets/sorora_hero.mp4",
+      "videoUrl": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786360980907_yoga.mp4",
       "posterUrl": "https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025558204_photo__3_.jpeg"
     }
   ],
-  "instagramHandle": "@sorora.blr",
-  "instagramUrl": "https://instagram.com/sorora.blr",
+  "instagramHandle": "@sorora.experiences",
+  "instagramUrl": "https://instagram.com/sorora.experiences",
   "bookPage": {
     "heroTitle": "Book Your Next Experience",
     "heroSubtitle": "Choose an experience that speaks to you and create memories that last a lifetime.",
