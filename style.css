@@ -4559,3 +4559,8 @@ button {
     font-size: 1.05rem !important;
   }
 }
+
+/* REMOVE SLIDER ARROW ICONS */
+.slider-arrow {
+  display: none !important;
+}

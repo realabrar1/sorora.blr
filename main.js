@@ -1075,10 +1075,6 @@ function renderBookExperiencePage() {
         `).join('')}
       </div>
 
-      <!-- Controls -->
-      <button class="slider-arrow slider-arrow-prev" id="btnSliderPrev" aria-label="Previous Slide">&lsaquo;</button>
-      <button class="slider-arrow slider-arrow-next" id="btnSliderNext" aria-label="Next Slide">&rsaquo;</button>
-
       <!-- Dots -->
       <div class="slider-dots-container" id="sliderDotsContainer">
         ${banners.map((_, idx) => `
