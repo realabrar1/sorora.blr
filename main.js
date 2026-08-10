@@ -2061,16 +2061,11 @@ function initReelsSection() {
 
     return `
       <div class="reel-card" data-reel-id="${r.id}">
-        <video class="reel-video" src="${videoSrc}" poster="${posterSrc}" playsinline loop preload="metadata">
+        <video class="reel-video" src="${videoSrc}" poster="${posterSrc}" playsinline loop muted preload="auto">
           <source src="${videoSrc}" type="video/mp4">
         </video>
         <div class="reel-overlay-top">
-          <span class="reel-badge-icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/>
-              <polygon points="10,8 16,12 10,16"/>
-            </svg>
-          </span>
+          <button class="reel-sound-btn" title="Toggle Sound" style="background: rgba(0,0,0,0.5); border: none; color: #fff; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 5;">🔇</button>
           <span class="reel-duration-badge">${r.duration || '0:20'}</span>
         </div>
 
@@ -2090,6 +2085,15 @@ function initReelsSection() {
   const reelCards = grid.querySelectorAll('.reel-card');
   reelCards.forEach(card => {
     const video = card.querySelector('.reel-video');
+    const soundBtn = card.querySelector('.reel-sound-btn');
+
+    soundBtn?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (video) {
+        video.muted = !video.muted;
+        soundBtn.textContent = video.muted ? '🔇' : '🔊';
+      }
+    });
 
     card.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -2103,10 +2107,15 @@ function initReelsSection() {
       });
 
       if (video.paused) {
+        if (video.readyState === 0) {
+          video.load();
+        }
         video.play().then(() => {
           card.classList.add('is-playing');
         }).catch(err => {
-          console.warn('Video playback notice:', err);
+          console.warn('Play error, retrying muted:', err);
+          video.muted = true;
+          video.play().then(() => card.classList.add('is-playing')).catch(e => console.error('Video play error:', e));
         });
       } else {
         video.pause();
