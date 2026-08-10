@@ -3902,7 +3902,7 @@ button {
   }
 }
 
-/* MOBILE HERO BANNER VIDEO HEIGHT ENHANCEMENT */
+/* MOBILE HERO BANNER VIDEO HEIGHT & CONTENT POSITION ADJUSTMENT */
 @media (max-width: 768px) {
   .hero-section {
     min-height: 80vh !important;
@@ -3915,13 +3915,8 @@ button {
     min-height: 80vh !important;
     object-fit: cover !important;
   }
-}
 
-/* Mobile Only */
-@media (max-width: 768px) {
-  .hero-glass-bar {
-    margin-top: 150px; /* Increase this value until it reaches the position you want */
+  .hero-content {
+    margin-top: 110px !important;
   }
 }
-
-/*hero content text below*/
