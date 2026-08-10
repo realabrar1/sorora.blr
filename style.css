@@ -4414,15 +4414,49 @@ button {
     font-size: 0.82rem !important;
   }
 
-  /* Why Join Section on Small Phones */
+  /* Why Join Section on Mobile Devices (3 items top row, 2 items bottom row) */
   .features-row {
-    grid-template-columns: 1fr !important;
-    gap: 16px !important;
+    display: grid !important;
+    grid-template-columns: repeat(6, 1fr) !important;
+    gap: 10px !important;
+  }
+
+  .features-row .feature-item:nth-child(1),
+  .features-row .feature-item:nth-child(2),
+  .features-row .feature-item:nth-child(3) {
+    grid-column: span 2 !important;
+  }
+
+  .features-row .feature-item:nth-child(4),
+  .features-row .feature-item:nth-child(5) {
+    grid-column: span 3 !important;
   }
 
   .feature-item {
-    padding: 16px !important;
+    padding: 14px 8px !important;
     border-radius: 14px !important;
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+  }
+
+  .feature-icon svg {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  .feature-title {
+    font-size: 0.82rem !important;
+    line-height: 1.2 !important;
+    margin-top: 8px !important;
+    margin-bottom: 4px !important;
+  }
+
+  .feature-desc {
+    font-size: 0.72rem !important;
+    line-height: 1.3 !important;
   }
 
   /* Community Section on Small Phones */
