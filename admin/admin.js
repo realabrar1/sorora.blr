@@ -1520,49 +1520,61 @@ function initReelModal() {
   const vidPreview = document.getElementById('reelModalVidPreview');
   const imgPreview = document.getElementById('reelModalImgPreview');
 
-  videoInput?.addEventListener('change', (e) => {
+  videoInput?.addEventListener('change', async (e) => {
     const file = e.target.files[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onload = async (evt) => {
-        const dataUrl = evt.target.result;
-        document.getElementById('reelVideoUrlInput').value = dataUrl;
-        if (vidPreview) {
-          vidPreview.src = dataUrl;
-          vidPreview.classList.remove('hidden');
-        }
+      const submitBtn = document.getElementById('saveReelSubmitBtn');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = '⏳ Uploading Video File to GitHub... Please wait';
+      }
 
-        // Upload to GitHub CDN in background
-        const publicUrl = await uploadMediaToGitHub(file);
-        if (publicUrl) {
-          document.getElementById('reelVideoUrlInput').value = publicUrl;
-          if (vidPreview) vidPreview.src = publicUrl;
-        }
-      };
-      reader.readAsDataURL(file);
+      // Show local video preview
+      const localUrl = URL.createObjectURL(file);
+      if (vidPreview) {
+        vidPreview.src = localUrl;
+        vidPreview.classList.remove('hidden');
+      }
+
+      const publicUrl = await uploadMediaToGitHub(file);
+      if (publicUrl) {
+        document.getElementById('reelVideoUrlInput').value = publicUrl;
+        if (vidPreview) vidPreview.src = publicUrl;
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Save Reel Video & Sync Live \u2794';
+      }
     }
   });
 
-  posterInput?.addEventListener('change', (e) => {
+  posterInput?.addEventListener('change', async (e) => {
     const file = e.target.files[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onload = async (evt) => {
-        const dataUrl = evt.target.result;
-        document.getElementById('reelPosterUrlInput').value = dataUrl;
-        if (imgPreview) {
-          imgPreview.src = dataUrl;
-          imgPreview.classList.remove('hidden');
-        }
+      const submitBtn = document.getElementById('saveReelSubmitBtn');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = '⏳ Uploading Cover Image to GitHub... Please wait';
+      }
 
-        // Upload to GitHub CDN in background
-        const publicUrl = await uploadMediaToGitHub(file);
-        if (publicUrl) {
-          document.getElementById('reelPosterUrlInput').value = publicUrl;
-          if (imgPreview) imgPreview.src = publicUrl;
-        }
-      };
-      reader.readAsDataURL(file);
+      // Show local image preview
+      const localUrl = URL.createObjectURL(file);
+      if (imgPreview) {
+        imgPreview.src = localUrl;
+        imgPreview.classList.remove('hidden');
+      }
+
+      const publicUrl = await uploadMediaToGitHub(file);
+      if (publicUrl) {
+        document.getElementById('reelPosterUrlInput').value = publicUrl;
+        if (imgPreview) imgPreview.src = publicUrl;
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Save Reel Video & Sync Live \u2794';
+      }
     }
   });
 
@@ -1573,13 +1585,21 @@ function initReelModal() {
     let id = document.getElementById('reelId').value;
     if (!id) id = `reel_${Date.now()}`;
 
+    const videoUrl = document.getElementById('reelVideoUrlInput').value.trim();
+    const posterUrl = document.getElementById('reelPosterUrlInput').value.trim();
+
+    if (!videoUrl || videoUrl.startsWith('data:video')) {
+      alert('Please wait for the video file upload to finish or enter a valid Video URL.');
+      return;
+    }
+
     const newReel = {
       id,
       title: document.getElementById('reelTitleInput').value.trim(),
-      duration: document.getElementById('reelDurationInput').value.trim(),
-      views: document.getElementById('reelViewsInput').value.trim(),
-      videoUrl: document.getElementById('reelVideoUrlInput').value.trim(),
-      posterUrl: document.getElementById('reelPosterUrlInput').value.trim()
+      duration: document.getElementById('reelDurationInput').value.trim() || '0:20',
+      views: document.getElementById('reelViewsInput').value.trim() || '10.5K',
+      videoUrl: videoUrl || '/assets/sorora_hero.mp4',
+      posterUrl: posterUrl || 'https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025558204_photo__3_.jpeg'
     };
 
     const idx = reels.findIndex(r => r.id === id);
@@ -1589,7 +1609,7 @@ function initReelModal() {
     setStorage('SORORA_REELS_DATA', reels);
     modal?.classList.remove('open');
     loadDashboardData();
-    showGitHubToast('✅ Reel video saved successfully & synced live to website!', 'success');
+    showGitHubToast('✅ New Reel Video added & synced live to website!', 'success');
   });
 
   // Instagram Config Form Submit
@@ -1611,13 +1631,24 @@ window.openReelModal = function () {
   document.getElementById('reelTitleInput').value = '';
   document.getElementById('reelDurationInput').value = '0:20';
   document.getElementById('reelViewsInput').value = '10.5K';
-  document.getElementById('reelVideoUrlInput').value = '/assets/sorora_hero.mp4';
-  document.getElementById('reelPosterUrlInput').value = 'https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025558204_photo__3_.jpeg';
+  document.getElementById('reelVideoUrlInput').value = '';
+  document.getElementById('reelPosterUrlInput').value = '';
+
+  const videoInput = document.getElementById('reelVideoFileInput');
+  const posterInput = document.getElementById('reelPosterFileInput');
+  if (videoInput) videoInput.value = '';
+  if (posterInput) posterInput.value = '';
   
   const vidPreview = document.getElementById('reelModalVidPreview');
   const imgPreview = document.getElementById('reelModalImgPreview');
-  if (vidPreview) { vidPreview.src = '/assets/sorora_hero.mp4'; vidPreview.classList.remove('hidden'); }
-  if (imgPreview) { imgPreview.src = 'https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025558204_photo__3_.jpeg'; imgPreview.classList.remove('hidden'); }
+  if (vidPreview) { vidPreview.src = ''; vidPreview.classList.add('hidden'); }
+  if (imgPreview) { imgPreview.src = ''; imgPreview.classList.add('hidden'); }
+
+  const submitBtn = document.getElementById('saveReelSubmitBtn');
+  if (submitBtn) {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Save Reel Video & Sync Live \u2794';
+  }
 
   document.getElementById('reelModal').classList.add('open');
 };
