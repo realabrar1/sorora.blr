@@ -1100,20 +1100,21 @@ function initModal() {
       seatsFilled: Number(document.getElementById('expFilledSeatsInput').value),
       seatsLeft: Number(document.getElementById('expTotalSeatsInput').value) - Number(document.getElementById('expFilledSeatsInput').value),
       featuredBadge: existing.featuredBadge || 'Newly Added',
-      heroImg: document.getElementById('expHeroImgInput').value.trim() || '/assets/saddle_and_soul.png',
+      heroImg: document.getElementById('expHeroImgInput').value.trim() || 'https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025917347_photo__3_.jpeg',
       heroVideo: document.getElementById('expHeroVideoInput').value.trim() || '',
       storyText: document.getElementById('expStoryInput').value.trim(),
       tags: ['Women Only', 'Wellness', 'Weekend'],
       rating: existing.rating || 4.9,
       reviewsCount: existing.reviewsCount || 10,
       joinedCount: existing.joinedCount || '50+',
-      pricing: existing.pricing || {
+      pricing: {
+        ...(existing.pricing || {}),
         regular: { price: Number(document.getElementById('expPriceInput').value), original: Number(document.getElementById('expPriceInput').value), title: 'General Pass', status: 'Full Access' }
       },
       timeline: existing.timeline || [{ time: 'Start Time', title: 'Welcome & Gathering', desc: 'Arrive at venue and meet everyone' }],
       experiences: existing.experiences || [{ icon: '✨', title: 'Curated Moment', desc: 'Special activity and bonding session.' }],
-      hosts: existing.hosts || [{ name: 'Sorora Host', role: 'Experience Guide', bio: 'Curator of soulful women gatherings.', img: '/assets/saddle_and_soul.png' }],
-      venue: existing.venue || { name: document.getElementById('expShortLocInput').value.trim(), address: document.getElementById('expLocationInput').value.trim(), metro: 'Nearby Metro Station', parking: 'Onsite Parking', weather: 'Pleasant Weather', mapSrc: 'https://maps.google.com/maps?q=Bengaluru&output=embed' },
+      hosts: existing.hosts || [{ name: 'Sorora Host', role: 'Experience Guide', bio: 'Curator of soulful women gatherings.', img: 'https://raw.githubusercontent.com/realabrar1/sorora.blr/main/public/uploads/1786025917347_photo__3_.jpeg' }],
+      venue: { name: document.getElementById('expShortLocInput').value.trim(), address: document.getElementById('expLocationInput').value.trim(), metro: 'Nearby Metro Station', parking: 'Onsite Parking', weather: 'Pleasant Weather', mapSrc: 'https://maps.google.com/maps?q=Bengaluru&output=embed' },
       included: existing.included || ['Guided Activity', 'Refreshments & Tea'],
       whatToBring: existing.whatToBring || [{ icon: '😊', text: 'Smile & Open Heart' }],
       faqs: existing.faqs || [{ q: 'What should I know before arriving?', a: 'Check your digital ticket for exact location details.' }]
@@ -1124,7 +1125,7 @@ function initModal() {
 
     modal.classList.remove('open');
     loadDashboardData();
-    alert(`Experience '${updatedEvent.title}' saved successfully! Connected client app will reflect updates.`);
+    showGitHubToast(`✅ Experience '${updatedEvent.title}' saved & synced live!`, 'success');
   });
 }
 
@@ -1415,10 +1416,21 @@ function processMediaFile(file, hiddenInput, content, previewWrap, onFileLoaded)
     previewWrap?.classList.remove('hidden');
     if (onFileLoaded) onFileLoaded(dataUrl);
 
+    const submitBtn = document.getElementById('saveExpSubmitBtn');
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = '⏳ Uploading Media File to GitHub... Please wait';
+    }
+
     // Asynchronously upload file to GitHub Repository
     const publicUrl = await uploadMediaToGitHub(file);
     if (publicUrl) {
       hiddenInput.value = publicUrl;
+    }
+
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Save Experience & Sync';
     }
   };
   reader.readAsDataURL(file);
